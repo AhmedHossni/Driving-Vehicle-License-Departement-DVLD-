@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../DVLD_BussinessLoginLayer/DVLD_BusinessLogicLayer.csproj" Id="6b7e78ec-5878-4481-a08a-63721e1e2151" />
+  <Project Path="../DVLD_DataAccessLayer/DVLD_DataAccessLayer.csproj" Id="7f91ae56-81eb-4390-92f9-42b913eb8c11" />
+  <Project Path="Driving &amp; Vehicle License Departement (DVLD).csproj" Id="e3486814-4be0-4169-a052-35c328e10384" />
+</Solution>
