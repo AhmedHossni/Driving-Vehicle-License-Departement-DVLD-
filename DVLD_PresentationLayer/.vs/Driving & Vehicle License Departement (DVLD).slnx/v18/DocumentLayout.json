@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|g:\\programming\\fundementals of programming\\mohamed abu-hadhoud\\projects\\driving \u0026 vehicle license departement (dvld)\\dvld_presentationlayer\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|g:\\programming\\fundementals of programming\\mohamed abu-hadhoud\\projects\\driving \u0026 vehicle license departement (dvld)\\dvld_presentationlayer\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|g:\\programming\\fundementals of programming\\mohamed abu-hadhoud\\projects\\driving \u0026 vehicle license departement (dvld)\\dvld_presentationlayer\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E3486814-4BE0-4169-A052-35C328E10384}|Driving \u0026 Vehicle License Departement (DVLD).csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,7 +70,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\frmLogin.cs",
+              "RelativeDocumentMoniker": "frmLogin.cs",
+              "ToolTip": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\frmLogin.cs [Design]",
+              "RelativeToolTip": "frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-11T16:56:28.11Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\frmMain.cs",
+              "RelativeDocumentMoniker": "frmMain.cs",
+              "ToolTip": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\frmMain.cs",
+              "RelativeToolTip": "frmMain.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-11T16:54:20.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
@@ -74,13 +107,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "G:\\Programming\\Fundementals Of Programming\\Mohamed Abu-hadhoud\\Projects\\Driving \u0026 Vehicle License Departement (DVLD)\\DVLD_PresentationLayer\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-09T17:05:11.03Z",
               "EditorCaption": ""

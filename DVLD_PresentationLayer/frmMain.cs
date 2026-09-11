@@ -39,7 +39,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
 
             btn.BackColor = Color.FromArgb(245, 245, 247);
-            btn.ForeColor = Color.FromArgb(30, 30, 30);
+            btn.ForeColor = ColorTranslator.FromHtml("#DDAF79");
 
             btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 230, 235);
             btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 220);

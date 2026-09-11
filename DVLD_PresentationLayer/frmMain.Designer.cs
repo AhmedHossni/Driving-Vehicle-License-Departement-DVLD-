@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlMainBtns = new System.Windows.Forms.Panel();
             this.pnlFrmBtns = new System.Windows.Forms.Panel();
+            this.buttonMinimize = new System.Windows.Forms.Button();
+            this.btnFormClose = new System.Windows.Forms.Button();
             this.btnAccountSettings = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDrivers = new System.Windows.Forms.Button();
@@ -39,8 +41,6 @@
             this.btnApp = new System.Windows.Forms.Button();
             this.imglistMain = new System.Windows.Forms.ImageList(this.components);
             this.pnlLogo = new System.Windows.Forms.Panel();
-            this.buttonMinimize = new System.Windows.Forms.Button();
-            this.btnFormClose = new System.Windows.Forms.Button();
             this.pnlMainBtns.SuspendLayout();
             this.pnlFrmBtns.SuspendLayout();
             this.SuspendLayout();
@@ -69,8 +69,35 @@
             this.pnlFrmBtns.Size = new System.Drawing.Size(1168, 46);
             this.pnlFrmBtns.TabIndex = 0;
             // 
+            // buttonMinimize
+            // 
+            this.buttonMinimize.BackColor = System.Drawing.Color.White;
+            this.buttonMinimize.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.icons8_minimize_96;
+            this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
+            this.buttonMinimize.Location = new System.Drawing.Point(1052, 6);
+            this.buttonMinimize.Name = "buttonMinimize";
+            this.buttonMinimize.Size = new System.Drawing.Size(37, 34);
+            this.buttonMinimize.TabIndex = 5;
+            this.buttonMinimize.UseVisualStyleBackColor = false;
+            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
+            // 
+            // btnFormClose
+            // 
+            this.btnFormClose.BackColor = System.Drawing.Color.White;
+            this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
+            this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
+            this.btnFormClose.Location = new System.Drawing.Point(1095, 6);
+            this.btnFormClose.Name = "btnFormClose";
+            this.btnFormClose.Size = new System.Drawing.Size(37, 34);
+            this.btnFormClose.TabIndex = 6;
+            this.btnFormClose.UseVisualStyleBackColor = false;
+            this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
+            // 
             // btnAccountSettings
             // 
+            this.btnAccountSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
             this.btnAccountSettings.Location = new System.Drawing.Point(789, 67);
             this.btnAccountSettings.Name = "btnAccountSettings";
             this.btnAccountSettings.Size = new System.Drawing.Size(187, 67);
@@ -80,6 +107,7 @@
             // 
             // btnUsers
             // 
+            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
             this.btnUsers.Location = new System.Drawing.Point(596, 67);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(187, 67);
@@ -89,6 +117,7 @@
             // 
             // btnDrivers
             // 
+            this.btnDrivers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
             this.btnDrivers.Location = new System.Drawing.Point(403, 67);
             this.btnDrivers.Name = "btnDrivers";
             this.btnDrivers.Size = new System.Drawing.Size(187, 67);
@@ -98,6 +127,7 @@
             // 
             // btnPeople
             // 
+            this.btnPeople.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
             this.btnPeople.Location = new System.Drawing.Point(210, 67);
             this.btnPeople.Name = "btnPeople";
             this.btnPeople.Size = new System.Drawing.Size(187, 67);
@@ -107,6 +137,7 @@
             // 
             // btnApp
             // 
+            this.btnApp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
             this.btnApp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnApp.Location = new System.Drawing.Point(17, 67);
             this.btnApp.Name = "btnApp";
@@ -134,32 +165,6 @@
             this.pnlLogo.Name = "pnlLogo";
             this.pnlLogo.Size = new System.Drawing.Size(1168, 422);
             this.pnlLogo.TabIndex = 1;
-            // 
-            // buttonMinimize
-            // 
-            this.buttonMinimize.BackColor = System.Drawing.Color.White;
-            this.buttonMinimize.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.icons8_minimize_96;
-            this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.buttonMinimize.Location = new System.Drawing.Point(1052, 6);
-            this.buttonMinimize.Name = "buttonMinimize";
-            this.buttonMinimize.Size = new System.Drawing.Size(37, 34);
-            this.buttonMinimize.TabIndex = 5;
-            this.buttonMinimize.UseVisualStyleBackColor = false;
-            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
-            // 
-            // btnFormClose
-            // 
-            this.btnFormClose.BackColor = System.Drawing.Color.White;
-            this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
-            this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnFormClose.Location = new System.Drawing.Point(1095, 6);
-            this.btnFormClose.Name = "btnFormClose";
-            this.btnFormClose.Size = new System.Drawing.Size(37, 34);
-            this.btnFormClose.TabIndex = 6;
-            this.btnFormClose.UseVisualStyleBackColor = false;
-            this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
             // 
             // frmMain
             // 
