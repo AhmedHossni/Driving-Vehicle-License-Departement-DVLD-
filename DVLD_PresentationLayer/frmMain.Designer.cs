@@ -75,7 +75,7 @@
             this.buttonMinimize.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.icons8_minimize_96;
             this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.buttonMinimize.Location = new System.Drawing.Point(1052, 6);
+            this.buttonMinimize.Location = new System.Drawing.Point(1073, 6);
             this.buttonMinimize.Name = "buttonMinimize";
             this.buttonMinimize.Size = new System.Drawing.Size(37, 34);
             this.buttonMinimize.TabIndex = 5;
@@ -88,7 +88,7 @@
             this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
             this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnFormClose.Location = new System.Drawing.Point(1095, 6);
+            this.btnFormClose.Location = new System.Drawing.Point(1116, 6);
             this.btnFormClose.Name = "btnFormClose";
             this.btnFormClose.Size = new System.Drawing.Size(37, 34);
             this.btnFormClose.TabIndex = 6;

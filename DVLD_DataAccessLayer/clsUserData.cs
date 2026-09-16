@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonUseThings;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Sql;
@@ -11,7 +12,6 @@ namespace DVLD_DataAccessLayer
 {
     public class clsUserData
     {
-        public enum enGettingUserResult { eError, eUserNotFounded, eUserFounded}
 
         public static bool Add(string username, string password, int personId, bool isActive, 
             out string errorMessage, out int userId)
@@ -99,11 +99,11 @@ namespace DVLD_DataAccessLayer
                 }
             }
         }
-        public static enGettingUserResult GetInfoByUsername(string username, ref int userId,
+        public static enGettingRecordResult GetInfoByUsername(string username, ref int userId,
             ref int personId, ref string password, ref bool isActive
             , out string errorMessage)
         {
-            enGettingUserResult result;
+            enGettingRecordResult result;
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
@@ -127,11 +127,11 @@ namespace DVLD_DataAccessLayer
                                 password = (string)reader["Password"];
                                 isActive = (bool)reader["IsActive"];
 
-                                result = enGettingUserResult.eUserFounded;
+                                result = enGettingRecordResult.eUserFounded;
                             }
                             else
                             {
-                                result = enGettingUserResult.eUserNotFounded;
+                                result = enGettingRecordResult.eUserNotFounded;
                             }
 
                         }
@@ -139,7 +139,7 @@ namespace DVLD_DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        result = enGettingUserResult.eError;
+                        result = enGettingRecordResult.eError;
                         errorMessage = ex.Message;
                         return result;
                     }

@@ -7,7 +7,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 {
     public class frmMainStyle : Form
     {
-        private int cornerRadius = 20;
+        private int cornerRadius = 8;
 
         public frmMainStyle()
         {
@@ -47,7 +47,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             }
         }
 
-        // إعادة تطبيق القص عند تغيير حجم النافذة
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);

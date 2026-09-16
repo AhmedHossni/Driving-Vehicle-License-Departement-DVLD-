@@ -4,3 +4,6 @@ G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving 
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\obj\Debug\DVLD_DataAccessLayer.csproj.CoreCompileInputs.cache
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\obj\Debug\DVLD_DataAccessLayer.dll
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\obj\Debug\DVLD_DataAccessLayer.pdb
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\bin\Debug\CommonUseThings.dll
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\bin\Debug\CommonUseThings.pdb
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_DataAccessLayer\obj\Debug\DVLD_Dat.5E8DE79F.Up2Date

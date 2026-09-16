@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
@@ -15,9 +16,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+            Application.Run(new frmPeopleList());
+
             //frmLogin frmLogin = new frmLogin();
             //if (frmLogin.ShowDialog() == DialogResult.OK)
-                Application.Run(new frmMain());
+            //    Application.Run(new frmMain());
         }
     }
 }

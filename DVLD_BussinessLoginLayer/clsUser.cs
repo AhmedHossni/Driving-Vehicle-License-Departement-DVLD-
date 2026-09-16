@@ -1,4 +1,6 @@
-﻿using DVLD_DataAccessLayer;
+﻿using CommonUseThings;
+using DVLD_DataAccessLayer;
+using System.Data;
 
 namespace DVLD_BusinessLogicLayer
 {
@@ -40,11 +42,11 @@ namespace DVLD_BusinessLogicLayer
             string databasePassword = "";
             bool isActive = false;
 
-            clsUserData.enGettingUserResult searchResult =
+            enGettingRecordResult searchResult =
                 clsUserData.GetInfoByUsername(username, ref userId, ref personId, ref databasePassword
                 , ref isActive, out errorMessage);
 
-            if (searchResult == clsUserData.enGettingUserResult.eUserFounded)
+            if (searchResult == enGettingRecordResult.eUserFounded)
             {
                 if (password == databasePassword) 
                 {
@@ -101,7 +103,11 @@ namespace DVLD_BusinessLogicLayer
             clsUserData.IsExistByPersonId(personId, out errorMessage);
 
             return string.IsNullOrEmpty(errorMessage);
-        }     
+        } 
+        
+        public DataTable GetAll(int personId, out string errorMessage) 
+            => clsUserData.GetAll(out errorMessage);
+   
 
     }
 }

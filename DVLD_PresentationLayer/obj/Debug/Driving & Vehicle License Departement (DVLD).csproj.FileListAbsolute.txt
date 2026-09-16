@@ -24,3 +24,10 @@ G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving 
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\bin\Debug\DVLD_BusinessLogicLayer.dll
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\bin\Debug\DVLD_BusinessLogicLayer.pdb
 G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_.frmMain.resources
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_.People_Forms.frmPeopleList.resources
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\bin\Debug\CommonUseThings.dll
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\bin\Debug\CommonUseThings.pdb
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlPersonInfo.resources
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_.Person_Forms.frmPersonInfo.resources
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_._person_Forms.ctrlAddEdit_person.resources
+G:\Programming\Fundementals Of Programming\Mohamed Abu-hadhoud\Projects\Driving & Vehicle License Departement (DVLD)\DVLD_PresentationLayer\obj\Debug\Driving___Vehicle_License_Departement__DVLD_.Person_Forms.frmAddEditPerson.resources
