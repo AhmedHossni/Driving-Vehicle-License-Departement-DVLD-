@@ -4,6 +4,7 @@ using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -117,10 +118,26 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                 if (MessageBox.Show($"Are you sure you want to delete person with id = {CurrentRowId}",
                     "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
+                    string personImageFullName = 
+                        clsPerson.GetById(CurrentRowId, out string imageNameErrorMessage).ImageName;
+                    
+                    if (!string.IsNullOrEmpty(imageNameErrorMessage))
+                    {
+                        MessageBox.Show(imageNameErrorMessage,
+                            "Error Message :(",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        return;
+                    }
+
                     clsPerson.Delete(CurrentRowId, out string errorMessage);
 
                     if (string.IsNullOrEmpty(errorMessage))
                     {
+                        if (personImageFullName != string.Empty)
+                            DeletePersonImage(personImageFullName);
+
                         MessageBox.Show($"Person with id equals ({CurrentRowId}) is deleted successfully",
                             "Operation Done Successfully :)",
                             MessageBoxButtons.OK,
@@ -137,6 +154,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                     }
                 }
             }
+        }
+
+        private void DeletePersonImage(string imageName)
+        {
+            if (File.Exists(clsProjectSetting.ImageDefaultPath + "\\" +  imageName))
+                File.Delete(clsProjectSetting.ImageDefaultPath + "\\" + imageName);
         }
 
         private void btnFormClose_Click(object sender, EventArgs e) => 

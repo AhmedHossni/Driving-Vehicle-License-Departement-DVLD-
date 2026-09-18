@@ -10,7 +10,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
         {
             InitializeComponent();
 
-            ctrlAddEdit_person1.Load_personData(personId);
+            ctrlAddEdit_person1.LoadPersonDataToForm(personId);
 
             ctrlAddEdit_person1.btnSave_Click_Handler += btnSave_Click_Handler;
             ctrlAddEdit_person1.btnClose_Click_Handler += btnClose_Click_Handler;

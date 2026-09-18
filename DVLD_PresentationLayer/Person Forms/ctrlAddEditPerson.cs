@@ -1,6 +1,7 @@
 ﻿using CommonUseThings;
 using DVLD_BusinessLogicLayer;
 using System;
+using System.Collections.Concurrent;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -16,7 +17,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
         public event Action btnSave_Click_Handler;
 
-        string oldImageName = null;
+        private string _currentPersonImageName = string.Empty;
+
+        private bool _personImageIsChange = false;
+        
 
         public ctrlAddEdit_person()
         {
@@ -30,6 +34,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
         }
 
+        // This method is for testing
         private void FillRandomPersonData()
         {
             string[] firstNames = { "Ahmed", "Mohamed", "Mahmoud", "Ali", "Ibrahim", "Youssef", "Fatima", "Maryam", "Aisha", "Zeinab" };
@@ -112,7 +117,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                     MessageBoxIcon.Error);
         }
 
-        public void Load_personData(int id)
+        public void LoadPersonDataToForm(int id)
         {
             if(id == -1)
             {
@@ -143,6 +148,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                 tboxNationalNo.Text = _person.NationalNo;
 
                 cboxCountryName.SelectedValue = _person.NationalCountryID;
+
+                _currentPersonImageName = _person.ImageName;
 
                 Load_personImage(_person.ImageName, _person.Gender);
             }
@@ -227,10 +234,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
             LoadPersonDataFromForm();
 
-            string CopiedImageFullName = _person.ImageName;
+            string newImageFullName = string.Empty;
 
-            _person.ImageName = Guid.NewGuid().ToString() +
-                    Path.GetExtension(_person.ImageName);
+            if (_personImageIsChange && 
+                !string.IsNullOrEmpty(_person.ImageName))
+            {
+                newImageFullName = _person.ImageName;
+                _person.ImageName = GetRandomImageName(_person.ImageName);
+            }
 
             _person.Save(out errorMessage, out int id);
 
@@ -238,17 +249,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
             {
                 btnSave_Click_Handler.Invoke();
 
-                if (!string.IsNullOrEmpty(oldImageName))
-                {
-                    File.Copy(CopiedImageFullName,
-                        clsProjectSetting.ImageDefaultPath + "\\" + _person.ImageName);
-
-                    if(File.Exists(clsProjectSetting.ImageDefaultPath + "\\" + oldImageName))
-                    { 
-                        File.Delete(clsProjectSetting.ImageDefaultPath + "\\" + oldImageName);
-                        oldImageName = null;
-                    }
-                }
+                SavingImageProcess(newImageFullName);
 
                 MessageBox.Show("The operation has been completed successfully.",
                     "Success",
@@ -265,6 +266,43 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                     MessageBoxIcon.Error);
             }
 
+        }
+
+        private string GetRandomImageName(string currentImageName)
+        {
+            return Guid.NewGuid().ToString() + Path.GetExtension(currentImageName);
+        }
+
+        private void SavingImageProcess(string newImageFullName)
+        {
+            try
+            {
+                if (_personImageIsChange &&
+                    _currentPersonImageName != string.Empty &&
+                    File.Exists(clsProjectSetting.ImageDefaultPath + "\\" + _currentPersonImageName))
+                {
+                    File.Delete(clsProjectSetting.ImageDefaultPath + "\\" + _currentPersonImageName);
+                    _currentPersonImageName = _person.ImageName;
+                }
+
+                if (_personImageIsChange &&
+                    !string.IsNullOrEmpty(newImageFullName))
+                {
+                    File.Copy(newImageFullName,
+                        clsProjectSetting.ImageDefaultPath + "\\" + _person.ImageName);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                    "Error Message :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            _personImageIsChange = false;
         }
 
         private void llblSetPersonImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -292,7 +330,29 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    oldImageName = _person.ImageName;
+                    if (_person.ImageName == Path.GetFileName(openFileDialog.FileName))
+                    {
+                        MessageBox.Show("This photo is actually a current photo of the person." +
+                            "\r\nPlease choose another photo.\nImage Path : " + openFileDialog.FileName,
+                            "Invalid selection :(",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        return;
+                    }
+
+                    if (Path.GetDirectoryName(openFileDialog.FileName) 
+                        == clsProjectSetting.ImageDefaultPath)
+                    {
+                        MessageBox.Show("You can't select a photo from this folder path." +
+                            "\nImage Path : " + openFileDialog.FileName,
+                            "Invalid selection :(",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        return;
+                    }
+
 
                     _person.ImageName = openFileDialog.FileName;
 
@@ -300,6 +360,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                         "Selected Image",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
+                    _personImageIsChange = true;
 
                     pboxPersonImage.Image = Image.FromFile(_person.ImageName);
 
@@ -311,9 +373,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
         private void llblRemovePersonImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             llblRemovePersonImage.Enabled = false;
-            oldImageName = _person?.ImageName;
             _person.ImageName = "";
+            pboxPersonImage.Image.Dispose();
             pboxPersonImage.Image = null;
+            _personImageIsChange = true;
 
         }
     }
