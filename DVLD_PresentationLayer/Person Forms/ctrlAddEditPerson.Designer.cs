@@ -233,6 +233,7 @@
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Female";
             this.rbtnFemale.UseVisualStyleBackColor = true;
+            this.rbtnFemale.CheckedChanged += new System.EventHandler(this.ChangeImageByGender);
             // 
             // rbtnMale
             // 
@@ -244,6 +245,7 @@
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Male";
             this.rbtnMale.UseVisualStyleBackColor = true;
+            this.rbtnMale.CheckedChanged += new System.EventHandler(this.ChangeImageByGender);
             // 
             // pboxPersonImage
             // 

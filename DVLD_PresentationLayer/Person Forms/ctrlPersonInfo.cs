@@ -9,6 +9,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 {
     public partial class ctrlPersonInfo : UserControl
     {
+        private int _personId = -1;
+
+        public event Action PersonDataChangedHandler;
         public ctrlPersonInfo()
         {
             InitializeComponent();
@@ -16,6 +19,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 
         public void LoadPersonData(int id)
         {
+            _personId = id;
+
             clsPerson person = clsPerson.GetById(id, out string errorMessage);
 
             if (person != null)
@@ -81,5 +86,21 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             }
         }
 
+        private void llblEditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditPerson addEditPersonForm = 
+                new frmAddEditPerson(_personId);
+
+            addEditPersonForm.SaveNewOrExistPersonHandler +=
+                AddEditPersonForm_SaveNewOrExistPersonHandler;
+
+            addEditPersonForm.ShowDialog();
+        }
+
+        private void AddEditPersonForm_SaveNewOrExistPersonHandler()
+        {
+            LoadPersonData(_personId);
+            PersonDataChangedHandler.Invoke();
+        }
     }
 }

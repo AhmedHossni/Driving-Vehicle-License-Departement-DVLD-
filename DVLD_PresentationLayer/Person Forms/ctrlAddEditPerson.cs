@@ -1,7 +1,6 @@
 ﻿using CommonUseThings;
 using DVLD_BusinessLogicLayer;
 using System;
-using System.Collections.Concurrent;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -377,6 +376,18 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
             pboxPersonImage.Image.Dispose();
             pboxPersonImage.Image = null;
             _personImageIsChange = true;
+
+        }
+
+        private void ChangeImageByGender(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(_person.ImageName))
+            {
+                if (rbtnMale.Checked)
+                    Load_personImage("", enPersonGender.Male);
+                else
+                    Load_personImage("", enPersonGender.Female);
+            }
 
         }
     }

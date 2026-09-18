@@ -45,35 +45,23 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
         }
 
 
-            private void LoadDataInGridDataView()
+        private void LoadDataInGridDataView()
+        {
+            string ErrorMessage = string.Empty;
+
+            _peopleData = clsPerson.GetAllDataForFormDGV(out ErrorMessage).DefaultView;
+
+            if(!string.IsNullOrEmpty(ErrorMessage))
             {
-                string ErrorMessage = string.Empty;
+                MessageBox.Show(ErrorMessage,
+                    "Error Message :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
 
-                _peopleData = clsPerson.GetAllDataForFormDGV(out ErrorMessage).DefaultView;
-
-                if(!string.IsNullOrEmpty(ErrorMessage))
-                {
-                    MessageBox.Show(ErrorMessage,
-                        "Error Message :(",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
-                    return;
-                }
-
-                dgvPeople.DataSource = _peopleData;
+                return;
             }
 
-        private void btnAddNewContact_Click(object sender, System.EventArgs e)
-        {
-            OpenAddEditForm(-1);
-        }
-
-        private void OpenAddEditForm(int id)
-        {
-            //frmAddEdit frmAddEdit = new frmAddEdit(id);
-            //frmAddEdit.ShowDialog();
-            //LoadDataInGridDataView();
+            dgvPeople.DataSource = _peopleData;
         }
 
         private int GetAndSelectCurrentGridRowId()
@@ -92,16 +80,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                 return -1;
             }
 
-        }
-
-        private void EditToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            int CurrentRowId = GetAndSelectCurrentGridRowId();
-
-            if (CurrentRowId != -1)
-            {
-                OpenAddEditForm(CurrentRowId);
-            }
         }
 
         private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -286,6 +264,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             if (currentRowId != -1)
             { 
                 frmPersonInfo personInfo = new frmPersonInfo(currentRowId);
+                personInfo.PersonDataChangedHandler += LoadDataInGridDataView;
                 personInfo.ShowDialog();
             }
         }

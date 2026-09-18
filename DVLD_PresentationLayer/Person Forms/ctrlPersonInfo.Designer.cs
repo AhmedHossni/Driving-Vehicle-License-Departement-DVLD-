@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gboxPerosnInfo = new System.Windows.Forms.GroupBox();
+            this.pboxPersonImage = new System.Windows.Forms.PictureBox();
             this.lblPersonNationalNoValue = new System.Windows.Forms.Label();
             this.lblPersonNationalNo = new System.Windows.Forms.Label();
             this.lblblPersonCountryValue = new System.Windows.Forms.Label();
@@ -47,13 +48,14 @@
             this.lblPersonName = new System.Windows.Forms.Label();
             this.lblPersonIdValue = new System.Windows.Forms.Label();
             this.lblPersonId = new System.Windows.Forms.Label();
-            this.pboxPersonImage = new System.Windows.Forms.PictureBox();
+            this.llblEditPerson = new System.Windows.Forms.LinkLabel();
             this.gboxPerosnInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPersonImage)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxPerosnInfo
             // 
+            this.gboxPerosnInfo.Controls.Add(this.llblEditPerson);
             this.gboxPerosnInfo.Controls.Add(this.pboxPersonImage);
             this.gboxPerosnInfo.Controls.Add(this.lblPersonNationalNoValue);
             this.gboxPerosnInfo.Controls.Add(this.lblPersonNationalNo);
@@ -79,6 +81,15 @@
             this.gboxPerosnInfo.TabIndex = 0;
             this.gboxPerosnInfo.TabStop = false;
             this.gboxPerosnInfo.Text = "Person Information";
+            // 
+            // pboxPersonImage
+            // 
+            this.pboxPersonImage.Location = new System.Drawing.Point(724, 84);
+            this.pboxPersonImage.Name = "pboxPersonImage";
+            this.pboxPersonImage.Size = new System.Drawing.Size(160, 151);
+            this.pboxPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxPersonImage.TabIndex = 18;
+            this.pboxPersonImage.TabStop = false;
             // 
             // lblPersonNationalNoValue
             // 
@@ -261,14 +272,17 @@
             this.lblPersonId.TabIndex = 0;
             this.lblPersonId.Text = "Person Id :";
             // 
-            // pboxPersonImage
+            // llblEditPerson
             // 
-            this.pboxPersonImage.Location = new System.Drawing.Point(724, 84);
-            this.pboxPersonImage.Name = "pboxPersonImage";
-            this.pboxPersonImage.Size = new System.Drawing.Size(160, 151);
-            this.pboxPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxPersonImage.TabIndex = 18;
-            this.pboxPersonImage.TabStop = false;
+            this.llblEditPerson.AutoSize = true;
+            this.llblEditPerson.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.llblEditPerson.Location = new System.Drawing.Point(751, 258);
+            this.llblEditPerson.Name = "llblEditPerson";
+            this.llblEditPerson.Size = new System.Drawing.Size(104, 23);
+            this.llblEditPerson.TabIndex = 31;
+            this.llblEditPerson.TabStop = true;
+            this.llblEditPerson.Text = "Edit Person";
+            this.llblEditPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblEditPerson_LinkClicked);
             // 
             // ctrlPersonInfo
             // 
@@ -306,5 +320,6 @@
         private System.Windows.Forms.Label lblPersonNationalNoValue;
         private System.Windows.Forms.Label lblPersonNationalNo;
         private System.Windows.Forms.PictureBox pboxPersonImage;
+        private System.Windows.Forms.LinkLabel llblEditPerson;
     }
 }
