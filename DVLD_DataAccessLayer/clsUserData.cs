@@ -223,6 +223,39 @@ namespace DVLD_DataAccessLayer
             return dt;
         }
 
+        public static DataTable GetAllDataForFormDGV(out string errorMessage)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM UsersWithPersonFullName";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            dt.Load(reader);
+                        }
+
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    errorMessage = ex.Message;
+                }
+
+            }
+            errorMessage = string.Empty;
+            return dt;
+        }
+
         public static bool Delete(int id, out string errorMessage)
         {
             int rowsAffected = 0;

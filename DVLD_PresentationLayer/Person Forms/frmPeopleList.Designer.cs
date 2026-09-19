@@ -116,7 +116,7 @@
             this.tboxSearch.Size = new System.Drawing.Size(181, 24);
             this.tboxSearch.TabIndex = 4;
             this.tboxSearch.TextChanged += new System.EventHandler(this.tboxSearch_TextChanged);
-            this.tboxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchById_KeyPress);
+            this.tboxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchBy_KeyPress);
             // 
             // lblFilterBy
             // 

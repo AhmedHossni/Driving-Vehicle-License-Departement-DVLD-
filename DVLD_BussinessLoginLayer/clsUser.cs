@@ -91,23 +91,26 @@ namespace DVLD_BusinessLogicLayer
             return string.IsNullOrEmpty(errorMessage);
         }
 
-        public bool IsExistByUserId(int userId, out string errorMessage) 
+        public static bool IsExistByUserId(int userId, out string errorMessage) 
         {
             clsUserData.IsExistByUserId(userId, out errorMessage);
 
             return string.IsNullOrEmpty(errorMessage);
         }
 
-        public bool IsExistByPersonId(int personId, out string errorMessage)
+        public static bool IsExistByPersonId(int personId, out string errorMessage)
         {
             clsUserData.IsExistByPersonId(personId, out errorMessage);
 
             return string.IsNullOrEmpty(errorMessage);
         } 
         
-        public DataTable GetAll(int personId, out string errorMessage) 
+        public static DataTable GetAll(out string errorMessage) 
             => clsUserData.GetAll(out errorMessage);
-   
+
+        public static DataTable GetAllDataForFormDGV(out string errorMessage)
+            => clsUserData.GetAllDataForFormDGV(out errorMessage);
+
 
     }
 }

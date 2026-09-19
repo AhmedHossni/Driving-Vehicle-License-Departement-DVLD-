@@ -35,6 +35,10 @@
             this.buttonMinimize = new System.Windows.Forms.Button();
             this.btnFormClose = new System.Windows.Forms.Button();
             this.btnAccountSettings = new System.Windows.Forms.Button();
+            this.cmsAccountSettingsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDrivers = new System.Windows.Forms.Button();
             this.btnPeople = new System.Windows.Forms.Button();
@@ -43,6 +47,7 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlMainBtns.SuspendLayout();
             this.pnlFrmBtns.SuspendLayout();
+            this.cmsAccountSettingsBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMainBtns
@@ -104,6 +109,40 @@
             this.btnAccountSettings.TabIndex = 4;
             this.btnAccountSettings.Text = "Account Settings";
             this.btnAccountSettings.UseVisualStyleBackColor = true;
+            this.btnAccountSettings.Click += new System.EventHandler(this.ShowBtnAccountSettingsCMS);
+            this.btnAccountSettings.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShowBtnAccountSettingsCMS);
+            // 
+            // cmsAccountSettingsBtn
+            // 
+            this.cmsAccountSettingsBtn.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsAccountSettingsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentUserInfoToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
+            this.signOutToolStripMenuItem});
+            this.cmsAccountSettingsBtn.Name = "cmsAccountSettingsBtn";
+            this.cmsAccountSettingsBtn.Size = new System.Drawing.Size(215, 110);
+            // 
+            // currentUserInfoToolStripMenuItem
+            // 
+            this.currentUserInfoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("currentUserInfoToolStripMenuItem.Image")));
+            this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
+            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("signOutToolStripMenuItem.Image")));
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // btnUsers
             // 
@@ -178,6 +217,7 @@
             this.Text = "frmMain";
             this.pnlMainBtns.ResumeLayout(false);
             this.pnlFrmBtns.ResumeLayout(false);
+            this.cmsAccountSettingsBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -195,5 +235,9 @@
         private System.Windows.Forms.Button btnFormClose;
         private System.Windows.Forms.Button buttonMinimize;
         private System.Windows.Forms.Panel pnlFrmBtns;
+        private System.Windows.Forms.ContextMenuStrip cmsAccountSettingsBtn;
+        private System.Windows.Forms.ToolStripMenuItem currentUserInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
     }
 }

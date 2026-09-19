@@ -28,7 +28,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             Email
         }
 
-        private DataView _peopleData 
+        private DataView _dvPeopleData
             = new DataView();
 
         public frmPeopleList()
@@ -36,8 +36,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             InitializeComponent();
 
             LoadDataInGridDataView();
-
-            string ErrorMessage = string.Empty;
 
             pnlFormUpper.MouseDown += frm_MouseDown;
             pnlFrmBtns.MouseDown += frm_MouseDown;
@@ -127,7 +125,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
         private void buttonMinimize_Click(object sender, EventArgs e) =>
             this.WindowState = FormWindowState.Minimized;
 
-        private void tboxSearchById_KeyPress(object sender, KeyPressEventArgs e)
+        private void tboxSearchBy_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.PersonID || 
                 cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.Phone)
@@ -177,7 +175,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
 
         public void SearchFilter(string filterText)
         {
-            _peopleData.RowFilter = filterText;
+            _dvPeopleData.RowFilter = filterText;
         }
 
         private void rbtnMale_CheckedChanged(object sender, EventArgs e)
@@ -272,7 +270,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
 
             await Task.Run(() =>
             {
-                _peopleData = clsPerson.GetAllDataForFormDGV(out ErrorMessage).DefaultView;
+                _dvPeopleData = clsPerson.GetAllDataForFormDGV(out ErrorMessage).DefaultView;
             });
 
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -283,10 +281,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                 return;
             }
 
-            dgvPeople.DataSource = this._peopleData;
+            dgvPeople.DataSource = this._dvPeopleData;
 
             lblNumberOfRecords.Text = 
-                this._peopleData.Count.ToString();
+                this._dvPeopleData.Count.ToString();
         }
 
         private void btnBigCloseForm_Click(object sender, EventArgs e)

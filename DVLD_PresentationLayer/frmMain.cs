@@ -52,5 +52,21 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
         private void btnFormClose_Click(object sender, EventArgs e) =>
             this.Close();
+
+        private void ShowBtnAccountSettingsCMS(object sender, EventArgs e)
+        {
+            cmsAccountSettingsBtn.Show(btnAccountSettings, new Point(0, btnAccountSettings.Height));
+        }
+
+        private void ShowBtnAccountSettingsCMS(object sender, MouseEventArgs e)
+        {
+            ShowBtnAccountSettingsCMS(sender, (EventArgs)e);
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }
