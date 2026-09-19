@@ -92,6 +92,8 @@
             // 
             this.chboxRememberMe.AutoSize = true;
             this.chboxRememberMe.BackColor = System.Drawing.Color.Transparent;
+            this.chboxRememberMe.Checked = true;
+            this.chboxRememberMe.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chboxRememberMe.Font = new System.Drawing.Font("Unispace", 10.2F, System.Drawing.FontStyle.Bold);
             this.chboxRememberMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
             this.chboxRememberMe.Location = new System.Drawing.Point(227, 241);
@@ -197,10 +199,10 @@
             this.Controls.Add(this.pnlLoginComponents);
             this.Controls.Add(this.pnlEgyptFlagImg);
             this.Font = new System.Drawing.Font("Segoe UI Black", 8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
             this.Text = "Driving And Vehicle License Departement (DVLD)";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlLoginComponents.ResumeLayout(false);
             this.pnlLoginComponents.PerformLayout();
             this.pnlEgyptFlagImg.ResumeLayout(false);

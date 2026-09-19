@@ -47,6 +47,9 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblRecods = new System.Windows.Forms.Label();
+            this.lblNumberOfRecords = new System.Windows.Forms.Label();
+            this.btnBigCloseForm = new System.Windows.Forms.Button();
             this.pnlFormUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlFrmBtns.SuspendLayout();
@@ -216,7 +219,7 @@
             this.dgvPeople.ReadOnly = true;
             this.dgvPeople.RowHeadersWidth = 51;
             this.dgvPeople.RowTemplate.Height = 26;
-            this.dgvPeople.Size = new System.Drawing.Size(1146, 314);
+            this.dgvPeople.Size = new System.Drawing.Size(1146, 245);
             this.dgvPeople.TabIndex = 1;
             this.dgvPeople.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPeople_CellMouseDown);
             // 
@@ -228,13 +231,13 @@
             this.deleteToolStripMenuItem,
             this.deleteToolStripMenuItem1});
             this.cmsListFunc.Name = "cmsListFunc";
-            this.cmsListFunc.Size = new System.Drawing.Size(215, 110);
+            this.cmsListFunc.Size = new System.Drawing.Size(127, 82);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click_EditPersonDetails);
             // 
@@ -242,7 +245,7 @@
             // 
             this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.deleteToolStripMenuItem.Text = "Show";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click_ShowPersonDetails);
             // 
@@ -250,15 +253,54 @@
             // 
             this.deleteToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem1.Image")));
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(126, 26);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // lblRecods
+            // 
+            this.lblRecods.AutoSize = true;
+            this.lblRecods.Font = new System.Drawing.Font("Unispace", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblRecods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.lblRecods.Location = new System.Drawing.Point(5, 513);
+            this.lblRecods.Name = "lblRecods";
+            this.lblRecods.Size = new System.Drawing.Size(129, 20);
+            this.lblRecods.TabIndex = 4;
+            this.lblRecods.Text = "# Records : ";
+            // 
+            // lblNumberOfRecords
+            // 
+            this.lblNumberOfRecords.AutoSize = true;
+            this.lblNumberOfRecords.Font = new System.Drawing.Font("Unispace", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblNumberOfRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.lblNumberOfRecords.Location = new System.Drawing.Point(140, 513);
+            this.lblNumberOfRecords.Name = "lblNumberOfRecords";
+            this.lblNumberOfRecords.Size = new System.Drawing.Size(19, 20);
+            this.lblNumberOfRecords.TabIndex = 5;
+            this.lblNumberOfRecords.Text = "0";
+            // 
+            // btnBigCloseForm
+            // 
+            this.btnBigCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.btnBigCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBigCloseForm.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBigCloseForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
+            this.btnBigCloseForm.Location = new System.Drawing.Point(1032, 507);
+            this.btnBigCloseForm.Name = "btnBigCloseForm";
+            this.btnBigCloseForm.Size = new System.Drawing.Size(92, 34);
+            this.btnBigCloseForm.TabIndex = 7;
+            this.btnBigCloseForm.Text = "Close";
+            this.btnBigCloseForm.UseVisualStyleBackColor = false;
+            this.btnBigCloseForm.Click += new System.EventHandler(this.btnBigCloseForm_Click);
             // 
             // frmPeopleList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 555);
+            this.Controls.Add(this.btnBigCloseForm);
+            this.Controls.Add(this.lblNumberOfRecords);
+            this.Controls.Add(this.lblRecods);
             this.Controls.Add(this.pnlFrmBtns);
             this.Controls.Add(this.dgvPeople);
             this.Controls.Add(this.pnlFormUpper);
@@ -271,6 +313,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).EndInit();
             this.cmsListFunc.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -293,5 +336,8 @@
         private System.Windows.Forms.RadioButton rbtnMale;
         private System.Windows.Forms.RadioButton rbtnFemale;
         private System.Windows.Forms.Button btnAddPerson;
+        private System.Windows.Forms.Label lblRecods;
+        private System.Windows.Forms.Label lblNumberOfRecords;
+        private System.Windows.Forms.Button btnBigCloseForm;
     }
 }

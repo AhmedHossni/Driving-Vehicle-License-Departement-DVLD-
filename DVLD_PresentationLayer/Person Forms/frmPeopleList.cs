@@ -28,7 +28,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             Email
         }
 
-        private DataView _peopleData;
+        private DataView _peopleData 
+            = new DataView();
 
         public frmPeopleList()
         {
@@ -42,26 +43,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             pnlFrmBtns.MouseDown += frm_MouseDown;
 
             cboxSearchBy.SelectedIndex = (int)enComboBoxSelections.None;
-        }
-
-
-        private void LoadDataInGridDataView()
-        {
-            string ErrorMessage = string.Empty;
-
-            _peopleData = clsPerson.GetAllDataForFormDGV(out ErrorMessage).DefaultView;
-
-            if(!string.IsNullOrEmpty(ErrorMessage))
-            {
-                MessageBox.Show(ErrorMessage,
-                    "Error Message :(",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                return;
-            }
-
-            dgvPeople.DataSource = _peopleData;
         }
 
         private int GetAndSelectCurrentGridRowId()
@@ -280,15 +261,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             frmAddEditPerson addEditPersonForm
                 = new frmAddEditPerson(id);
 
-            addEditPersonForm.SaveNewOrExistPersonHandler += SaveNewOrExistPersonHandler;
+            addEditPersonForm.SaveNewOrExistPersonHandler += LoadDataInGridDataView;
 
             addEditPersonForm.ShowDialog();
         }
 
-        private async void SaveNewOrExistPersonHandler()
+        private async void LoadDataInGridDataView()
         {
             string ErrorMessage = string.Empty;
-            DataView _peopleData = null;
 
             await Task.Run(() =>
             {
@@ -303,7 +283,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                 return;
             }
 
-            dgvPeople.DataSource = _peopleData;
+            dgvPeople.DataSource = this._peopleData;
+
+            lblNumberOfRecords.Text = 
+                this._peopleData.Count.ToString();
         }
+
+        private void btnBigCloseForm_Click(object sender, EventArgs e)
+            => this.Close();
     }
 }

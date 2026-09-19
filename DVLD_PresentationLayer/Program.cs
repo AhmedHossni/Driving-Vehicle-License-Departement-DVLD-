@@ -17,11 +17,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            Application.Run(new frmPeopleList());
+            //Application.Run(new frmPeopleList());
 
-            //frmLogin frmLogin = new frmLogin();
-            //if (frmLogin.ShowDialog() == DialogResult.OK)
-            //    Application.Run(new frmMain());
+            frmLogin frmLogin = new frmLogin();
+            if (frmLogin.ShowDialog() == DialogResult.OK)
+                Application.Run(new frmMain());
         }
     }
 }
