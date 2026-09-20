@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsersList));
             this.pnlFrmBtns = new System.Windows.Forms.Panel();
             this.buttonMinimize = new System.Windows.Forms.Button();
             this.btnFormClose = new System.Windows.Forms.Button();
             this.pnlFormUpper = new System.Windows.Forms.Panel();
+            this.cboxIsActiveOptions = new System.Windows.Forms.ComboBox();
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.tboxSearch = new System.Windows.Forms.TextBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
@@ -40,6 +42,12 @@
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.cmsOperationsOnUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnBigCloseForm = new System.Windows.Forms.Button();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblRecods = new System.Windows.Forms.Label();
@@ -47,6 +55,7 @@
             this.pnlFormUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.cmsOperationsOnUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFrmBtns
@@ -88,6 +97,7 @@
             // pnlFormUpper
             // 
             this.pnlFormUpper.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlFormUpper.Controls.Add(this.cboxIsActiveOptions);
             this.pnlFormUpper.Controls.Add(this.btnAddPerson);
             this.pnlFormUpper.Controls.Add(this.tboxSearch);
             this.pnlFormUpper.Controls.Add(this.lblFilterBy);
@@ -99,6 +109,20 @@
             this.pnlFormUpper.Size = new System.Drawing.Size(1175, 176);
             this.pnlFormUpper.TabIndex = 3;
             // 
+            // cboxIsActiveOptions
+            // 
+            this.cboxIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxIsActiveOptions.FormattingEnabled = true;
+            this.cboxIsActiveOptions.Items.AddRange(new object[] {
+            "All",
+            "Yes",
+            "No"});
+            this.cboxIsActiveOptions.Location = new System.Drawing.Point(324, 142);
+            this.cboxIsActiveOptions.Name = "cboxIsActiveOptions";
+            this.cboxIsActiveOptions.Size = new System.Drawing.Size(95, 24);
+            this.cboxIsActiveOptions.TabIndex = 8;
+            this.cboxIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cboxIsActiveOptions_SelectedIndexChanged);
+            // 
             // btnAddPerson
             // 
             this.btnAddPerson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
@@ -109,6 +133,7 @@
             this.btnAddPerson.Size = new System.Drawing.Size(75, 63);
             this.btnAddPerson.TabIndex = 7;
             this.btnAddPerson.UseVisualStyleBackColor = false;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
             // tboxSearch
             // 
@@ -152,7 +177,7 @@
             this.lblFormTitle.AutoSize = true;
             this.lblFormTitle.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold);
             this.lblFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.lblFormTitle.Location = new System.Drawing.Point(502, 103);
+            this.lblFormTitle.Location = new System.Drawing.Point(503, 103);
             this.lblFormTitle.Name = "lblFormTitle";
             this.lblFormTitle.Size = new System.Drawing.Size(154, 24);
             this.lblFormTitle.TabIndex = 1;
@@ -161,7 +186,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(494, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(499, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(162, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -173,6 +198,7 @@
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.ContextMenuStrip = this.cmsOperationsOnUser;
             this.dgvUsers.Location = new System.Drawing.Point(1, 233);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
@@ -181,6 +207,58 @@
             this.dgvUsers.Size = new System.Drawing.Size(1160, 245);
             this.dgvUsers.TabIndex = 4;
             this.dgvUsers.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPeople_CellMouseDown);
+            // 
+            // cmsOperationsOnUser
+            // 
+            this.cmsOperationsOnUser.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsOperationsOnUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showDetailsToolStripMenuItem,
+            this.addNewUserToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.changePasswordToolStripMenuItem});
+            this.cmsOperationsOnUser.Name = "cmsOperationsOnUser";
+            this.cmsOperationsOnUser.Size = new System.Drawing.Size(198, 134);
+            // 
+            // showDetailsToolStripMenuItem
+            // 
+            this.showDetailsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem.Image")));
+            this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
+            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.showDetailsToolStripMenuItem.Text = "Show Details";
+            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
+            // 
+            // addNewUserToolStripMenuItem
+            // 
+            this.addNewUserToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addNewUserToolStripMenuItem.Image")));
+            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.addNewUserToolStripMenuItem.Text = "Add New User";
+            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_Add);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_Edit);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_UserInfo);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ChangePassword);
             // 
             // btnBigCloseForm
             // 
@@ -236,6 +314,7 @@
             this.pnlFormUpper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.cmsOperationsOnUser.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,5 +336,12 @@
         private System.Windows.Forms.Button btnBigCloseForm;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label lblRecods;
+        private System.Windows.Forms.ContextMenuStrip cmsOperationsOnUser;
+        private System.Windows.Forms.ToolStripMenuItem showDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addNewUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cboxIsActiveOptions;
     }
 }

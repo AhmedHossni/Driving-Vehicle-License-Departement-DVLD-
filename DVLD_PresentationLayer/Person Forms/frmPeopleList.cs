@@ -58,15 +58,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             {
                 return -1;
             }
-
         }
 
         private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            _point = dgvPeople.PointToClient(Cursor.Position);
-        }
+            => _point = dgvPeople.PointToClient(Cursor.Position);
+        
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CMS_Click_Delete(object sender, EventArgs e)
         {
             int CurrentRowId = GetAndSelectCurrentGridRowId();
 
@@ -119,7 +117,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                 File.Delete(clsProjectSetting.ImageDefaultPath + "\\" + imageName);
         }
 
-        private void btnFormClose_Click(object sender, EventArgs e) => 
+        private void btnFormClose_Click(object sender, EventArgs e) =>
             this.Close();
 
         private void buttonMinimize_Click(object sender, EventArgs e) =>
@@ -155,9 +153,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             else
             {
                 tboxSearch.Visible = true;
+                tboxSearch.Focus();
             }
-
-
         }
 
         private void ResetValuesWhenCBoxChange()
@@ -173,10 +170,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             rbtnFemale.Checked = false;
         }
 
-        public void SearchFilter(string filterText)
-        {
-            _dvPeopleData.RowFilter = filterText;
-        }
+        public void SearchFilter(string filterText) => _dvPeopleData.RowFilter = filterText;
 
         private void rbtnMale_CheckedChanged(object sender, EventArgs e)
         {
@@ -199,44 +193,34 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             }
 
             if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.PersonID)
-            {
                 SearchFilter($"PersonID = {tboxSearch.Text}");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.NationalNo)
-            {
                 SearchFilter($"NationalNo = '{tboxSearch.Text}'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.FirstName)
-            {
                 SearchFilter($"FirstName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.SecondName)
-            {
                 SearchFilter($"SecondName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.ThirdName)
-            {
                 SearchFilter($"ThirdName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.LastName)
-            {
                 SearchFilter($"LastName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.Nationality)
-            {
                 SearchFilter($"CountryName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.Phone)
-            {
                 SearchFilter($"Phone like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.Email)
-            {
                 SearchFilter($"Email like '%{tboxSearch.Text}%'");
-            }
         }
 
-        private void deleteToolStripMenuItem_Click_ShowPersonDetails(object sender, EventArgs e)
+        private void CMS_Click_ShowPersonDetails(object sender, EventArgs e)
         {
             int currentRowId = GetAndSelectCurrentGridRowId();
 
@@ -251,7 +235,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
         private void btnAddPerson_Click(object sender, EventArgs e)
             => OpenAddEditPersonFormAndHandleChanges(-1);
 
-        private void editToolStripMenuItem_Click_EditPersonDetails(object sender, EventArgs e)
+        private void CMS_Click_EditPersonDetails(object sender, EventArgs e)
             => OpenAddEditPersonFormAndHandleChanges(GetAndSelectCurrentGridRowId());
 
         private void OpenAddEditPersonFormAndHandleChanges(int id)

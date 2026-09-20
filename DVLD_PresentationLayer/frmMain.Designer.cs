@@ -35,14 +35,14 @@
             this.buttonMinimize = new System.Windows.Forms.Button();
             this.btnFormClose = new System.Windows.Forms.Button();
             this.btnAccountSettings = new System.Windows.Forms.Button();
-            this.cmsAccountSettingsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDrivers = new System.Windows.Forms.Button();
             this.btnPeople = new System.Windows.Forms.Button();
             this.btnApp = new System.Windows.Forms.Button();
+            this.cmsAccountSettingsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imglistMain = new System.Windows.Forms.ImageList(this.components);
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlMainBtns.SuspendLayout();
@@ -112,38 +112,6 @@
             this.btnAccountSettings.Click += new System.EventHandler(this.ShowBtnAccountSettingsCMS);
             this.btnAccountSettings.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShowBtnAccountSettingsCMS);
             // 
-            // cmsAccountSettingsBtn
-            // 
-            this.cmsAccountSettingsBtn.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsAccountSettingsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentUserInfoToolStripMenuItem,
-            this.changePasswordToolStripMenuItem,
-            this.signOutToolStripMenuItem});
-            this.cmsAccountSettingsBtn.Name = "cmsAccountSettingsBtn";
-            this.cmsAccountSettingsBtn.Size = new System.Drawing.Size(215, 110);
-            // 
-            // currentUserInfoToolStripMenuItem
-            // 
-            this.currentUserInfoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("currentUserInfoToolStripMenuItem.Image")));
-            this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
-            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
-            // 
-            // signOutToolStripMenuItem
-            // 
-            this.signOutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("signOutToolStripMenuItem.Image")));
-            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.signOutToolStripMenuItem.Text = "Sign Out";
-            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
-            // 
             // btnUsers
             // 
             this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(197)))), ((int)(((byte)(138)))));
@@ -153,6 +121,7 @@
             this.btnUsers.TabIndex = 3;
             this.btnUsers.Text = "Users";
             this.btnUsers.UseVisualStyleBackColor = true;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // btnDrivers
             // 
@@ -173,6 +142,7 @@
             this.btnPeople.TabIndex = 1;
             this.btnPeople.Text = "People";
             this.btnPeople.UseVisualStyleBackColor = true;
+            this.btnPeople.Click += new System.EventHandler(this.btnPeople_Click);
             // 
             // btnApp
             // 
@@ -185,6 +155,38 @@
             this.btnApp.Text = "Applications";
             this.btnApp.UseVisualStyleBackColor = true;
             // 
+            // cmsAccountSettingsBtn
+            // 
+            this.cmsAccountSettingsBtn.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsAccountSettingsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentUserInfoToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
+            this.signOutToolStripMenuItem});
+            this.cmsAccountSettingsBtn.Name = "cmsAccountSettingsBtn";
+            this.cmsAccountSettingsBtn.Size = new System.Drawing.Size(198, 82);
+            // 
+            // currentUserInfoToolStripMenuItem
+            // 
+            this.currentUserInfoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("currentUserInfoToolStripMenuItem.Image")));
+            this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
+            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("signOutToolStripMenuItem.Image")));
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
+            // 
             // imglistMain
             // 
             this.imglistMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglistMain.ImageStream")));
@@ -192,7 +194,7 @@
             this.imglistMain.Images.SetKeyName(0, "member.png");
             this.imglistMain.Images.SetKeyName(1, "customers-icon-35912.png");
             this.imglistMain.Images.SetKeyName(2, "users.png");
-            this.imglistMain.Images.SetKeyName(3, "configure.png");
+            this.imglistMain.Images.SetKeyName(3, "users.png");
             this.imglistMain.Images.SetKeyName(4, "account_settings.png");
             // 
             // pnlLogo

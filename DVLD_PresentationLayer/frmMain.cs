@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
+using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -67,6 +69,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            new frmUsersList().ShowDialog();
+        }
+
+        private void btnPeople_Click(object sender, EventArgs e)
+        {
+            new frmPeopleList().ShowDialog();
         }
     }
 }

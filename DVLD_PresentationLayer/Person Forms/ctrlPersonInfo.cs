@@ -12,6 +12,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
         private int _personId = -1;
 
         public event Action PersonDataChangedHandler;
+
         public ctrlPersonInfo()
         {
             InitializeComponent();
@@ -19,9 +20,23 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 
         public void LoadPersonData(int id)
         {
+            if (id == -1)
+            {
+                llblEditPerson.Enabled = false;
+                return;
+            }
+
             _personId = id;
 
             clsPerson person = clsPerson.GetById(id, out string errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show(errorMessage,
+                    "Error Message :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
             if (person != null)
             {
@@ -39,13 +54,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 
                 LoadPersonImage(person.ImageName, person.Gender);
             }
-            else
-            {
-                MessageBox.Show(errorMessage,
-                    "Error Message :(",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+            
         }
 
         private void LoadPersonImage(string imageName, enPersonGender gender)
@@ -53,7 +62,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             string ImgFullPath = null;
             try
             {
-                string imagesPath = AppDomain.CurrentDomain.BaseDirectory + "\\Images";
+                string imagesPath = clsProjectSetting.ImageDefaultPath;
 
                 if (!string.IsNullOrEmpty(imageName))
                 {

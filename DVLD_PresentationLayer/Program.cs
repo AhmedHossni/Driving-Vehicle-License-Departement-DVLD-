@@ -18,16 +18,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            Application.Run(new frmUsersList());
+            //Application.Run(new frmUsersList());
 
-            //frmMain MainScreen;
-            //frmLogin frmLogin = new frmLogin();
-            //do
-            //{
-            //    MainScreen = new frmMain();
-            //    if (frmLogin.ShowDialog() == DialogResult.OK)
-            //        Application.Run(MainScreen);
-            //} while (MainScreen.DialogResult == DialogResult.OK);
+            frmMain MainScreen;
+            frmLogin frmLogin = new frmLogin();
+            do
+            {
+                MainScreen = new frmMain();
+                if (frmLogin.ShowDialog() == DialogResult.OK)
+                    Application.Run(MainScreen);
+            } while (MainScreen.DialogResult == DialogResult.OK);
         }
     }
 }

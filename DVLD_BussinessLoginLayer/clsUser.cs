@@ -66,6 +66,26 @@ namespace DVLD_BusinessLogicLayer
             return false;
         }
 
+        public static clsUser GetBy(int userId, out string errorMessage)
+        {
+            int personId = -1;
+            string username = "";
+            string password = "";
+            bool isActive = false;
+
+            if (clsUserData.GetInfoByUserId(userId, ref personId, ref username, ref password
+            , ref isActive, out errorMessage))
+            {
+                return new clsUser(userId, personId, username, password, isActive);
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
         public bool Save(out string errorMessage)
         {
             if(Id == -1)

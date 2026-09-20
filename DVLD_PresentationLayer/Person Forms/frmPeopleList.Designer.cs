@@ -239,7 +239,7 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click_EditPersonDetails);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_EditPersonDetails);
             // 
             // deleteToolStripMenuItem
             // 
@@ -247,7 +247,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.deleteToolStripMenuItem.Text = "Show";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click_ShowPersonDetails);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ShowPersonDetails);
             // 
             // deleteToolStripMenuItem1
             // 
@@ -255,7 +255,7 @@
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
             this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(126, 26);
             this.deleteToolStripMenuItem1.Text = "Delete";
-            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.CMS_Click_Delete);
             // 
             // lblRecods
             // 

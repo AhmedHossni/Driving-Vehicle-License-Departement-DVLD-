@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlPersonInfo));
             this.gboxPerosnInfo = new System.Windows.Forms.GroupBox();
+            this.llblEditPerson = new System.Windows.Forms.LinkLabel();
             this.pboxPersonImage = new System.Windows.Forms.PictureBox();
             this.lblPersonNationalNoValue = new System.Windows.Forms.Label();
             this.lblPersonNationalNo = new System.Windows.Forms.Label();
@@ -48,7 +50,6 @@
             this.lblPersonName = new System.Windows.Forms.Label();
             this.lblPersonIdValue = new System.Windows.Forms.Label();
             this.lblPersonId = new System.Windows.Forms.Label();
-            this.llblEditPerson = new System.Windows.Forms.LinkLabel();
             this.gboxPerosnInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPersonImage)).BeginInit();
             this.SuspendLayout();
@@ -82,8 +83,23 @@
             this.gboxPerosnInfo.TabStop = false;
             this.gboxPerosnInfo.Text = "Person Information";
             // 
+            // llblEditPerson
+            // 
+            this.llblEditPerson.AutoSize = true;
+            this.llblEditPerson.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.llblEditPerson.Location = new System.Drawing.Point(756, 258);
+            this.llblEditPerson.Name = "llblEditPerson";
+            this.llblEditPerson.Size = new System.Drawing.Size(104, 23);
+            this.llblEditPerson.TabIndex = 31;
+            this.llblEditPerson.TabStop = true;
+            this.llblEditPerson.Text = "Edit Person";
+            this.llblEditPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblEditPerson_LinkClicked);
+            // 
             // pboxPersonImage
             // 
+            this.pboxPersonImage.BackColor = System.Drawing.Color.Transparent;
+            this.pboxPersonImage.Image = ((System.Drawing.Image)(resources.GetObject("pboxPersonImage.Image")));
+            this.pboxPersonImage.InitialImage = null;
             this.pboxPersonImage.Location = new System.Drawing.Point(724, 84);
             this.pboxPersonImage.Name = "pboxPersonImage";
             this.pboxPersonImage.Size = new System.Drawing.Size(160, 151);
@@ -271,18 +287,6 @@
             this.lblPersonId.Size = new System.Drawing.Size(107, 24);
             this.lblPersonId.TabIndex = 0;
             this.lblPersonId.Text = "Person Id :";
-            // 
-            // llblEditPerson
-            // 
-            this.llblEditPerson.AutoSize = true;
-            this.llblEditPerson.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.llblEditPerson.Location = new System.Drawing.Point(751, 258);
-            this.llblEditPerson.Name = "llblEditPerson";
-            this.llblEditPerson.Size = new System.Drawing.Size(104, 23);
-            this.llblEditPerson.TabIndex = 31;
-            this.llblEditPerson.TabStop = true;
-            this.llblEditPerson.Text = "Edit Person";
-            this.llblEditPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblEditPerson_LinkClicked);
             // 
             // ctrlPersonInfo
             // 

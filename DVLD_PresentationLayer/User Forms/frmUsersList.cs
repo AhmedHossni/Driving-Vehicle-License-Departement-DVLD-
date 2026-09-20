@@ -1,13 +1,7 @@
-﻿using CommonUseThings;
-using Driving___Vehicle_License_Departement__DVLD_.Person_Forms;
-using DVLD_BusinessLogicLayer;
+﻿using DVLD_BusinessLogicLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,6 +20,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             FullName,
             IsActive
         }
+        enum enComboBoxIsActive
+        {
+            All,
+            Yes,
+            No
+        }
 
         private DataView _dvUsersData
             = new DataView();
@@ -42,17 +42,18 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             pnlFormUpper.MouseDown += frm_MouseDown;
 
             cboxSearchBy.SelectedIndex = (int)enComboBoxSelections.None;
+            cboxIsActiveOptions.SelectedIndex = (int)enComboBoxIsActive.All;
         }
 
         private void btnFormClose_Click(object sender, EventArgs e)
             => this.Close();
         private void btnBigCloseForm_Click(object sender, EventArgs e)
-        => this.Close();
+            => this.Close();
 
         private void buttonMinimize_Click(object sender, EventArgs e)
             => this.WindowState = FormWindowState.Minimized;
 
-        private int GetAndSelectCurrentGridRowId()
+        private void GetAndSelectCurrentGridRowId(out int userId, out int PersonId)
         {
             DataGridView.HitTestInfo hitInfo = dgvUsers.HitTest(_point.X, _point.Y);
 
@@ -61,13 +62,21 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
                 dgvUsers.ClearSelection();
                 dgvUsers.Rows[hitInfo.RowIndex].Selected = true;
                 dgvUsers.CurrentCell = dgvUsers.Rows[hitInfo.RowIndex].Cells[0];
-                return (int)dgvUsers.CurrentCell.Value;
+                userId =  (int)dgvUsers.CurrentCell.Value;
+                PersonId = (int)dgvUsers.Rows[hitInfo.RowIndex].Cells[1].Value;
             }
             else
             {
-                return -1;
+                userId = -1;
+                PersonId = -1;
             }
 
+        }
+        private int GetAndSelectCurrentGridRowId()
+        {
+            GetAndSelectCurrentGridRowId(out int userId, out int personId);
+
+            return userId;
         }
 
         private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -75,7 +84,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             _point = dgvUsers.PointToClient(Cursor.Position);
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CMS_Click_Delete(object sender, EventArgs e)
         {
             int CurrentRowId = GetAndSelectCurrentGridRowId();
 
@@ -114,9 +123,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
                 cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.PersonID)
             {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
                     e.Handled = true;
-                }
+
             }
         }
 
@@ -127,17 +135,34 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.None)
             {
                 tboxSearch.Visible = false;
+                cboxIsActiveOptions.Visible = false;
             }
-            else if(cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.IsActive)
+            else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.IsActive)
             {
                 tboxSearch.Visible = false;
-                SearchFilter($"IsActive = 1");
+                cboxIsActiveOptions.Visible = true;
+                cboxIsActiveOptions.Focus();
+                cboxIsActiveOptions_SelectedIndexChanged(cboxIsActiveOptions, e);
             }
             else
             {
+                cboxIsActiveOptions.Visible = false;
                 tboxSearch.Visible = true;
+                tboxSearch.Focus();
             }
+        }
 
+        private void cboxIsActiveOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cboxIsActiveOptions.SelectedIndex == (int)enComboBoxIsActive.All)
+                SearchFilter(string.Empty);
+
+            else if (cboxIsActiveOptions.SelectedIndex == (int)enComboBoxIsActive.Yes)
+                SearchFilter($"IsActive = 1");
+
+            else if (cboxIsActiveOptions.SelectedIndex == (int)enComboBoxIsActive.No)
+                SearchFilter($"IsActive = 0");
 
         }
 
@@ -148,10 +173,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             SearchFilter(string.Empty);
         }
 
-        public void SearchFilter(string filterText)
-        {
-            _dvUsersData.RowFilter = filterText;
-        }
+        public void SearchFilter(string filterText) => _dvUsersData.RowFilter = filterText;
 
         private void tboxSearch_TextChanged(object sender, EventArgs e)
         {
@@ -162,39 +184,20 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             }
 
             if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.UserID)
-            {
                 SearchFilter($"UserID = {tboxSearch.Text}");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.UserName)
-            {
                 SearchFilter($"UserName like '%{tboxSearch.Text}%'");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.PersonID)
-            {
                 SearchFilter($"PersonID = {tboxSearch.Text}");
-            }
+
             else if (cboxSearchBy.SelectedIndex == (int)enComboBoxSelections.FullName)
-            {
                 SearchFilter($"[Full Name] like '%{tboxSearch.Text}%'");
-            }
         }
 
-        private void deleteToolStripMenuItem_Click_ShowUserDetails(object sender, EventArgs e)
-        {
-            int currentRowId = GetAndSelectCurrentGridRowId();
 
-            if (currentRowId != -1)
-            {
-                //frmPersonInfo personInfo = new frmPersonInfo(currentRowId);
-                //personInfo.PersonDataChangedHandler += LoadDataInGridDataView;
-                //personInfo.ShowDialog();
-            }
-        }
-
-        private void btnAddPerson_Click(object sender, EventArgs e)
-            => HandleUserChanges(-1);
-
-        private void editToolStripMenuItem_Click_EditUserDetails(object sender, EventArgs e)
+        private void CMS_Click_EditUserDetails(object sender, EventArgs e)
             => HandleUserChanges(GetAndSelectCurrentGridRowId());
 
         private void HandleUserChanges(int id)
@@ -228,6 +231,78 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
             lblNumberOfRecords.Text =
                 this._dvUsersData.Count.ToString();
+        }
+
+        private void CMS_Click_UserInfo(object sender, EventArgs e)
+        {
+            int currentUserId = GetAndSelectCurrentGridRowId();
+
+            if (!(MessageBox.Show($"Are you sure you want to delete user with id equals ({currentUserId})",
+                    "Warning Message",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error) == DialogResult.Yes))
+            {
+                return;
+            }
+
+            if (clsUser.Delete(currentUserId, out string errorMessage))
+            {
+                MessageBox.Show($"Person with id equals ({currentUserId}) is deleted successfully",
+                    "Operation Done Successfully :)",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                LoadDataInGridDataView();
+
+                return;
+            }
+
+            if(!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show(errorMessage,
+                    "Error Message :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show($"There is no user with this id ({currentUserId})",
+                    "Error Message :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void CMS_Click_Edit(object sender, EventArgs e)
+        {
+            int currentRowId = GetAndSelectCurrentGridRowId();
+
+            if (currentRowId != -1)
+                HandleUserChanges(currentRowId);
+          
+        }
+
+        private void CMS_Click_Add(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CMS_Click_ChangePassword(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+            => HandleUserChanges(-1);
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetAndSelectCurrentGridRowId(out int userId, out int personId);
+
+            frmUserFullInformaion userFullInformaion 
+                = new frmUserFullInformaion(userId, personId, LoadDataInGridDataView, LoadDataInGridDataView);
+
+            userFullInformaion.ShowDialog();
         }
     }
 }
