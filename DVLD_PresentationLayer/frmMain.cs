@@ -1,5 +1,6 @@
 ﻿using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
 using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
+using DVLD_BusinessLogicLayer;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -79,6 +80,25 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         private void btnPeople_Click(object sender, EventArgs e)
         {
             new frmPeopleList().ShowDialog();
+        }
+
+        private void cmsAccountSettingsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            cmsAccountSettingsBtn.Close();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserFullInformaion userFullInformaion = 
+                new frmUserFullInformaion(clsUser.SystemUser.Id, 
+                clsUser.SystemUser.PersonId);
+
+            userFullInformaion.ShowDialog();
+        }
+
+        private void btnsExceptAccountSettings_MouseMove(object sender, MouseEventArgs e)
+        {
+            cmsAccountSettingsBtn.Close();
         }
     }
 }

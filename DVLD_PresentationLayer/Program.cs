@@ -1,6 +1,4 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
-using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_

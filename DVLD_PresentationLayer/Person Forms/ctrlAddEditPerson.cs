@@ -173,7 +173,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                 {
                     ImgFullPath = $"{imagesPath}\\{imageName}";
 
-                    pboxPersonImage.Image = Image.FromFile(ImgFullPath);
+                    using (var image = Image.FromFile(ImgFullPath))
+                    {
+                        pboxPersonImage.Image = new Bitmap(image);
+                    }
+
+                    llblRemovePersonImage.Enabled = true;
                 }
                 else
                 {
@@ -183,7 +188,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
                     llblRemovePersonImage.Enabled = false;
 
-                    pboxPersonImage.Image = Image.FromFile(ImgFullPath);
+                    using (var image = Image.FromFile(ImgFullPath))
+                    {
+                        pboxPersonImage.Image = new Bitmap(image);
+                    }
                 }
             }
             catch (FileNotFoundException ex)
@@ -223,7 +231,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
             _person.NationalCountryName = cboxCountryName.Text;
 
             if (cboxCountryName.SelectedValue != null)
-                _person.NationalCountryID = 
+                _person.NationalCountryID =
                     Convert.ToInt32(cboxCountryName.SelectedValue);
         }
 
@@ -246,14 +254,15 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
             if(string.IsNullOrEmpty(errorMessage))
             {
-                btnSave_Click_Handler.Invoke();
-
                 SavingImageProcess(newImageFullName);
 
                 MessageBox.Show("The operation has been completed successfully.",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
+
+                btnSave_Click_Handler?.Invoke();
 
                 lblPersonIdValue.Text = id.ToString();
             }
@@ -268,9 +277,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
         }
 
         private string GetRandomImageName(string currentImageName)
-        {
-            return Guid.NewGuid().ToString() + Path.GetExtension(currentImageName);
-        }
+            => Guid.NewGuid().ToString() + Path.GetExtension(currentImageName);
+
 
         private void SavingImageProcess(string newImageFullName)
         {
@@ -362,7 +370,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
                     _personImageIsChange = true;
 
-                    pboxPersonImage.Image = Image.FromFile(_person.ImageName);
+                    using (var image = Image.FromFile(_person.ImageName))
+                    {
+                        pboxPersonImage.Image = new Bitmap(image);
+                    }
 
                     llblRemovePersonImage.Enabled = true;
                 }
@@ -372,9 +383,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
         private void llblRemovePersonImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             llblRemovePersonImage.Enabled = false;
+
+            _currentPersonImageName = _person.ImageName;
+
             _person.ImageName = "";
-            pboxPersonImage.Image.Dispose();
-            pboxPersonImage.Image = null;
+
+            if (pboxPersonImage.Image != null)
+            {
+                pboxPersonImage.Image.Dispose();
+                pboxPersonImage.Image = null;       
+            }
+
             _personImageIsChange = true;
 
         }

@@ -12,7 +12,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
         public event Action _personDataChangedHandler;
 
         public frmUserFullInformaion(int userId, int personId, 
-            Action userDataChangedHandler, Action personDataChangedHandler)
+            Action userDataChangedHandler = null
+            , Action personDataChangedHandler = null)
         {
             InitializeComponent();
 
@@ -33,7 +34,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
         {
             ctrlPersonInfo1.LoadPersonData(_personId);
 
-            _personDataChangedHandler.Invoke();
+            _personDataChangedHandler?.Invoke();
         }
     }
 }

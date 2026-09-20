@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Driving___Vehicle_License_Departement__DVLD_._person_Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
@@ -6,6 +7,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
     public partial class frmAddEditPerson : Form
     {
         public event Action SaveNewOrExistPersonHandler;
+
         public frmAddEditPerson(int personId)
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 
         private void btnSave_Click_Handler()
         {
-            SaveNewOrExistPersonHandler.Invoke();
+            SaveNewOrExistPersonHandler?.Invoke();
         }
     }
 }

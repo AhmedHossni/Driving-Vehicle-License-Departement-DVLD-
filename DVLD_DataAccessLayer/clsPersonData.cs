@@ -293,6 +293,7 @@ namespace DVLD_DataAccessLayer
                 catch (Exception ex)
                 {
                     errorMessage = ex.Message;
+                    return false;
                 }
             }
 

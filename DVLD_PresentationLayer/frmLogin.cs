@@ -1,10 +1,7 @@
 ﻿using CommonUseThings;
 using DVLD_BusinessLogicLayer;
 using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_

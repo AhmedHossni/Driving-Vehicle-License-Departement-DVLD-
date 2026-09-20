@@ -86,6 +86,7 @@
             this.buttonMinimize.TabIndex = 5;
             this.buttonMinimize.UseVisualStyleBackColor = false;
             this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
+            this.buttonMinimize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // btnFormClose
             // 
@@ -99,6 +100,7 @@
             this.btnFormClose.TabIndex = 6;
             this.btnFormClose.UseVisualStyleBackColor = false;
             this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
+            this.btnFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // btnAccountSettings
             // 
@@ -122,6 +124,7 @@
             this.btnUsers.Text = "Users";
             this.btnUsers.UseVisualStyleBackColor = true;
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
+            this.btnUsers.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // btnDrivers
             // 
@@ -132,6 +135,7 @@
             this.btnDrivers.TabIndex = 2;
             this.btnDrivers.Text = "Drivers";
             this.btnDrivers.UseVisualStyleBackColor = true;
+            this.btnDrivers.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // btnPeople
             // 
@@ -143,6 +147,7 @@
             this.btnPeople.Text = "People";
             this.btnPeople.UseVisualStyleBackColor = true;
             this.btnPeople.Click += new System.EventHandler(this.btnPeople_Click);
+            this.btnPeople.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // btnApp
             // 
@@ -154,6 +159,7 @@
             this.btnApp.TabIndex = 0;
             this.btnApp.Text = "Applications";
             this.btnApp.UseVisualStyleBackColor = true;
+            this.btnApp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
             // 
             // cmsAccountSettingsBtn
             // 
@@ -164,6 +170,7 @@
             this.signOutToolStripMenuItem});
             this.cmsAccountSettingsBtn.Name = "cmsAccountSettingsBtn";
             this.cmsAccountSettingsBtn.Size = new System.Drawing.Size(198, 82);
+            this.cmsAccountSettingsBtn.MouseLeave += new System.EventHandler(this.cmsAccountSettingsBtn_MouseLeave);
             // 
             // currentUserInfoToolStripMenuItem
             // 
@@ -171,6 +178,7 @@
             this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
             this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
+            this.currentUserInfoToolStripMenuItem.Click += new System.EventHandler(this.currentUserInfoToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 

@@ -67,7 +67,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
                 if (!string.IsNullOrEmpty(imageName))
                 {
                     ImgFullPath = $"{imagesPath}\\{imageName}";
-                    pboxPersonImage.Image = Image.FromFile(ImgFullPath);
+
+                    using (var image = Image.FromFile(ImgFullPath))
+                    {
+                        pboxPersonImage.Image = new Bitmap(image);
+                    }
                 }
                 else
                 {
@@ -75,7 +79,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
                         $@"{imagesPath}\Default_Male_Img.png" :
                         $@"{imagesPath}\Default_Female_Img.png";
 
-                    pboxPersonImage.Image = Image.FromFile(ImgFullPath);
+                    using (var image = Image.FromFile(ImgFullPath))
+                    {
+                        pboxPersonImage.Image = new Bitmap(image);
+                    }
                 }
             }
             catch (FileNotFoundException ex)
@@ -109,7 +116,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
         private void AddEditPersonForm_SaveNewOrExistPersonHandler()
         {
             LoadPersonData(_personId);
-            PersonDataChangedHandler.Invoke();
+
+            PersonDataChangedHandler?.Invoke();
         }
     }
 }
