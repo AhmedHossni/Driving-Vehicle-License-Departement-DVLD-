@@ -49,12 +49,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
         }
 
-        private void buttonMinimize_Click(object sender, EventArgs e) =>
-            this.WindowState = FormWindowState.Minimized;
+        private void buttonMinimize_Click(object sender, EventArgs e) 
+            => this.WindowState = FormWindowState.Minimized;
 
 
-        private void btnFormClose_Click(object sender, EventArgs e) =>
-            this.Close();
+        private void btnFormClose_Click(object sender, EventArgs e) 
+            => this.Close();
 
         private void ShowBtnAccountSettingsCMS(object sender, EventArgs e)
         {

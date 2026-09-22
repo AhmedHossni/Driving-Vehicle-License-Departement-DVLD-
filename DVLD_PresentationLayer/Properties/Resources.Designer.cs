@@ -63,6 +63,36 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_left {
+            get {
+                object obj = ResourceManager.GetObject("arrow_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_right__1_ {
+            get {
+                object obj = ResourceManager.GetObject("arrow_right (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap c8fa92eb_f91b_42ec_9a00_7165993a95ca_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("c8fa92eb-f91b-42ec-9a00-7165993a95ca-removebg-preview", resourceCulture);
@@ -146,6 +176,26 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Properties {
         internal static System.Drawing.Bitmap icons8_minimize_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-minimize-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap person_boy {
+            get {
+                object obj = ResourceManager.GetObject("person_boy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap person_boy_Search {
+            get {
+                object obj = ResourceManager.GetObject("person_boy Search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

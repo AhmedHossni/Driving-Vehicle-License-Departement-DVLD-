@@ -74,7 +74,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
                     "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     string personImageFullName = 
-                        clsPerson.GetById(CurrentRowId, out string imageNameErrorMessage).ImageName;
+                        clsPerson.GetBy(CurrentRowId, out string imageNameErrorMessage).ImageName;
                     
                     if (!string.IsNullOrEmpty(imageNameErrorMessage))
                     {

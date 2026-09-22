@@ -125,7 +125,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                 return;
             }
 
-            _person = clsPerson.GetById(id, out string errorMessage);
+            _person = clsPerson.GetBy(id, out string errorMessage);
 
             if (_person != null)
             {

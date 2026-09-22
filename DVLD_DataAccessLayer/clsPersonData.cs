@@ -60,7 +60,7 @@ namespace DVLD_DataAccessLayer
             }
         }
 
-        public static bool GetInfoByUserId(int id, ref string firstName, ref string secondName,
+        public static bool GetInfoBy(int id, ref string firstName, ref string secondName,
             ref string thirdName, ref string lastName,
             ref string nationalNo, ref DateTime dateOfBirth, ref enPersonGender gender,
             ref string address, ref string phone,
@@ -106,6 +106,86 @@ namespace DVLD_DataAccessLayer
                                 dateOfBirth = (DateTime)reader["DateOfBirth"];
 
                                 gender = (string)reader["Gender"] == "Male" ? 
+                                    enPersonGender.Male : enPersonGender.Female;
+
+                                address = (string)reader["Address"];
+                                phone = (string)reader["Phone"];
+                                email = (string)reader["Email"];
+                                nationalityCountryId = (int)reader["NationalityCountryId"];
+                                countryName = (string)reader["countryName"];
+
+                                object imgPathObject = reader["ImagePath"];
+
+                                imagePath = imgPathObject != DBNull.Value ?
+                                    (string)imgPathObject : string.Empty;
+
+                            }
+                            else
+                            {
+                                // The record was not found
+                                isFound = false;
+                            }
+                        }
+
+                        errorMessage = string.Empty;
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+
+                    return isFound;
+                }
+            }
+        }
+
+        public static bool GetInfoBy(string nationalNo, ref int personId, ref string firstName, ref string secondName,
+            ref string thirdName, ref string lastName,
+            ref DateTime dateOfBirth, ref enPersonGender gender,
+            ref string address, ref string phone,
+            ref string email, ref int nationalityCountryId, ref string countryName, ref string imagePath,
+            out string errorMessage)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT P.PersonID, " +
+                    "P.NationalNo, P.FirstName, " +
+                    "P.SecondName,P.ThirdName, " +
+                    "P.LastName, P.DateOfBirth, " +
+                    "CASE P.Gender " +
+                    "WHEN 0 THEN 'Male' " +
+                    "ELSE 'Female' END AS Gender, " +
+                    "P.Address, p.NationalityCountryID, " +
+                    "C.CountryName, P.Phone, P.Email, P.ImagePath FROM People AS P " +
+                    "INNER JOIN Countries AS C ON P.NationalityCountryID = C.CountryID " +
+                    "WHERE P.NationalNo = @nationalNo;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nationalNo", nationalNo);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                isFound = true;
+
+                                personId = (int)reader["PersonID"];
+                                firstName = (string)reader["FirstName"];
+                                secondName = (string)reader["SecondName"];
+                                thirdName = (string)reader["ThirdName"];
+                                lastName = (string)reader["LastName"];
+
+                                dateOfBirth = (DateTime)reader["DateOfBirth"];
+
+                                gender = (string)reader["Gender"] == "Male" ?
                                     enPersonGender.Male : enPersonGender.Female;
 
                                 address = (string)reader["Address"];

@@ -198,17 +198,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
 
         private void CMS_Click_EditUserDetails(object sender, EventArgs e)
-            => HandleUserChanges(GetAndSelectCurrentGridRowId());
-
-        private void HandleUserChanges(int id)
-        {
-            //frmAddEditPerson addEditPersonForm
-            //    = new frmAddEditPerson(id);
-
-            //addEditPersonForm.SaveNewOrExistPersonHandler += LoadDataInGridDataView;
-
-            //addEditPersonForm.ShowDialog();
-        }
+            => CallAddEditUserForm(GetAndSelectCurrentGridRowId());
 
         private async void LoadDataInGridDataView()
         {
@@ -278,14 +268,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             int currentRowId = GetAndSelectCurrentGridRowId();
 
             if (currentRowId != -1)
-                HandleUserChanges(currentRowId);
+                CallAddEditUserForm(currentRowId);
           
         }
 
-        private void CMS_Click_Add(object sender, EventArgs e)
+        private void CallAddEditUserForm(int userId)
         {
-
+            new frmAddEditUser(userId).ShowDialog();
         }
+
+        private void CMS_Click_Add(object sender, EventArgs e)
+            => CallAddEditUserForm(-1);
 
         private void CMS_Click_ChangePassword(object sender, EventArgs e)
         {
@@ -293,7 +286,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
         }
 
         private void btnAddPerson_Click(object sender, EventArgs e)
-            => HandleUserChanges(-1);
+            => CallAddEditUserForm(-1);
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ namespace DVLD_BusinessLogicLayer
         private int _personId;
         private bool _isActive;
         public int Id => _id;
-        public int PersonId => _personId;
+        public int PersonId { set { _personId = value; } get { return _personId;  } }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get { return _isActive; } set { _isActive = value; } }

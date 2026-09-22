@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
@@ -14,9 +15,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-            //Application.Run(new frmUsersList());
 
             frmMain MainScreen;
             frmLogin frmLogin = new frmLogin();

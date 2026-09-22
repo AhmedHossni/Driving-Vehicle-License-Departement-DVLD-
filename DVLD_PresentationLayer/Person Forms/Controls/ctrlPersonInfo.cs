@@ -18,17 +18,34 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             InitializeComponent();
         }
 
+        private void ResetDiffultyValues()
+        {
+            lblPersonIdValue.Text = "N\\A";
+            lblPersonNameValue.Text = "N\\A";
+            lblPersonNationalNoValue.Text = "N\\A";
+            lblPersonGenderValue.Text = "N\\A";
+            lblPersonEmailValue.Text = "N\\A";
+            lblPersonAddressValue.Text = "N\\A";
+            lblPersonDateOfBirthValue.Text = "N\\A";
+            lblPersonPhoneValue.Text = "N\\A";
+            lblblPersonCountryValue.Text = "N\\A";
+        }
+
         public void LoadPersonData(int id)
         {
             if (id == -1)
             {
                 llblEditPerson.Enabled = false;
+
+                if(_personId != -1)
+                    ResetDiffultyValues();
+
                 return;
             }
 
             _personId = id;
 
-            clsPerson person = clsPerson.GetById(id, out string errorMessage);
+            clsPerson person = clsPerson.GetBy(id, out string errorMessage);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {

@@ -112,7 +112,7 @@ namespace DVLD_BusinessLogicLayer
             return string.IsNullOrEmpty(errorMessage);
         }
 
-        public static clsPerson GetById(int id, out string errorMessage)
+        public static clsPerson GetBy(int id, out string errorMessage)
         {
             clsPerson person = new clsPerson();
 
@@ -132,7 +132,7 @@ namespace DVLD_BusinessLogicLayer
             string CountryName = "";
             string imagePath = string.Empty;
 
-            bool isFound = clsPersonData.GetInfoByUserId(
+            bool isFound = clsPersonData.GetInfoBy(
                 id,
                 ref firstName,
                 ref secondName,
@@ -153,6 +153,68 @@ namespace DVLD_BusinessLogicLayer
             if (isFound)
             {
                 person._id = id;
+                person.FirstName = firstName;
+                person.SecondName = secondName;
+                person.ThirdName = thirdName;
+                person.LastName = lastName;
+                person.NationalNo = nationalNo;
+                person.DateOfBirth = dateOfBirth;
+                person.Gender = (enPersonGender)gender;
+                person.Address = address;
+                person.Phone = phone;
+                person.Email = email;
+                person.NationalCountryID = nationalCountryID;
+                person.NationalCountryName = CountryName;
+                person.ImageName = imagePath;
+
+                return person;
+            }
+
+            return null;
+        }
+
+        public static clsPerson GetBy(string nationalNo, out string errorMessage)
+        {
+            clsPerson person = new clsPerson();
+
+            int personId = -1;
+
+            string firstName = string.Empty;
+            string secondName = string.Empty;
+            string thirdName = string.Empty;
+            string lastName = string.Empty;
+
+            DateTime dateOfBirth = default;
+            enPersonGender gender = 0;
+
+            string address = string.Empty;
+            string phone = string.Empty;
+            string email = string.Empty;
+            int nationalCountryID = 0;
+            string CountryName = "";
+            string imagePath = string.Empty;
+
+            bool isFound = clsPersonData.GetInfoBy(
+                nationalNo,
+                ref personId,
+                ref firstName,
+                ref secondName,
+                ref thirdName,
+                ref lastName,
+                ref dateOfBirth,
+                ref gender,
+                ref address,
+                ref phone,
+                ref email,
+                ref nationalCountryID,
+                ref CountryName,
+                ref imagePath,
+                out errorMessage
+            );
+
+            if (isFound)
+            {
+                person._id = personId;
                 person.FirstName = firstName;
                 person.SecondName = secondName;
                 person.ThirdName = thirdName;
