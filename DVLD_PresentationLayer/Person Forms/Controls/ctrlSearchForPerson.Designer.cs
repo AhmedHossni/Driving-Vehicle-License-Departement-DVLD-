@@ -64,6 +64,7 @@
             this.btnAddNewPerson.Size = new System.Drawing.Size(44, 37);
             this.btnAddNewPerson.TabIndex = 22;
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click);
             // 
             // btnSearchForPerson
             // 
@@ -83,6 +84,7 @@
             this.tboxSearch.Name = "tboxSearch";
             this.tboxSearch.Size = new System.Drawing.Size(181, 24);
             this.tboxSearch.TabIndex = 1;
+            this.tboxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxSearch_KeyDown);
             this.tboxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchBy_KeyPress);
             // 
             // cboxSearchBy

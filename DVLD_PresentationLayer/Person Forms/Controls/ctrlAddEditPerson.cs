@@ -14,7 +14,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
 
         public event Action btnClose_Click_Handler;
 
-        public event Action btnSave_Click_Handler;
+        public delegate void SaveNewOrEditPersonDelegate(int id);
+        public event SaveNewOrEditPersonDelegate btnSave_Click_Handler;
 
         private string _currentPersonImageName = string.Empty;
 
@@ -262,7 +263,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                     MessageBoxIcon.Information);
 
 
-                btnSave_Click_Handler?.Invoke();
+                btnSave_Click_Handler?.Invoke(id);
 
                 lblPersonIdValue.Text = id.ToString();
             }

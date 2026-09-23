@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tctrlAddEditUser = new System.Windows.Forms.TabControl();
             this.tpagePersonInfo = new System.Windows.Forms.TabPage();
             this.btnNextTab = new System.Windows.Forms.Button();
@@ -44,10 +45,12 @@
             this.tboxPassword = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.epIsUserDataValid = new System.Windows.Forms.ErrorProvider(this.components);
             this.ctrlSearchForPerson1 = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
             this.tctrlAddEditUser.SuspendLayout();
             this.tpagePersonInfo.SuspendLayout();
             this.tpageLoginInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epIsUserDataValid)).BeginInit();
             this.SuspendLayout();
             // 
             // tctrlAddEditUser
@@ -162,6 +165,8 @@
             this.tboxUserName.Name = "tboxUserName";
             this.tboxUserName.Size = new System.Drawing.Size(167, 24);
             this.tboxUserName.TabIndex = 130;
+            this.tboxUserName.Tag = "Username";
+            this.tboxUserName.Leave += new System.EventHandler(this.userDataTextBox_Leave);
             // 
             // tboxConfirmPassword
             // 
@@ -172,6 +177,8 @@
             this.tboxConfirmPassword.PasswordChar = '*';
             this.tboxConfirmPassword.Size = new System.Drawing.Size(167, 24);
             this.tboxConfirmPassword.TabIndex = 134;
+            this.tboxConfirmPassword.Tag = "Password";
+            this.tboxConfirmPassword.Leave += new System.EventHandler(this.tboxConfirmPassword_Leave);
             // 
             // label1
             // 
@@ -215,6 +222,8 @@
             this.tboxPassword.PasswordChar = '*';
             this.tboxPassword.Size = new System.Drawing.Size(167, 24);
             this.tboxPassword.TabIndex = 131;
+            this.tboxPassword.Tag = "Password";
+            this.tboxPassword.Leave += new System.EventHandler(this.userDataTextBox_Leave);
             // 
             // btnSave
             // 
@@ -242,6 +251,10 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // epIsUserDataValid
+            // 
+            this.epIsUserDataValid.ContainerControl = this;
+            // 
             // ctrlSearchForPerson1
             // 
             this.ctrlSearchForPerson1.Location = new System.Drawing.Point(3, 6);
@@ -264,6 +277,7 @@
             this.tpagePersonInfo.ResumeLayout(false);
             this.tpageLoginInfo.ResumeLayout(false);
             this.tpageLoginInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epIsUserDataValid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -287,5 +301,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tboxPassword;
         private System.Windows.Forms.Button btnPreviousTab;
+        private System.Windows.Forms.ErrorProvider epIsUserDataValid;
     }
 }

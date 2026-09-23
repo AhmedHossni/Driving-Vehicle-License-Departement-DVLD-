@@ -6,7 +6,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 {
     public partial class frmAddEditPerson : Form
     {
-        public event Action SaveNewOrExistPersonHandler;
+        public delegate void SaveNewOrEditPersonDelegate(int id);
+        public event SaveNewOrEditPersonDelegate SaveNewOrExistPersonHandler;
 
         public frmAddEditPerson(int personId)
         {
@@ -27,9 +28,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             this.Close();
         }
 
-        private void btnSave_Click_Handler()
+        private void btnSave_Click_Handler(int id)
         {
-            SaveNewOrExistPersonHandler?.Invoke();
+            SaveNewOrExistPersonHandler?.Invoke(id);
         }
     }
 }

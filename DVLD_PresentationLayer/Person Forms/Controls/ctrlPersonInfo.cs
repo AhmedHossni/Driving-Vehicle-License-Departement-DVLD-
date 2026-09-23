@@ -130,9 +130,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             addEditPersonForm.ShowDialog();
         }
 
-        private void AddEditPersonForm_SaveNewOrExistPersonHandler()
+        private void AddEditPersonForm_SaveNewOrExistPersonHandler(int id)
         {
-            LoadPersonData(_personId);
+            LoadPersonData(id);
 
             PersonDataChangedHandler?.Invoke();
         }

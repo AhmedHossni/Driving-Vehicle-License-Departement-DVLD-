@@ -125,5 +125,24 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
             }
         }
 
+        private void btnAddNewPerson_Click(object sender, EventArgs e)
+        {
+            frmAddEditPerson addEditPerson 
+                = new frmAddEditPerson(-1);
+
+            addEditPerson.SaveNewOrExistPersonHandler +=
+                AddEditPerson_SaveNewOrExistPersonHandler;
+
+            addEditPerson.ShowDialog();
+        }
+
+        private void AddEditPerson_SaveNewOrExistPersonHandler(int id)
+            => LoadPersonDetails(id);
+
+        private void tboxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnSearchForPerson_Click(sender, e);
+        }
     }
 }

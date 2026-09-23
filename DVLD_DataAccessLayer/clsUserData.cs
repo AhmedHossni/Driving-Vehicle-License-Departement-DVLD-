@@ -13,7 +13,7 @@ namespace DVLD_DataAccessLayer
     public class clsUserData
     {
 
-        public static bool Add(string username, string password, int personId, bool isActive, 
+        public static bool Add(string username, string password, int personId, bool isActive,
             out string errorMessage, out int userId)
         {
             try
@@ -25,15 +25,17 @@ namespace DVLD_DataAccessLayer
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("personId", personId);
-                        command.Parameters.AddWithValue("username", username);
-                        command.Parameters.AddWithValue("password", password);
-                        command.Parameters.AddWithValue("isActive", isActive);
+                        command.Parameters.AddWithValue("@personId", personId);
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@isActive", isActive);
 
                         connection.Open();
 
-                        if( command.ExecuteScalar() is object obj && obj != null && obj != DBNull.Value)
-                            userId = (int)obj;
+                        if( command.ExecuteScalar() is object obj &&
+                            obj != null &&
+                            obj != DBNull.Value)
+                            userId = Convert.ToInt32(obj);
                         else 
                             userId = -1;
                     }

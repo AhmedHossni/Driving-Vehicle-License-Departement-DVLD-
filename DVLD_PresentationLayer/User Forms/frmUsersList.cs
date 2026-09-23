@@ -274,7 +274,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
         private void CallAddEditUserForm(int userId)
         {
-            new frmAddEditUser(userId).ShowDialog();
+            frmAddEditUser addEditUser = new frmAddEditUser(userId);
+
+            addEditUser.AddOrEditUserOperationHandler += LoadDataInGridDataView;
+
+            addEditUser.ShowDialog();
         }
 
         private void CMS_Click_Add(object sender, EventArgs e)

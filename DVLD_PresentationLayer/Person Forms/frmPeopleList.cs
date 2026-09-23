@@ -243,10 +243,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
             frmAddEditPerson addEditPersonForm
                 = new frmAddEditPerson(id);
 
-            addEditPersonForm.SaveNewOrExistPersonHandler += LoadDataInGridDataView;
+            addEditPersonForm.SaveNewOrExistPersonHandler += AddEditPersonForm_SaveNewOrExistPersonHandler; ;
 
             addEditPersonForm.ShowDialog();
         }
+
+        private void AddEditPersonForm_SaveNewOrExistPersonHandler(int id)
+            => LoadDataInGridDataView();
+
 
         private async void LoadDataInGridDataView()
         {
