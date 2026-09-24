@@ -115,6 +115,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             pnlFrmBtns.Width = this.Width;
             pnlMainBtns.Width = this.Width;
             pnlLogo.Width = this.Width;
+
+            pnlLogo.Height = this.Height - (pnlFrmBtns.Height + pnlMainBtns.Height);
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
