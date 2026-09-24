@@ -39,7 +39,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             LoadDataInGridDataView();       
 
             pnlFrmBtns.MouseDown += frm_MouseDown;
-            pnlFormUpper.MouseDown += frm_MouseDown;
 
             cboxSearchBy.SelectedIndex = (int)enComboBoxSelections.None;
             cboxIsActiveOptions.SelectedIndex = (int)enComboBoxIsActive.All;
@@ -272,6 +271,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
           
         }
 
+        private void CallChangeUserPasswordForm(int userId, int personId)
+        {
+            frmChangeUserPassword changeUserPasswordForm
+                = new frmChangeUserPassword(userId, personId);
+
+            changeUserPasswordForm.PersonDataChangedHandler
+                += LoadDataInGridDataView;
+
+            changeUserPasswordForm?.ShowDialog();
+        }
+
         private void CallAddEditUserForm(int userId)
         {
             frmAddEditUser addEditUser = new frmAddEditUser(userId);
@@ -286,7 +296,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
         private void CMS_Click_ChangePassword(object sender, EventArgs e)
         {
+            GetAndSelectCurrentGridRowId(out int userId, 
+                out int personId);
 
+            if(userId != -1)
+                CallChangeUserPasswordForm(userId, personId);
         }
 
         private void btnAddPerson_Click(object sender, EventArgs e)

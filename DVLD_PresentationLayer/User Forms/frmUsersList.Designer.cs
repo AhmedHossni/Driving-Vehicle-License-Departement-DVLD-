@@ -40,7 +40,7 @@
             this.lblFilterBy = new System.Windows.Forms.Label();
             this.cboxSearchBy = new System.Windows.Forms.ComboBox();
             this.lblFormTitle = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbFormMainImage = new System.Windows.Forms.PictureBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.cmsOperationsOnUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +53,7 @@
             this.lblRecods = new System.Windows.Forms.Label();
             this.pnlFrmBtns.SuspendLayout();
             this.pnlFormUpper.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmsOperationsOnUser.SuspendLayout();
             this.SuspendLayout();
@@ -103,7 +103,7 @@
             this.pnlFormUpper.Controls.Add(this.lblFilterBy);
             this.pnlFormUpper.Controls.Add(this.cboxSearchBy);
             this.pnlFormUpper.Controls.Add(this.lblFormTitle);
-            this.pnlFormUpper.Controls.Add(this.pictureBox1);
+            this.pnlFormUpper.Controls.Add(this.pbFormMainImage);
             this.pnlFormUpper.Location = new System.Drawing.Point(-7, 51);
             this.pnlFormUpper.Name = "pnlFormUpper";
             this.pnlFormUpper.Size = new System.Drawing.Size(1175, 176);
@@ -149,7 +149,7 @@
             this.lblFilterBy.AutoSize = true;
             this.lblFilterBy.Font = new System.Drawing.Font("Unispace", 10.2F, System.Drawing.FontStyle.Bold);
             this.lblFilterBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.lblFilterBy.Location = new System.Drawing.Point(3, 146);
+            this.lblFilterBy.Location = new System.Drawing.Point(12, 146);
             this.lblFilterBy.Name = "lblFilterBy";
             this.lblFilterBy.Size = new System.Drawing.Size(119, 20);
             this.lblFilterBy.TabIndex = 3;
@@ -183,15 +183,15 @@
             this.lblFormTitle.TabIndex = 1;
             this.lblFormTitle.Text = "Manage Users";
             // 
-            // pictureBox1
+            // pbFormMainImage
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(499, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 88);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbFormMainImage.Image = ((System.Drawing.Image)(resources.GetObject("pbFormMainImage.Image")));
+            this.pbFormMainImage.Location = new System.Drawing.Point(499, 12);
+            this.pbFormMainImage.Name = "pbFormMainImage";
+            this.pbFormMainImage.Size = new System.Drawing.Size(162, 88);
+            this.pbFormMainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFormMainImage.TabIndex = 0;
+            this.pbFormMainImage.TabStop = false;
             // 
             // dgvUsers
             // 
@@ -218,13 +218,13 @@
             this.deleteToolStripMenuItem,
             this.changePasswordToolStripMenuItem});
             this.cmsOperationsOnUser.Name = "cmsOperationsOnUser";
-            this.cmsOperationsOnUser.Size = new System.Drawing.Size(198, 134);
+            this.cmsOperationsOnUser.Size = new System.Drawing.Size(215, 162);
             // 
             // showDetailsToolStripMenuItem
             // 
             this.showDetailsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem.Image")));
             this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
-            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.showDetailsToolStripMenuItem.Text = "Show Details";
             this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
             // 
@@ -232,15 +232,15 @@
             // 
             this.addNewUserToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addNewUserToolStripMenuItem.Image")));
             this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
-            this.addNewUserToolStripMenuItem.Text = "Add New User";
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.addNewUserToolStripMenuItem.Text = "Add";
             this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_Add);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_Edit);
             // 
@@ -248,15 +248,15 @@
             // 
             this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_UserInfo);
             // 
             // changePasswordToolStripMenuItem
             // 
-            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
+            this.changePasswordToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Password_32;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ChangePassword);
             // 
@@ -312,7 +312,7 @@
             this.pnlFrmBtns.ResumeLayout(false);
             this.pnlFormUpper.ResumeLayout(false);
             this.pnlFormUpper.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.cmsOperationsOnUser.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -331,7 +331,7 @@
         private System.Windows.Forms.Label lblFilterBy;
         private System.Windows.Forms.ComboBox cboxSearchBy;
         private System.Windows.Forms.Label lblFormTitle;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbFormMainImage;
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.Button btnBigCloseForm;
         private System.Windows.Forms.Label lblNumberOfRecords;

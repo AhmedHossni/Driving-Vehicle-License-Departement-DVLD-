@@ -132,6 +132,7 @@
             this.tboxPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tboxPassword.Location = new System.Drawing.Point(174, 193);
             this.tboxPassword.Name = "tboxPassword";
+            this.tboxPassword.PasswordChar = '*';
             this.tboxPassword.Size = new System.Drawing.Size(247, 27);
             this.tboxPassword.TabIndex = 1;
             // 

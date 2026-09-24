@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlMainBtns = new System.Windows.Forms.Panel();
             this.pnlFrmBtns = new System.Windows.Forms.Panel();
-            this.buttonMinimize = new System.Windows.Forms.Button();
-            this.btnFormClose = new System.Windows.Forms.Button();
             this.btnAccountSettings = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDrivers = new System.Windows.Forms.Button();
@@ -46,7 +44,6 @@
             this.imglistMain = new System.Windows.Forms.ImageList(this.components);
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlMainBtns.SuspendLayout();
-            this.pnlFrmBtns.SuspendLayout();
             this.cmsAccountSettingsBtn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,40 +64,10 @@
             // pnlFrmBtns
             // 
             this.pnlFrmBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(16)))), ((int)(((byte)(25)))));
-            this.pnlFrmBtns.Controls.Add(this.buttonMinimize);
-            this.pnlFrmBtns.Controls.Add(this.btnFormClose);
             this.pnlFrmBtns.Location = new System.Drawing.Point(3, 0);
             this.pnlFrmBtns.Name = "pnlFrmBtns";
-            this.pnlFrmBtns.Size = new System.Drawing.Size(1168, 46);
-            this.pnlFrmBtns.TabIndex = 0;
-            // 
-            // buttonMinimize
-            // 
-            this.buttonMinimize.BackColor = System.Drawing.Color.White;
-            this.buttonMinimize.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.icons8_minimize_96;
-            this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.buttonMinimize.Location = new System.Drawing.Point(1073, 6);
-            this.buttonMinimize.Name = "buttonMinimize";
-            this.buttonMinimize.Size = new System.Drawing.Size(37, 34);
-            this.buttonMinimize.TabIndex = 5;
-            this.buttonMinimize.UseVisualStyleBackColor = false;
-            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
-            this.buttonMinimize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
-            // 
-            // btnFormClose
-            // 
-            this.btnFormClose.BackColor = System.Drawing.Color.White;
-            this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
-            this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnFormClose.Location = new System.Drawing.Point(1116, 6);
-            this.btnFormClose.Name = "btnFormClose";
-            this.btnFormClose.Size = new System.Drawing.Size(37, 34);
-            this.btnFormClose.TabIndex = 6;
-            this.btnFormClose.UseVisualStyleBackColor = false;
-            this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
-            this.btnFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
+            this.pnlFrmBtns.Size = new System.Drawing.Size(1175, 43);
+            this.pnlFrmBtns.TabIndex = 5;
             // 
             // btnAccountSettings
             // 
@@ -186,6 +153,7 @@
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
@@ -223,10 +191,13 @@
             this.ClientSize = new System.Drawing.Size(1163, 587);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlMainBtns);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.Text = "Main Form";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlMainBtns.ResumeLayout(false);
-            this.pnlFrmBtns.ResumeLayout(false);
             this.cmsAccountSettingsBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -242,12 +213,10 @@
         private System.Windows.Forms.Button btnPeople;
         private System.Windows.Forms.Button btnApp;
         private System.Windows.Forms.ImageList imglistMain;
-        private System.Windows.Forms.Button btnFormClose;
-        private System.Windows.Forms.Button buttonMinimize;
-        private System.Windows.Forms.Panel pnlFrmBtns;
         private System.Windows.Forms.ContextMenuStrip cmsAccountSettingsBtn;
         private System.Windows.Forms.ToolStripMenuItem currentUserInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlFrmBtns;
     }
 }

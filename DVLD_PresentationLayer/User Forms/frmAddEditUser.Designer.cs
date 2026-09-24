@@ -46,7 +46,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.epIsUserDataValid = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlSearchForPerson1 = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
+            this.ctrlSearchForPerson = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
             this.tctrlAddEditUser.SuspendLayout();
             this.tpagePersonInfo.SuspendLayout();
             this.tpageLoginInfo.SuspendLayout();
@@ -66,7 +66,7 @@
             // tpagePersonInfo
             // 
             this.tpagePersonInfo.Controls.Add(this.btnNextTab);
-            this.tpagePersonInfo.Controls.Add(this.ctrlSearchForPerson1);
+            this.tpagePersonInfo.Controls.Add(this.ctrlSearchForPerson);
             this.tpagePersonInfo.Location = new System.Drawing.Point(4, 25);
             this.tpagePersonInfo.Name = "tpagePersonInfo";
             this.tpagePersonInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -257,10 +257,10 @@
             // 
             // ctrlSearchForPerson1
             // 
-            this.ctrlSearchForPerson1.Location = new System.Drawing.Point(3, 6);
-            this.ctrlSearchForPerson1.Name = "ctrlSearchForPerson1";
-            this.ctrlSearchForPerson1.Size = new System.Drawing.Size(935, 429);
-            this.ctrlSearchForPerson1.TabIndex = 0;
+            this.ctrlSearchForPerson.Location = new System.Drawing.Point(3, 6);
+            this.ctrlSearchForPerson.Name = "ctrlSearchForPerson1";
+            this.ctrlSearchForPerson.Size = new System.Drawing.Size(935, 429);
+            this.ctrlSearchForPerson.TabIndex = 0;
             // 
             // frmAddEditUser
             // 
@@ -287,7 +287,7 @@
         private System.Windows.Forms.TabControl tctrlAddEditUser;
         private System.Windows.Forms.TabPage tpagePersonInfo;
         private System.Windows.Forms.TabPage tpageLoginInfo;
-        private Person_Forms.ctrlSearchForPerson ctrlSearchForPerson1;
+        private Person_Forms.ctrlSearchForPerson ctrlSearchForPerson;
         private System.Windows.Forms.Button btnNextTab;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;

@@ -16,8 +16,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            frmMain MainScreen;
             frmLogin frmLogin = new frmLogin();
+            frmMain MainScreen;
             do
             {
                 MainScreen = new frmMain();

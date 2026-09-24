@@ -30,13 +30,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
                 && _formUser.PersonId != -1)
                 DisableEditUserInfo();
 
-            ctrlSearchForPerson1.SearchResultHandler
+            ctrlSearchForPerson.SearchResultHandler
                 += CtrlSearchForPerson1_SearchResultHandler;
         }
 
         private void DisableEditUserInfo()
         {
-            ctrlSearchForPerson1.DisableSearchFeature(true);
+            ctrlSearchForPerson.DisableSearchFeature(true);
             tboxUserName.Enabled = false;
 
             tboxPassword.Enabled = false;
@@ -51,12 +51,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             if(!(_formUser is null))
             {
                 lblUserIdValue.Text = _formUser.Id.ToString();
+
                 tboxUserName.Text = _formUser.Username;
 
                 tboxPassword.Text = _formUser.Password;
+
                 tboxConfirmPassword.Text = _formUser.Password;
 
-                ctrlSearchForPerson1.LoadPersonDetails(_formUser.PersonId);
+                ctrlSearchForPerson.LoadPersonDetails(_formUser.PersonId);
             }
         }
 

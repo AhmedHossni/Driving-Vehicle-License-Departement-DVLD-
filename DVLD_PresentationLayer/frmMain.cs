@@ -8,16 +8,13 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
 {
-    public partial class frmMain : frmMainStyle
+    public partial class frmMain : Form
     {
         public frmMain()
         {
             InitializeComponent();
 
             // Move form position on the screen
-            pnlLogo.MouseDown += frm_MouseDown;
-            pnlMainBtns.MouseDown += frm_MouseDown;
-            pnlFrmBtns.MouseDown += frm_MouseDown;
 
             SetupCustomButton(btnApp, imglistMain.Images[0]);
             SetupCustomButton(btnPeople, imglistMain.Images[1]);
@@ -48,13 +45,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 220);
 
         }
-
-        private void buttonMinimize_Click(object sender, EventArgs e) 
-            => this.WindowState = FormWindowState.Minimized;
-
-
-        private void btnFormClose_Click(object sender, EventArgs e) 
-            => this.Close();
 
         private void ShowBtnAccountSettingsCMS(object sender, EventArgs e)
         {
@@ -99,6 +89,37 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         private void btnsExceptAccountSettings_MouseMove(object sender, MouseEventArgs e)
         {
             cmsAccountSettingsBtn.Close();
+        }
+
+        private void CallChangeUserPasswordForm(int userId, int personId)
+        {
+            frmChangeUserPassword changeUserPasswordForm
+                = new frmChangeUserPassword(userId, personId);
+
+            changeUserPasswordForm.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CallChangeUserPasswordForm(clsUser.SystemUser.Id,
+                clsUser.SystemUser.PersonId);
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            UpdatePanelsWidth();
+        }
+
+        private void UpdatePanelsWidth()
+        {
+            pnlFrmBtns.Width = this.Width;
+            pnlMainBtns.Width = this.Width;
+            pnlLogo.Width = this.Width;
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            UpdatePanelsWidth();
         }
     }
 }
