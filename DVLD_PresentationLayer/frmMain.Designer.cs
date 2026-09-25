@@ -38,13 +38,20 @@
             this.btnPeople = new System.Windows.Forms.Button();
             this.btnApp = new System.Windows.Forms.Button();
             this.cmsAccountSettingsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imglistMain = new System.Windows.Forms.ImageList(this.components);
+            this.cmsApplicationBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imglistMain = new System.Windows.Forms.ImageList(this.components);
-            this.pnlLogo = new System.Windows.Forms.Panel();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageApplicationTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageTestTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMainBtns.SuspendLayout();
             this.cmsAccountSettingsBtn.SuspendLayout();
+            this.cmsApplicationBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMainBtns
@@ -126,7 +133,8 @@
             this.btnApp.TabIndex = 0;
             this.btnApp.Text = "Applications";
             this.btnApp.UseVisualStyleBackColor = true;
-            this.btnApp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnsExceptAccountSettings_MouseMove);
+            this.btnApp.Click += new System.EventHandler(this.btnApp_Click);
+            this.btnApp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnApp_MouseMove);
             // 
             // cmsAccountSettingsBtn
             // 
@@ -138,6 +146,38 @@
             this.cmsAccountSettingsBtn.Name = "cmsAccountSettingsBtn";
             this.cmsAccountSettingsBtn.Size = new System.Drawing.Size(198, 82);
             this.cmsAccountSettingsBtn.MouseLeave += new System.EventHandler(this.cmsAccountSettingsBtn_MouseLeave);
+            // 
+            // imglistMain
+            // 
+            this.imglistMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglistMain.ImageStream")));
+            this.imglistMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imglistMain.Images.SetKeyName(0, "member.png");
+            this.imglistMain.Images.SetKeyName(1, "customers-icon-35912.png");
+            this.imglistMain.Images.SetKeyName(2, "users.png");
+            this.imglistMain.Images.SetKeyName(3, "users.png");
+            this.imglistMain.Images.SetKeyName(4, "account_settings.png");
+            // 
+            // cmsApplicationBtn
+            // 
+            this.cmsApplicationBtn.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsApplicationBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.manageApplicationTypesToolStripMenuItem,
+            this.manageTestTypesToolStripMenuItem});
+            this.cmsApplicationBtn.Name = "cmsAccountSettingsBtn";
+            this.cmsApplicationBtn.Size = new System.Drawing.Size(259, 134);
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.BackColor = System.Drawing.Color.Black;
+            this.pnlLogo.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Gemini_Generated_Image_8di3kg8di3kg8di3_removebg_preview__1_;
+            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlLogo.Location = new System.Drawing.Point(-5, 154);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(1168, 422);
+            this.pnlLogo.TabIndex = 1;
             // 
             // currentUserInfoToolStripMenuItem
             // 
@@ -163,25 +203,41 @@
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
-            // imglistMain
+            // toolStripMenuItem1
             // 
-            this.imglistMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglistMain.ImageStream")));
-            this.imglistMain.TransparentColor = System.Drawing.Color.Transparent;
-            this.imglistMain.Images.SetKeyName(0, "member.png");
-            this.imglistMain.Images.SetKeyName(1, "customers-icon-35912.png");
-            this.imglistMain.Images.SetKeyName(2, "users.png");
-            this.imglistMain.Images.SetKeyName(3, "users.png");
-            this.imglistMain.Images.SetKeyName(4, "account_settings.png");
+            this.toolStripMenuItem1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.LicenseView_400;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(258, 26);
+            this.toolStripMenuItem1.Text = "Driving Licences Services";
             // 
-            // pnlLogo
+            // toolStripMenuItem2
             // 
-            this.pnlLogo.BackColor = System.Drawing.Color.Black;
-            this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
-            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlLogo.Location = new System.Drawing.Point(-5, 154);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(1168, 422);
-            this.pnlLogo.TabIndex = 1;
+            this.toolStripMenuItem2.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Applications;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(258, 26);
+            this.toolStripMenuItem2.Text = "Manage Applications";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Detain_512;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(258, 26);
+            this.toolStripMenuItem3.Text = "Detain Licenses";
+            // 
+            // manageApplicationTypesToolStripMenuItem
+            // 
+            this.manageApplicationTypesToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Application_Types_5121;
+            this.manageApplicationTypesToolStripMenuItem.Name = "manageApplicationTypesToolStripMenuItem";
+            this.manageApplicationTypesToolStripMenuItem.Size = new System.Drawing.Size(258, 26);
+            this.manageApplicationTypesToolStripMenuItem.Text = "Manage Application Types";
+            this.manageApplicationTypesToolStripMenuItem.Click += new System.EventHandler(this.manageApplicationTypesToolStripMenuItem_Click);
+            // 
+            // manageTestTypesToolStripMenuItem
+            // 
+            this.manageTestTypesToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.TestType_512;
+            this.manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
+            this.manageTestTypesToolStripMenuItem.Size = new System.Drawing.Size(258, 26);
+            this.manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
             // 
             // frmMain
             // 
@@ -199,6 +255,7 @@
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlMainBtns.ResumeLayout(false);
             this.cmsAccountSettingsBtn.ResumeLayout(false);
+            this.cmsApplicationBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -218,5 +275,11 @@
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
         private System.Windows.Forms.Panel pnlFrmBtns;
+        private System.Windows.Forms.ContextMenuStrip cmsApplicationBtn;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem manageApplicationTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageTestTypesToolStripMenuItem;
     }
 }

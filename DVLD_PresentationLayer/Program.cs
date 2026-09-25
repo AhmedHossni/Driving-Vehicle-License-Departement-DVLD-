@@ -13,8 +13,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             frmLogin frmLogin = new frmLogin();
             frmMain MainScreen;
@@ -22,7 +22,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             {
                 MainScreen = new frmMain();
                 if (frmLogin.ShowDialog() == DialogResult.OK)
-                    Application.Run(MainScreen);
+                    System.Windows.Forms.Application.Run(MainScreen);
             } while (MainScreen.DialogResult == DialogResult.OK);
         }
     }

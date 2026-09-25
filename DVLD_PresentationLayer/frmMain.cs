@@ -1,9 +1,11 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
+﻿using Driving___Vehicle_License_Departement__DVLD_.Application;
+using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
 using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
@@ -106,9 +108,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         }
 
         private void frmMain_Load(object sender, EventArgs e)
-        {
-            UpdatePanelsWidth();
-        }
+            => UpdatePanelsWidth();
 
         private void UpdatePanelsWidth()
         {
@@ -120,8 +120,23 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
+            => UpdatePanelsWidth();
+
+
+        private void OpenApplicationCMS()
+            => cmsApplicationBtn.Show(btnApp, new Point(0, btnApp.Height));
+
+        private void btnApp_MouseMove(object sender, MouseEventArgs e)
+            => OpenApplicationCMS();
+
+        private void btnApp_Click(object sender, EventArgs e)
+            => OpenApplicationCMS();
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdatePanelsWidth();
+            frmApplicationTypesList frm = new frmApplicationTypesList();
+
+            frm.ShowDialog();
         }
     }
 }
