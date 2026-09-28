@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLogicLayer;
+﻿using Driving___Vehicle_License_Departement__DVLD_.Application.Application_Types;
+using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
 using System.Drawing;
@@ -23,7 +24,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
         private int GetAndSelectCurrentGridRowId()
         {
-            DataGridView.HitTestInfo hitInfo = dgvApplicationTypes.HitTest(_point.X, _point.Y);
+            DataGridView.HitTestInfo hitInfo
+                = dgvApplicationTypes.HitTest(_point.X, _point.Y);
 
             if (hitInfo.RowIndex != -1)
             {
@@ -38,7 +40,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             }
         }
 
-        private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvApplicationTypes_MouseDown(object sender, MouseEventArgs e)
             => _point = dgvApplicationTypes.PointToClient(Cursor.Position);
 
         private void btnFormClose_Click(object sender, EventArgs e) 
@@ -47,16 +49,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
         public void SearchFilter(string filterText) 
             => _dvApplicationTypesData.RowFilter = filterText;
 
-        private void CMS_Click_EditPersonDetails(object sender, EventArgs e)
-            => OpenAddEditPersonFormAndHandleChanges(GetAndSelectCurrentGridRowId());
-
         private void OpenAddEditPersonFormAndHandleChanges(int id)
         {
-            // open edit applcation type data not add new
-        }
+            frmEditAppType editAppTypes
+                = new frmEditAppType(id);
 
-        private void AddEditPersonForm_SaveNewOrExistPersonHandler(int id)
-            => LoadDataInGridDataView();
+            editAppTypes.ApplicationTypeDataChangeHandler 
+                += LoadDataInGridDataView;
+
+            editAppTypes.ShowDialog();
+        }
 
         private async void LoadDataInGridDataView()
         {
@@ -79,6 +81,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
             lblRecordsCount.Text =
                 this._dvApplicationTypesData.Count.ToString();
+        }
+
+        private void editApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int currentId = GetAndSelectCurrentGridRowId();
+
+            OpenAddEditPersonFormAndHandleChanges(currentId);
         }
     }
 }

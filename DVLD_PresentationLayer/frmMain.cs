@@ -1,5 +1,6 @@
 ﻿using Driving___Vehicle_License_Departement__DVLD_.Application;
 using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
+using Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type;
 using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
 using DVLD_BusinessLogicLayer;
 using System;
@@ -135,6 +136,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmApplicationTypesList frm = new frmApplicationTypesList();
+
+            frm.ShowDialog();
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestTypesList frm = new frmTestTypesList();
 
             frm.ShowDialog();
         }

@@ -30,7 +30,7 @@ namespace DVLD_DataAccessLayer
                                 // The record was found
                                 isFound = true;
 
-                                appicationTitle = (string)reader["AppicationTitle"];
+                                appicationTitle = (string)reader["ApplicationTypeTitle"];
                                 fees = (decimal)reader["ApplicationFees"];
 
                             }
@@ -60,9 +60,9 @@ namespace DVLD_DataAccessLayer
             int rowsAffected = 0;
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = "UPDATE ApplicationTypes" +
-                                "SET ApplicationTypeTitle = @title," +
-                                "ApplicationFees = @fees" +
+                string query = "UPDATE ApplicationTypes " +
+                                "SET ApplicationTypeTitle = @title , " +
+                                "ApplicationFees = @fees " +
                                 "WHERE ApplicationTypeID = @id;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))

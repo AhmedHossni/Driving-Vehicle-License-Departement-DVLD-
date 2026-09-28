@@ -225,7 +225,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
             _person.NationalNo = tboxNationalNo.Text;
             _person.Email = tboxEmail.Text;
             _person.Address = rtboxAddress.Text;
-            _person.Gender = rbtnMale.Checked ? enPersonGender.Male : enPersonGender.Female;
+            _person.Gender = rbtnMale.Checked ?
+                enPersonGender.Male : enPersonGender.Female;
 
             _person.DateOfBirth = dtpDateOfBirth.Value;
             _person.Phone = tboxPhone.Text;
