@@ -75,54 +75,42 @@ namespace DVLD_BusinessLogicLayer
 
             if (clsUserData.GetInfoByUserId(userId, ref personId, ref username, ref password
             , ref isActive, out errorMessage))
-            {
                 return new clsUser(userId, personId, username, password, isActive);
-            }
             else
-            {
                 return null;
-            }
-
-
         }
 
         public bool Save(out string errorMessage)
         {
-            if(Id == -1)
-                clsUserData.Add(Username, Password, PersonId, IsActive, out errorMessage, out _id);
-            else
-                clsUserData.Update(Id, Username, Password, IsActive, out errorMessage);
+            bool result = false;
 
-            return string.IsNullOrEmpty(errorMessage);
+            if(Id == -1)
+                result = clsUserData.Add(Username, Password, PersonId, IsActive, out errorMessage, out _id);
+            else
+                result = clsUserData.Update(Id, Username, Password, IsActive, out errorMessage);
+
+            return result;
         }
 
         public static bool Add(int personId, string username, string password, bool isActive,
             out string errorMessage, out int NewUserId)
-        {
-            clsUserData.Add(username, password, personId, isActive, out errorMessage, out NewUserId);
-
-            return string.IsNullOrEmpty(errorMessage);
+        {     
+            return clsUserData.Add(username, password, personId, isActive, out errorMessage, out NewUserId);
         }
 
         public static bool Delete(int userId, out string errorMessage)
         {
-            clsUserData.Delete(userId, out errorMessage);
-
-            return string.IsNullOrEmpty(errorMessage);
+            return clsUserData.Delete(userId, out errorMessage);
         }
 
         public static bool IsExistByUserId(int userId, out string errorMessage) 
         {
-            clsUserData.IsExistByUserId(userId, out errorMessage);
-
-            return string.IsNullOrEmpty(errorMessage);
+            return clsUserData.IsExistByUserId(userId, out errorMessage);
         }
 
         public static bool IsExistByPersonId(int personId, out string errorMessage)
         {
-            clsUserData.IsExistByPersonId(personId, out errorMessage);
-
-            return string.IsNullOrEmpty(errorMessage);
+            return clsUserData.IsExistByPersonId(personId, out errorMessage);
         } 
         
         public static DataTable GetAll(out string errorMessage) 

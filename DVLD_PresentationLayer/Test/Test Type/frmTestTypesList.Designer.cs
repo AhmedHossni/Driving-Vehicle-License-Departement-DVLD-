@@ -36,8 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgvTestTypes = new System.Windows.Forms.DataGridView();
             this.cmsOptionsOnTests = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.editTestTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypes)).BeginInit();
             this.cmsOptionsOnTests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -117,11 +117,19 @@
             // 
             // cmsOptionsOnTests
             // 
-            this.cmsOptionsOnTests.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsOptionsOnTests.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.cmsOptionsOnTests.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editTestTypeToolStripMenuItem});
             this.cmsOptionsOnTests.Name = "cmsOptionsOnTests";
-            this.cmsOptionsOnTests.Size = new System.Drawing.Size(174, 30);
+            this.cmsOptionsOnTests.Size = new System.Drawing.Size(225, 68);
+            // 
+            // editTestTypeToolStripMenuItem
+            // 
+            this.editTestTypeToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.edit_32;
+            this.editTestTypeToolStripMenuItem.Name = "editTestTypeToolStripMenuItem";
+            this.editTestTypeToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
+            this.editTestTypeToolStripMenuItem.Text = "Edit Test Type";
+            this.editTestTypeToolStripMenuItem.Click += new System.EventHandler(this.editTestTypeToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -132,14 +140,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 117;
             this.pictureBox1.TabStop = false;
-            // 
-            // editTestTypeToolStripMenuItem
-            // 
-            this.editTestTypeToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.edit_32;
-            this.editTestTypeToolStripMenuItem.Name = "editTestTypeToolStripMenuItem";
-            this.editTestTypeToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
-            this.editTestTypeToolStripMenuItem.Text = "Edit Test Type";
-            this.editTestTypeToolStripMenuItem.Click += new System.EventHandler(this.editTestTypeToolStripMenuItem_Click);
             // 
             // frmTestTypesList
             // 

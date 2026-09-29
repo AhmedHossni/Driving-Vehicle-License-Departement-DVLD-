@@ -1,5 +1,4 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.Application.Application_Types;
-using DVLD_BusinessLogicLayer;
+﻿using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
 using System.Drawing;

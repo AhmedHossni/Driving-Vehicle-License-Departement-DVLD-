@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\AddEditLocalDrivingLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\AddEditLocalDrivingLicenseApplication.Designer.cs">
+      <DependentUpon>AddEditLocalDrivingLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Application\Application Types\frmApplicationTypesList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     <Compile Include="User\frmUsersList.Designer.cs">
       <DependentUpon>frmUsersList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Application\AddEditLocalDrivingLicenseApplication.resx">
+      <DependentUpon>AddEditLocalDrivingLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\Application Types\frmApplicationTypesList.resx">
       <DependentUpon>frmApplicationTypesList.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +262,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\User 32 -2.png" />
+    <None Include="Resources\Calendar 32.png" />
+    <None Include="Resources\Number 32.png" />
+    <None Include="Resources\International 321.png" />
+    <None Include="Resources\LocalDriving License.png" />
+    <None Include="Resources\International 32.png" />
+    <None Include="Resources\Local 32.png" />
+    <None Include="Resources\Retake Test 32.png" />
+    <None Include="Resources\Detained Driving License 32.png" />
+    <None Include="Resources\Damaged Driving License 32.png" />
+    <None Include="Resources\Renew Driving License 32.png" />
+    <None Include="Resources\New Driving License 32.png" />
     <None Include="Resources\edit 32.png" />
     <None Include="Resources\money 32.png" />
     <None Include="Resources\ApplicationTitle.png" />

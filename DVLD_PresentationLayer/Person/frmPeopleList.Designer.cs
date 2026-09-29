@@ -225,19 +225,19 @@
             // 
             // cmsListFunc
             // 
-            this.cmsListFunc.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsListFunc.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.cmsListFunc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.deleteToolStripMenuItem1});
             this.cmsListFunc.Name = "cmsListFunc";
-            this.cmsListFunc.Size = new System.Drawing.Size(127, 82);
+            this.cmsListFunc.Size = new System.Drawing.Size(225, 140);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_EditPersonDetails);
             // 
@@ -245,7 +245,7 @@
             // 
             this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
             this.deleteToolStripMenuItem.Text = "Show";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ShowPersonDetails);
             // 
@@ -253,7 +253,7 @@
             // 
             this.deleteToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem1.Image")));
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(126, 26);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(224, 36);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.CMS_Click_Delete);
             // 
