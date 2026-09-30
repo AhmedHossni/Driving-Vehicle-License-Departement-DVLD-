@@ -31,27 +31,27 @@
             this.lblFormLabel = new System.Windows.Forms.Label();
             this.tctrlLicenseApplicationInfo = new System.Windows.Forms.TabControl();
             this.tpPersonInfo = new System.Windows.Forms.TabPage();
-            this.tbAppicationInfo = new System.Windows.Forms.TabPage();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNextTab = new System.Windows.Forms.Button();
             this.ctrlSearchForPerson1 = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
+            this.tbAppicationInfo = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCreatedByUser = new System.Windows.Forms.Label();
             this.lblFees = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cbLicenseClass = new System.Windows.Forms.ComboBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.lblApplicationDate = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblLocalDrivingLicebseApplicationID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnNextTab = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnPreviousTab = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.tctrlLicenseApplicationInfo.SuspendLayout();
             this.tpPersonInfo.SuspendLayout();
             this.tbAppicationInfo.SuspendLayout();
@@ -95,6 +95,27 @@
             this.tpPersonInfo.Text = "Person Info";
             this.tpPersonInfo.UseVisualStyleBackColor = true;
             // 
+            // btnNextTab
+            // 
+            this.btnNextTab.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNextTab.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.arrow_right__1_;
+            this.btnNextTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNextTab.Location = new System.Drawing.Point(811, 440);
+            this.btnNextTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNextTab.Name = "btnNextTab";
+            this.btnNextTab.Size = new System.Drawing.Size(126, 37);
+            this.btnNextTab.TabIndex = 121;
+            this.btnNextTab.Text = "Next";
+            this.btnNextTab.UseVisualStyleBackColor = true;
+            this.btnNextTab.Click += new System.EventHandler(this.btnNextTab_Click);
+            // 
+            // ctrlSearchForPerson1
+            // 
+            this.ctrlSearchForPerson1.Location = new System.Drawing.Point(3, 3);
+            this.ctrlSearchForPerson1.Name = "ctrlSearchForPerson1";
+            this.ctrlSearchForPerson1.Size = new System.Drawing.Size(935, 429);
+            this.ctrlSearchForPerson1.TabIndex = 0;
+            // 
             // tbAppicationInfo
             // 
             this.tbAppicationInfo.Controls.Add(this.pictureBox2);
@@ -121,36 +142,25 @@
             this.tbAppicationInfo.Text = "Application Info";
             this.tbAppicationInfo.UseVisualStyleBackColor = true;
             // 
-            // btnClose
+            // pictureBox2
             // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.Location = new System.Drawing.Point(692, 589);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(126, 37);
-            this.btnClose.TabIndex = 124;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.pictureBox2.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Number_32;
+            this.pictureBox2.Location = new System.Drawing.Point(458, 154);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 159;
+            this.pictureBox2.TabStop = false;
             // 
-            // btnSave
+            // pictureBox1
             // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(826, 589);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(126, 37);
-            this.btnSave.TabIndex = 123;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // ctrlSearchForPerson1
-            // 
-            this.ctrlSearchForPerson1.Location = new System.Drawing.Point(3, 3);
-            this.ctrlSearchForPerson1.Name = "ctrlSearchForPerson1";
-            this.ctrlSearchForPerson1.Size = new System.Drawing.Size(935, 429);
-            this.ctrlSearchForPerson1.TabIndex = 0;
+            this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.User_32__2;
+            this.pictureBox1.Location = new System.Drawing.Point(458, 305);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 158;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -196,6 +206,16 @@
             this.label2.TabIndex = 153;
             this.label2.Text = "Application Fees:";
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.money_32;
+            this.pictureBox3.Location = new System.Drawing.Point(458, 266);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 154;
+            this.pictureBox3.TabStop = false;
+            // 
             // cbLicenseClass
             // 
             this.cbLicenseClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -204,6 +224,16 @@
             this.cbLicenseClass.Name = "cbLicenseClass";
             this.cbLicenseClass.Size = new System.Drawing.Size(270, 24);
             this.cbLicenseClass.TabIndex = 150;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Renew_Driving_License_32;
+            this.pictureBox6.Location = new System.Drawing.Point(458, 229);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 152;
+            this.pictureBox6.TabStop = false;
             // 
             // label15
             // 
@@ -226,6 +256,16 @@
             this.lblApplicationDate.Size = new System.Drawing.Size(136, 25);
             this.lblApplicationDate.TabIndex = 149;
             this.lblApplicationDate.Text = "[??/??/????]";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Calendar_32;
+            this.pictureBox4.Location = new System.Drawing.Point(458, 190);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 148;
+            this.pictureBox4.TabStop = false;
             // 
             // label5
             // 
@@ -260,70 +300,6 @@
             this.label4.TabIndex = 145;
             this.label4.Text = "D.L.Application ID:";
             // 
-            // btnNextTab
-            // 
-            this.btnNextTab.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNextTab.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.arrow_right__1_;
-            this.btnNextTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNextTab.Location = new System.Drawing.Point(811, 440);
-            this.btnNextTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnNextTab.Name = "btnNextTab";
-            this.btnNextTab.Size = new System.Drawing.Size(126, 37);
-            this.btnNextTab.TabIndex = 121;
-            this.btnNextTab.Text = "Next";
-            this.btnNextTab.UseVisualStyleBackColor = true;
-            this.btnNextTab.Click += new System.EventHandler(this.btnNextTab_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Number_32;
-            this.pictureBox2.Location = new System.Drawing.Point(458, 154);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 159;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.User_32__2;
-            this.pictureBox1.Location = new System.Drawing.Point(458, 305);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 158;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.money_32;
-            this.pictureBox3.Location = new System.Drawing.Point(458, 266);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 154;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Renew_Driving_License_32;
-            this.pictureBox6.Location = new System.Drawing.Point(458, 229);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 152;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Calendar_32;
-            this.pictureBox4.Location = new System.Drawing.Point(458, 190);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 148;
-            this.pictureBox4.TabStop = false;
-            // 
             // btnPreviousTab
             // 
             this.btnPreviousTab.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -337,6 +313,32 @@
             this.btnPreviousTab.Text = "     Previous";
             this.btnPreviousTab.UseVisualStyleBackColor = true;
             this.btnPreviousTab.Click += new System.EventHandler(this.btnPreviousTab_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.Location = new System.Drawing.Point(692, 589);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(126, 37);
+            this.btnClose.TabIndex = 124;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.Location = new System.Drawing.Point(826, 589);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(126, 37);
+            this.btnSave.TabIndex = 123;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AddEditLocalDrivingLicenseApplication
             // 

@@ -150,7 +150,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddEditLocalDrivingLicenseApplication drivingLicenseApplication 
-                = new AddEditLocalDrivingLicenseApplication();
+                = new AddEditLocalDrivingLicenseApplication(-1);
 
             drivingLicenseApplication.ShowDialog();
         }

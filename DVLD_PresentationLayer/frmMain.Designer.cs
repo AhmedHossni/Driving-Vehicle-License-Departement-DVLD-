@@ -200,7 +200,7 @@
             this.manageApplicationTypesToolStripMenuItem,
             this.manageTestTypesToolStripMenuItem});
             this.cmsApplicationBtn.Name = "cmsAccountSettingsBtn";
-            this.cmsApplicationBtn.Size = new System.Drawing.Size(269, 212);
+            this.cmsApplicationBtn.Size = new System.Drawing.Size(269, 184);
             // 
             // toolStripMenuItem1
             // 
@@ -222,14 +222,14 @@
             this.internationalLicenseToolStripMenuItem});
             this.newDrivingLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.New_Driving_License_32;
             this.newDrivingLicenseToolStripMenuItem.Name = "newDrivingLicenseToolStripMenuItem";
-            this.newDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(383, 36);
+            this.newDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(373, 26);
             this.newDrivingLicenseToolStripMenuItem.Text = "New Driving License";
             // 
             // localLicenseToolStripMenuItem
             // 
             this.localLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Local_32;
             this.localLicenseToolStripMenuItem.Name = "localLicenseToolStripMenuItem";
-            this.localLicenseToolStripMenuItem.Size = new System.Drawing.Size(238, 36);
+            this.localLicenseToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.localLicenseToolStripMenuItem.Text = "Local License";
             this.localLicenseToolStripMenuItem.Click += new System.EventHandler(this.localLicenseToolStripMenuItem_Click);
             // 
@@ -237,35 +237,35 @@
             // 
             this.internationalLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.International_32;
             this.internationalLicenseToolStripMenuItem.Name = "internationalLicenseToolStripMenuItem";
-            this.internationalLicenseToolStripMenuItem.Size = new System.Drawing.Size(238, 36);
+            this.internationalLicenseToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.internationalLicenseToolStripMenuItem.Text = "International License";
             // 
             // renewDrivingLicenseToolStripMenuItem
             // 
             this.renewDrivingLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Renew_Driving_License_32;
             this.renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
-            this.renewDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(383, 36);
+            this.renewDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(373, 26);
             this.renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
             // 
             // replacementForLostOrDamagedLicenseToolStripMenuItem
             // 
             this.replacementForLostOrDamagedLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Damaged_Driving_License_32;
             this.replacementForLostOrDamagedLicenseToolStripMenuItem.Name = "replacementForLostOrDamagedLicenseToolStripMenuItem";
-            this.replacementForLostOrDamagedLicenseToolStripMenuItem.Size = new System.Drawing.Size(383, 36);
+            this.replacementForLostOrDamagedLicenseToolStripMenuItem.Size = new System.Drawing.Size(373, 26);
             this.replacementForLostOrDamagedLicenseToolStripMenuItem.Text = "Replacement for Lost or Damaged License";
             // 
             // releaseDetainedDrivingLicenseToolStripMenuItem
             // 
             this.releaseDetainedDrivingLicenseToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Detained_Driving_License_32;
             this.releaseDetainedDrivingLicenseToolStripMenuItem.Name = "releaseDetainedDrivingLicenseToolStripMenuItem";
-            this.releaseDetainedDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(383, 36);
+            this.releaseDetainedDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(373, 26);
             this.releaseDetainedDrivingLicenseToolStripMenuItem.Text = "Release Detained Driving License";
             // 
             // retakeTestToolStripMenuItem
             // 
             this.retakeTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Retake_Test_32;
             this.retakeTestToolStripMenuItem.Name = "retakeTestToolStripMenuItem";
-            this.retakeTestToolStripMenuItem.Size = new System.Drawing.Size(383, 36);
+            this.retakeTestToolStripMenuItem.Size = new System.Drawing.Size(373, 26);
             this.retakeTestToolStripMenuItem.Text = "Retake Test";
             // 
             // toolStripMenuItem2

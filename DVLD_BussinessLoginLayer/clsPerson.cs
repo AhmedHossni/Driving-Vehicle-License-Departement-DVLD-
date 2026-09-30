@@ -39,25 +39,6 @@ namespace DVLD_BusinessLogicLayer
             ImageName = "";
         }
 
-        private clsPerson(int id, string nationalNo, string firstName, string secondName, 
-            string thirdName, string lastName, DateTime dateOfBirth, enPersonGender gender,
-            string address, string phone, string email, int nationalCountryID, string imagePath)
-        {
-            _id = id;
-            NationalNo = nationalNo;
-            FirstName = firstName;
-            SecondName = secondName;
-            ThirdName = thirdName;
-            LastName = lastName;
-            DateOfBirth = dateOfBirth;
-            Gender = gender;
-            Address = address;
-            Phone = phone;
-            Email = email;
-            NationalCountryID = nationalCountryID;
-            ImageName = imagePath;
-        }
-
         public bool Save(out string errorMessage, out int id)
         {
             if (Id == -1)

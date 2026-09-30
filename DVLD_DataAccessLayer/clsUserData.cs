@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
-    public class clsUserData
+    public static class clsUserData
     {
 
         public static bool Add(string username, string password, int personId, bool isActive,
