@@ -63,7 +63,7 @@ namespace DVLD_DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = "SELECT * FROM Applications WHERE AppicationID = @id";
+                string query = "SELECT * FROM Applications WHERE ApplicationID = @id";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
 
@@ -80,14 +80,15 @@ namespace DVLD_DataAccessLayer
                                 // The record was found
                                 isFound = true;
 
-                                personId = (int)reader["PersonID"];
+                                personId = (int)reader["ApplicationPersonID"];
                                 applicationDate = (DateTime)reader["ApplicationDate"];
-                                applicationTypeId = (int)reader["ApplicationTypeId"];
-                                applicationStatus = (enApplicationStatus)reader["ApplicationStatus"];
+                                applicationTypeId = (int)reader["ApplicationTypeID"];
+                                byte status = (byte)reader["ApplicationStatus"];
+                                applicationStatus = (enApplicationStatus)status;
 
-                                lastStatusUpdate = (DateTime)reader["LastStatusUpdate"];
+                                lastStatusUpdate = (DateTime)reader["LastStatusDate"];
                                 paidFees = (decimal)reader["PaidFees"];
-                                createdByUserId = (int)reader["CreatedByUserId"];
+                                createdByUserId = (int)reader["CreatedByUserID"];
                             }
                             else
                             {

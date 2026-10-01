@@ -52,6 +52,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
         private void HandleFormIsAddOrUpdate(int localDrivingLicenseId)
         {
             LoadApplicationTypeDataToForm();
+
             if (localDrivingLicenseId != -1)
             {
                 LoadLDLDataToForm(localDrivingLicenseId);
@@ -90,6 +91,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                 && !(localDrivingLicenseApplication is null))
             {
                 _formLDLApplication = localDrivingLicenseApplication;
+
+                lblLocalDrivingLicebseApplicationID.Text 
+                    = _formLDLApplication.LocalDrivingLicenseApplicationId.ToString();
+
+                cbLicenseClass.SelectedValue = _formLDLApplication.LicenseClassId;
+
             }
         }
 
@@ -115,6 +122,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                     clsUser.GetBy(_formApplication.CreatedByUserID, out string errorMessage)?.Username;
 
                 HandleErrorMessage(ref errorMessage);
+
+                lblFees.Text = _formApplication.PaidFees.ToString("0");
+
+                lblApplicationDate.Text
+                    = _formApplication.ApplicationDate.ToString("dd/MM/yyyy");
+
+                ctrlSearchForPerson1.LoadPersonDetails(_formApplication.PersonId);
             }
         }
 
