@@ -29,7 +29,7 @@ namespace DVLD_DataAccessLayer
                         command.Parameters.AddWithValue("@applicationTypeId", applicationTypeId);
                         command.Parameters.AddWithValue("@applicationStatus", (int)enApplicationStatus.New);
 
-                        command.Parameters.AddWithValue("@lastStatusUpdate", lastStatusUpdate);
+                        command.Parameters.AddWithValue("@lastStatusUpdateDate", lastStatusUpdate);
                         command.Parameters.AddWithValue("@paidFees", paidFees);
                         command.Parameters.AddWithValue("@createdByUserId", createdByUserId);
 
@@ -55,7 +55,7 @@ namespace DVLD_DataAccessLayer
             }
         }
 
-        public static bool GetBy(int id, ref int personId, ref DateTime applicationDate, ref enApplicationTypes applicationTypeId, 
+        public static bool GetBy(int id, ref int personId, ref DateTime applicationDate, ref int applicationTypeId, 
             ref enApplicationStatus applicationStatus, ref DateTime lastStatusUpdate, ref decimal paidFees, ref int createdByUserId
             , out string errorMessage)
         {
@@ -82,7 +82,7 @@ namespace DVLD_DataAccessLayer
 
                                 personId = (int)reader["PersonID"];
                                 applicationDate = (DateTime)reader["ApplicationDate"];
-                                applicationTypeId = (enApplicationTypes)reader["ApplicationTypeId"];
+                                applicationTypeId = (int)reader["ApplicationTypeId"];
                                 applicationStatus = (enApplicationStatus)reader["ApplicationStatus"];
 
                                 lastStatusUpdate = (DateTime)reader["LastStatusUpdate"];
@@ -109,7 +109,7 @@ namespace DVLD_DataAccessLayer
             }
         }
 
-        public static bool Update(int id, ref int personId, ref enApplicationTypes applicationTypeId,
+        public static bool Update(int id, ref int personId, ref int applicationTypeId,
             ref enApplicationStatus applicationStatus, ref DateTime lastStatusUpdate,
             ref decimal paidFees
             , out string errorMessage)
@@ -220,15 +220,17 @@ namespace DVLD_DataAccessLayer
         }
 
         public static bool IsPersonHaveAllreadySameOpenApplication(int personId, 
-            enApplicationTypes applicationTypeId, out string errorMessage)
+            int applicationTypeId, out string errorMessage)
         {
             bool isFound = false;
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = "SELECT Found = 1 FROM Users WHERE " +
+                string query = "SELECT TOP 1 Found = 1 FROM Applications app " +
+                    "INNER JOIN LocalDrivingLicenseApplications LDLApp " +
+                    "ON app.ApplicationID = LDLApp.ApplicationID WHERE " +
                     "ApplicationPersonID = @personId AND " +
-                    "ApplicationTypeID == @applicationTypeID AND " +
+                    "ApplicationTypeID = @applicationTypeID AND " +
                     "ApplicationStatus = @applicaionStatus";
 
                 using (SqlCommand command = new SqlCommand(query, connection))

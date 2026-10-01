@@ -15,7 +15,8 @@
 
     public enum enApplicationStatus
     {
-        New = 1,
+        None = 0,
+        New,
         Canceled,
         Completed
     }

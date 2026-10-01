@@ -1,6 +1,6 @@
 ﻿namespace Driving___Vehicle_License_Departement__DVLD_.Application
 {
-    partial class AddEditLocalDrivingLicenseApplication
+    partial class frmAddEditLocalDrivingLicenseApplication
     {
         /// <summary>
         /// Required designer variable.
@@ -220,14 +220,6 @@
             // 
             this.cbLicenseClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLicenseClass.FormattingEnabled = true;
-            this.cbLicenseClass.Items.AddRange(new object[] {
-            "Class 1 - Small Motorcycle",
-            "Class 2 - Heavy Motorcycle License",
-            "Class 3 - Ordinary driving license",
-            "Class 4 - Commercial",
-            "Class 5 - Agricultural",
-            "Class 6 - Small and medium bus",
-            "Class 7 - Truck and heavy vehicle"});
             this.cbLicenseClass.Location = new System.Drawing.Point(501, 234);
             this.cbLicenseClass.Name = "cbLicenseClass";
             this.cbLicenseClass.Size = new System.Drawing.Size(270, 24);

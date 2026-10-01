@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Application
 {
-    public partial class AddEditLocalDrivingLicenseApplication : Form
+    public partial class frmAddEditLocalDrivingLicenseApplication : Form
     {
         clsLocalDrivingLicenseApplication _formLDLApplication;
         clsApplication _formApplication;
@@ -24,21 +24,38 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             Class_7_Truck_And_Heavy_Vehicle
         }
 
-        public AddEditLocalDrivingLicenseApplication(int localDrivingLicenseId)
+        public frmAddEditLocalDrivingLicenseApplication(int localDrivingLicenseId)
         {
             InitializeComponent();
 
-            HandleFormIsAddOrUpdate(localDrivingLicenseId);      
+            LoadComboBoxData();
+
+            HandleFormIsAddOrUpdate(localDrivingLicenseId);    
 
             ctrlSearchForPerson1.SearchResultHandler
                 += CtrlSearchForPerson1_SearchResultHandler;
         }
 
+        private void LoadComboBoxData()
+        {
+            DataTable dataTable 
+                = clsLicenseClass.GetAll(out string errorMessage);
+
+            if(dataTable == null)
+                return;
+
+            cbLicenseClass.DataSource = dataTable;
+            cbLicenseClass.DisplayMember = "ClassName";
+            cbLicenseClass.ValueMember = "LicenseClassID";
+        }
+
         private void HandleFormIsAddOrUpdate(int localDrivingLicenseId)
         {
+            LoadApplicationTypeDataToForm();
             if (localDrivingLicenseId != -1)
             {
                 LoadLDLDataToForm(localDrivingLicenseId);
+                LoadApplicationDataToForm(_formLDLApplication.ApplicationId);
                 this.Text = "Edit User Info";
                 lblFormLabel.Text = "Update Local Driving License Appication";
             }
@@ -47,7 +64,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                 this.Text = "Add New User";
                 lblFormLabel.Text = "New Local Driving License Appication";
                 lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                LoadApplicationTypeDataToForm();
+                lblCreatedByUser.Text = clsUser.SystemUser.Username;
+                
+
+                _formApplication = new clsApplication();
+                _formLDLApplication = new clsLocalDrivingLicenseApplication();
             }
         }
 
@@ -57,7 +78,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                 out string error) is clsApplicationType applicationType
                 && !(applicationType is null))
             {
-                lblFees.Text = applicationType.Fees.ToString();
+                lblFees.Text = applicationType.Fees.ToString("0");
             }
         }
 
@@ -72,30 +93,84 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             }
         }
 
+        private void HandleErrorMessage(ref string errorMessage)
+        {
+            if(!string.IsNullOrEmpty(errorMessage))
+                if (!string.IsNullOrEmpty(errorMessage))
+                    MessageBox.Show(errorMessage,
+                        "Error Message :(", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+        }
+
+        private void LoadApplicationDataToForm(int applicationId)
+        {
+            if (clsApplication.GetBy
+                (applicationId, out string error)
+                is clsApplication application
+                && !(application is null))
+            {
+                _formApplication = application;
+
+                lblCreatedByUser.Text =
+                    clsUser.GetBy(_formApplication.CreatedByUserID, out string errorMessage)?.Username;
+
+                HandleErrorMessage(ref errorMessage);
+            }
+        }
+
         private bool LoadDataFromForm(out string errorMessage)
         {
             _formLDLApplication.LicenseClassId
                 = (int)cbLicenseClass.SelectedValue;
 
-            _formApplication.ApplicationDate = DateTime.Now;
-
             clsApplicationType applicationType 
                 = clsApplicationType.GetBy((int)enApplicationTypes.NewLocalDrivingLicenseService, out errorMessage);
 
             if (applicationType is null)
-                return false; 
+                return false;
 
-            _formApplication.PaidFees = applicationType.Fees;
+            if(_formApplication.Id == -1)
+            {
+                _formApplication.ApplicationDate = DateTime.Now;
+                _formApplication.LastStatusDate = DateTime.Now;
+                _formApplication.ApplicaionTypeID = applicationType.Id;
+                _formApplication.ApplicaionStatus = enApplicationStatus.New;
+                _formApplication.PaidFees = applicationType.Fees;
+                _formApplication.CreatedByUserID = clsUser.SystemUser.Id;
+            }
 
             return true;
-
         }
 
         private void CtrlSearchForPerson1_SearchResultHandler(int personId)
             => _formApplication.PersonId = personId;
 
+        private bool IsPersonHaveSameLicenseClassApplication()
+        {
+            bool result = clsApplication.
+                IsPersonHaveAllreadySameOpenApplication(_formApplication.PersonId,
+                (int)cbLicenseClass.SelectedValue, out string errorMessage);
+
+            HandleErrorMessage(ref errorMessage);
+
+            return result && string.IsNullOrEmpty(errorMessage);
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if(_formLDLApplication.LocalDrivingLicenseApplicationId == -1
+                && IsPersonHaveSameLicenseClassApplication())
+            {
+                MessageBox.Show($"This person with ID ({_formApplication.PersonId}) already has " +
+                    $"an active license application for this local driving license class " +
+                    $"\n({cbLicenseClass.GetItemText(cbLicenseClass.SelectedItem)}).",
+                    "Saving Failed", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning); 
+
+                return;
+            }
+
             if (!LoadDataFromForm(out string errorMessage))
             {
                 if (errorMessage != string.Empty)
@@ -104,8 +179,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                 else
                     MessageBox.Show("Failed to load data from the form.", "Error Message :(",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
+
+
 
             if (_formApplication.Save(out errorMessage))
             {
