@@ -1,28 +1,44 @@
-﻿using DVLD_BusinessLogicLayer;
+﻿using CommonUseThings;
+using DVLD_BusinessLogicLayer;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Application
 {
     public partial class AddEditLocalDrivingLicenseApplication : Form
     {
+        clsLocalDrivingLicenseApplication _formLDLApplication;
         clsApplication _formApplication;
-        //clsLDrivingLicenseApplicaion _formLDLApplication;
-        public AddEditLocalDrivingLicenseApplication(int LDLAppID)
+
+        public event Action AddOrUpdateNewAppicationHandler;
+
+        public enum enLicenseClasses
+        {
+            Class_1_Small_Motorcycle = 1,
+            Class_2_Heavy_Motorcycle,
+            Class_3_Ordinary_driving_license,
+            Class_4_Commercial,
+            Class_5_Agricultural,
+            Class_6_Small_And_Medium_Bus,
+            Class_7_Truck_And_Heavy_Vehicle
+        }
+
+        public AddEditLocalDrivingLicenseApplication(int localDrivingLicenseId)
         {
             InitializeComponent();
 
-            HandleFormIsAddOrUpdate(LDLAppID);
+            HandleFormIsAddOrUpdate(localDrivingLicenseId);      
 
             ctrlSearchForPerson1.SearchResultHandler
                 += CtrlSearchForPerson1_SearchResultHandler;
         }
 
-        private void HandleFormIsAddOrUpdate(int LDLAppID)
+        private void HandleFormIsAddOrUpdate(int localDrivingLicenseId)
         {
-            if (LDLAppID != -1)
+            if (localDrivingLicenseId != -1)
             {
-                LoadLDLDataToForm(LDLAppID);
+                LoadLDLDataToForm(localDrivingLicenseId);
                 this.Text = "Edit User Info";
                 lblFormLabel.Text = "Update Local Driving License Appication";
             }
@@ -30,30 +46,49 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             {
                 this.Text = "Add New User";
                 lblFormLabel.Text = "New Local Driving License Appication";
+                lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                LoadApplicationTypeDataToForm();
             }
         }
 
-        private void LoadApplicationDataToForm(int applicaionId)
+        private void LoadApplicationTypeDataToForm()
         {
-            if (clsApplication.GetBy(applicaionId, out string error) is clsApplication application
-                && !(application is null))
+            if (clsApplicationType.GetBy((int)enApplicationTypes.NewLocalDrivingLicenseService,
+                out string error) is clsApplicationType applicationType
+                && !(applicationType is null))
             {
-                _formApplication = application;
+                lblFees.Text = applicationType.Fees.ToString();
             }
         }
 
-        private void LoadLDLDataToForm(int applicaionId)
+        private void LoadLDLDataToForm(int localDrivingLicenseAppId)
         {
-            //if (clsApplication.GetBy(applicaionId, out string error) is clsApplication application
-            //    && !(application is null))
-            //{
-            //    _formApplication = application;
-            //}
+            if (clsLocalDrivingLicenseApplication.GetBy
+                (localDrivingLicenseAppId, out string error)
+                is clsLocalDrivingLicenseApplication localDrivingLicenseApplication
+                && !(localDrivingLicenseApplication is null))
+            {
+                _formLDLApplication = localDrivingLicenseApplication;
+            }
         }
 
-        private void LoadLDLDataFromForm()
+        private bool LoadDataFromForm(out string errorMessage)
         {
-            // 
+            _formLDLApplication.LicenseClassId
+                = (int)cbLicenseClass.SelectedValue;
+
+            _formApplication.ApplicationDate = DateTime.Now;
+
+            clsApplicationType applicationType 
+                = clsApplicationType.GetBy((int)enApplicationTypes.NewLocalDrivingLicenseService, out errorMessage);
+
+            if (applicationType is null)
+                return false; 
+
+            _formApplication.PaidFees = applicationType.Fees;
+
+            return true;
+
         }
 
         private void CtrlSearchForPerson1_SearchResultHandler(int personId)
@@ -61,20 +96,36 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            LoadLDLDataFromForm();
-
-            if (_formApplication.Save(out string errorMessage))
+            if (!LoadDataFromForm(out string errorMessage))
             {
-                lblLocalDrivingLicebseApplicationID.Text = _formUser.Id.ToString();
+                if (errorMessage != string.Empty)
+                    MessageBox.Show(errorMessage, "Error Message :(",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Failed to load data from the form.", "Error Message :(",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                this.Text = "Edit User Info";
+            if (_formApplication.Save(out errorMessage))
+            {
+                _formLDLApplication.ApplicationId = _formApplication.Id;
 
-                MessageBox.Show("The operation has been completed successfully.",
-                    "Success :)",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (_formLDLApplication.Save(out errorMessage))
+                {
+                    lblLocalDrivingLicebseApplicationID.Text 
+                        = _formLDLApplication.LocalDrivingLicenseApplicationId.ToString();
 
-                AddOrEditUserOperationHandler?.Invoke();
+                    this.Text = "Edit Local Driving License Appication";
+
+                    MessageBox.Show("The operation has been completed successfully.",
+                        "Success :)",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    AddOrUpdateNewAppicationHandler?.Invoke();
+                }
+                
             }
             else
             {

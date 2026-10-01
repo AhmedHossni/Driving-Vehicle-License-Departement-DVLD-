@@ -8,6 +8,7 @@ namespace DVLD_BusinessLogicLayer
     public class clsApplication
     {
         private int _id;
+        public int Id => _id;
         public int PersonId { get; set; }
         public DateTime ApplicationDate { get; set; }
         public enApplicationTypes ApplicaionTypeID { get; set; }
