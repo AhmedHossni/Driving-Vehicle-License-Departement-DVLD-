@@ -10,19 +10,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
     {
         clsLocalDrivingLicenseApplication _formLDLApplication;
         clsApplication _formApplication;
-
         public event Action AddOrUpdateNewAppicationHandler;
-
-        public enum enLicenseClasses
-        {
-            Class_1_Small_Motorcycle = 1,
-            Class_2_Heavy_Motorcycle,
-            Class_3_Ordinary_driving_license,
-            Class_4_Commercial,
-            Class_5_Agricultural,
-            Class_6_Small_And_Medium_Bus,
-            Class_7_Truck_And_Heavy_Vehicle
-        }
 
         public frmAddEditLocalDrivingLicenseApplication(int localDrivingLicenseId)
         {
@@ -30,7 +18,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
             LoadComboBoxData();
 
-            HandleFormIsAddOrUpdate(localDrivingLicenseId);    
+            HandleIsFormInAddOrUpdateMode(localDrivingLicenseId);
 
             ctrlSearchForPerson1.SearchResultHandler
                 += CtrlSearchForPerson1_SearchResultHandler;
@@ -49,44 +37,48 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             cbLicenseClass.ValueMember = "LicenseClassID";
         }
 
-        private void HandleFormIsAddOrUpdate(int localDrivingLicenseId)
+        private void HandleIsFormInAddOrUpdateMode(int localDrivingLicenseId)
         {
             LoadApplicationTypeDataToForm();
 
             if (localDrivingLicenseId != -1)
             {
+                ChangeFormTextToEditMode();
                 LoadLDLDataToForm(localDrivingLicenseId);
                 LoadApplicationDataToForm(_formLDLApplication.ApplicationId);
-                this.Text = "Edit User Info";
-                lblFormLabel.Text = "Update Local Driving License Appication";
             }
             else
             {
-                this.Text = "Add New User";
-                lblFormLabel.Text = "New Local Driving License Appication";
                 lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                lblCreatedByUser.Text = clsUser.SystemUser.Username;
-                
+                lblCreatedByUser.Text = clsUser.SystemUser?.Username;              
 
                 _formApplication = new clsApplication();
                 _formLDLApplication = new clsLocalDrivingLicenseApplication();
             }
         }
 
+        public void ChangeFormTextToEditMode()
+        {
+            this.Text = "Edit User Info";
+            lblFormLabel.Text = "Update Local Driving License Appication";
+        }
+
         private void LoadApplicationTypeDataToForm()
         {
             if (clsApplicationType.GetBy((int)enApplicationTypes.NewLocalDrivingLicenseService,
-                out string error) is clsApplicationType applicationType
+                out string errorMessage) is clsApplicationType applicationType
                 && !(applicationType is null))
             {
                 lblFees.Text = applicationType.Fees.ToString("0");
             }
+
+            HandleErrorMessage(ref errorMessage);
         }
 
         private void LoadLDLDataToForm(int localDrivingLicenseAppId)
         {
             if (clsLocalDrivingLicenseApplication.GetBy
-                (localDrivingLicenseAppId, out string error)
+                (localDrivingLicenseAppId, out string errorMessage)
                 is clsLocalDrivingLicenseApplication localDrivingLicenseApplication
                 && !(localDrivingLicenseApplication is null))
             {
@@ -98,30 +90,31 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
                 cbLicenseClass.SelectedValue = _formLDLApplication.LicenseClassId;
 
             }
+
+            HandleErrorMessage(ref errorMessage);
         }
 
         private void HandleErrorMessage(ref string errorMessage)
         {
             if(!string.IsNullOrEmpty(errorMessage))
-                if (!string.IsNullOrEmpty(errorMessage))
-                    MessageBox.Show(errorMessage,
-                        "Error Message :(", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage,
+                    "Error Message :(", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
         }
 
         private void LoadApplicationDataToForm(int applicationId)
         {
+            string getUserErrorMessage = string.Empty;
+
             if (clsApplication.GetBy
-                (applicationId, out string error)
+                (applicationId, out string getApplicationError)
                 is clsApplication application
                 && !(application is null))
             {
                 _formApplication = application;
 
                 lblCreatedByUser.Text =
-                    clsUser.GetBy(_formApplication.CreatedByUserID, out string errorMessage)?.Username;
-
-                HandleErrorMessage(ref errorMessage);
+                    clsUser.GetBy(_formApplication.CreatedByUserID, out getUserErrorMessage)?.Username;               
 
                 lblFees.Text = _formApplication.PaidFees.ToString("0");
 
@@ -130,6 +123,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
                 ctrlSearchForPerson1.LoadPersonDetails(_formApplication.PersonId);
             }
+
+            HandleErrorMessage(ref getApplicationError);
+            HandleErrorMessage(ref getUserErrorMessage);
         }
 
         private bool LoadDataFromForm(out string errorMessage)
@@ -168,7 +164,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             HandleErrorMessage(ref errorMessage);
 
             return result && string.IsNullOrEmpty(errorMessage);
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -205,10 +200,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
                 if (_formLDLApplication.Save(out errorMessage))
                 {
-                    lblLocalDrivingLicebseApplicationID.Text 
+                    lblLocalDrivingLicebseApplicationID.Text
                         = _formLDLApplication.LocalDrivingLicenseApplicationId.ToString();
 
-                    this.Text = "Edit Local Driving License Appication";
+                    ChangeFormTextToEditMode();
 
                     MessageBox.Show("The operation has been completed successfully.",
                         "Success :)",
@@ -221,10 +216,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             }
             else
             {
-                if (!string.IsNullOrEmpty(errorMessage))
-                    MessageBox.Show(errorMessage,
-                        "Error Message :(", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                HandleErrorMessage(ref errorMessage);
             }
         }
 

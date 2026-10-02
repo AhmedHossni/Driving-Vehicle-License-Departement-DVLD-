@@ -340,7 +340,7 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // AddEditLocalDrivingLicenseApplication
+            // frmAddEditLocalDrivingLicenseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -349,8 +349,8 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tctrlLicenseApplicationInfo);
             this.Controls.Add(this.lblFormLabel);
-            this.Name = "AddEditLocalDrivingLicenseApplication";
-            this.Text = "Local Driving License Application";
+            this.Name = "frmAddEditLocalDrivingLicenseApplication";
+            this.Text = "Add New Local Driving License Application";
             this.tctrlLicenseApplicationInfo.ResumeLayout(false);
             this.tpPersonInfo.ResumeLayout(false);
             this.tbAppicationInfo.ResumeLayout(false);
