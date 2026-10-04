@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 {
-    public partial class frmPersonInfo : Form
+    public partial class frmPersonInfo : frmMainStyle
     {
         public event Action PersonDataChangedHandler;
 

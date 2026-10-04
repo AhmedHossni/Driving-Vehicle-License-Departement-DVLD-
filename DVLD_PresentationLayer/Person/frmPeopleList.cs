@@ -37,8 +37,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
 
             LoadDataInGridDataView();
 
-            pnlFrmBtns.MouseDown += frm_MouseDown;
-
             cboxSearchBy.SelectedIndex = (int)enComboBoxSelections.None;
         }
 

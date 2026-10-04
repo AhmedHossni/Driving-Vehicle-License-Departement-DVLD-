@@ -4,9 +4,9 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace Driving___Vehicle_License_Departement__DVLD_.Application
+namespace Driving___Vehicle_License_Departement__DVLD_.Applications
 {
-    public partial class frmAddEditLocalDrivingLicenseApplication : Form
+    public partial class frmAddEditLocalDrivingLicenseApplication : frmMainStyle
     {
         clsLocalDrivingLicenseApplication _formLDLApplication;
         clsApplication _formApplication;
@@ -29,8 +29,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             DataTable dataTable 
                 = clsLicenseClass.GetAll(out string errorMessage);
 
-            if(dataTable == null)
+            if(dataTable is null)
+            {
+                HandleErrorMessage(ref errorMessage);
                 return;
+            }
 
             cbLicenseClass.DataSource = dataTable;
             cbLicenseClass.DisplayMember = "ClassName";
@@ -49,17 +52,25 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
             }
             else
             {
-                lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                lblCreatedByUser.Text = clsUser.SystemUser?.Username;              
-
-                _formApplication = new clsApplication();
-                _formLDLApplication = new clsLocalDrivingLicenseApplication();
+                InitializeNewModeForm();
             }
+        }
+
+        private void InitializeNewModeForm()
+        {
+            lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            lblCreatedByUser.Text = clsUser.SystemUser?.Username;
+
+            _formApplication = new clsApplication();
+            _formLDLApplication = new clsLocalDrivingLicenseApplication();
+
+            this.Text = "Add New Local Driving License Application";
+            lblFormLabel.Text = "New Local Driving License Appication";
         }
 
         public void ChangeFormTextToEditMode()
         {
-            this.Text = "Edit User Info";
+            this.Text = "Edit Local Driving License Application";
             lblFormLabel.Text = "Update Local Driving License Appication";
         }
 
@@ -191,8 +202,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application
 
                 return;
             }
-
-
 
             if (_formApplication.Save(out errorMessage))
             {

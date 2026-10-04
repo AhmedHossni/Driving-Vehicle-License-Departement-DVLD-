@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type
 {
-    public partial class frmTestTypesList : Form
+    public partial class frmTestTypesList : frmMainStyle
     {
         private DataView _dvTestTypesData
             = new DataView();

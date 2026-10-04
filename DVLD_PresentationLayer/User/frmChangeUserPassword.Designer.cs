@@ -173,7 +173,7 @@
             this.Controls.Add(this.ctrlPersonInfo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmChangeUserPassword";
-            this.Text = "Change Password";
+            this.Text = "Change User Password";
             ((System.ComponentModel.ISupportInitialize)(this.epMainError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

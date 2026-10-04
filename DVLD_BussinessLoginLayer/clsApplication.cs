@@ -66,37 +66,23 @@ namespace DVLD_BusinessLogicLayer
 
             if (_id == -1)
             {
-                DateTime applicationDate = DateTime.Now;
-                DateTime lastStatusUpdate = DateTime.Now;
-                int applicationTypeId = (int)ApplicaionTypeID;
-                decimal paidFees = PaidFees;
-                int createdByUserId = CreatedByUserID;
-
                 result = clsApplication.Add(PersonId, ApplicationDate, ApplicaionTypeID,
                     LastStatusDate, PaidFees, CreatedByUserID, out errorMessage, out _id);
             }
             else
             {
-                int personIdTemp = PersonId;
-                int appTypeTemp = ApplicaionTypeID;
-                enApplicationStatus appStatusTemp = ApplicaionStatus;
-                DateTime lastStatusDateTemp = LastStatusDate;
-                decimal paidFeesTemp = PaidFees;
-
-                result = clsApplicationData.Update(_id, ref personIdTemp, ref appTypeTemp,
-                    ref appStatusTemp, ref lastStatusDateTemp, ref paidFeesTemp, out errorMessage);
-
-                if (result)
-                {
-                    PersonId = personIdTemp;
-                    ApplicaionTypeID = appTypeTemp;
-                    ApplicaionStatus = appStatusTemp;
-                    LastStatusDate = lastStatusDateTemp;
-                    PaidFees = paidFeesTemp;
-                }
+                result = clsApplicationData.Update(_id, PersonId, ApplicaionTypeID,
+                    ApplicaionStatus, LastStatusDate, PaidFees, out errorMessage);
             }
 
             return result;
+        }
+
+        public static bool UpdateStatusByLDLAppID(int localDLAppId , enApplicationStatus applicationStatus, 
+            DateTime lastStatusUpdate, out string errorMessage)
+        {
+            return clsApplicationData.UpdateStatusByLDLAppID(localDLAppId, applicationStatus, lastStatusUpdate,
+                out errorMessage);
         }
 
         public static bool Add(int personId, DateTime applicationDate,

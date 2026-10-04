@@ -1,4 +1,4 @@
-﻿namespace Driving___Vehicle_License_Departement__DVLD_.Application.Application_Types
+﻿namespace Driving___Vehicle_License_Departement__DVLD_.Applications.Application_Types
 {
     partial class frmEditAppType
     {

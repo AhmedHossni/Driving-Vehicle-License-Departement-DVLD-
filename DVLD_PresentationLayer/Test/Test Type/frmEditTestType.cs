@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type
 {
-    public partial class frmEditTestType : Form
+    public partial class frmEditTestType : frmMainStyle
     {
         clsTestType _TestType = null;
         public event Action ApplicationTypeDataChangeHandler;

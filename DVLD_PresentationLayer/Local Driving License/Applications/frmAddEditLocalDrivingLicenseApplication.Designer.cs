@@ -1,4 +1,4 @@
-﻿namespace Driving___Vehicle_License_Departement__DVLD_.Application
+﻿namespace Driving___Vehicle_License_Departement__DVLD_.Applications
 {
     partial class frmAddEditLocalDrivingLicenseApplication
     {
@@ -349,6 +349,8 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tctrlLicenseApplicationInfo);
             this.Controls.Add(this.lblFormLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "frmAddEditLocalDrivingLicenseApplication";
             this.Text = "Add New Local Driving License Application";
             this.tctrlLicenseApplicationInfo.ResumeLayout(false);

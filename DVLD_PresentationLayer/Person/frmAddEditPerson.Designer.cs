@@ -59,6 +59,7 @@
             this.Controls.Add(this.lblFormLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddEditPerson";
+            this.Text = "Add Person";
             this.ResumeLayout(false);
             this.PerformLayout();
 

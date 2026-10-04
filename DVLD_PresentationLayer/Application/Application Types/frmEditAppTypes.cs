@@ -2,9 +2,9 @@
 using System;
 using System.Windows.Forms;
 
-namespace Driving___Vehicle_License_Departement__DVLD_.Application.Application_Types
+namespace Driving___Vehicle_License_Departement__DVLD_.Applications.Application_Types
 {
-    public partial class frmEditAppType : Form
+    public partial class frmEditAppType : frmMainStyle
     {
         clsApplicationType _applicationType = null;
         public event Action ApplicationTypeDataChangeHandler;

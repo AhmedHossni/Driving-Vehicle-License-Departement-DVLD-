@@ -255,10 +255,10 @@
             // 
             this.epIsUserDataValid.ContainerControl = this;
             // 
-            // ctrlSearchForPerson1
+            // ctrlSearchForPerson
             // 
             this.ctrlSearchForPerson.Location = new System.Drawing.Point(3, 6);
-            this.ctrlSearchForPerson.Name = "ctrlSearchForPerson1";
+            this.ctrlSearchForPerson.Name = "ctrlSearchForPerson";
             this.ctrlSearchForPerson.Size = new System.Drawing.Size(935, 429);
             this.ctrlSearchForPerson.TabIndex = 0;
             // 
@@ -272,7 +272,7 @@
             this.Controls.Add(this.tctrlAddEditUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddEditUser";
-            this.Text = "frmAddEditUser";
+            this.Text = "Add New User";
             this.tctrlAddEditUser.ResumeLayout(false);
             this.tpagePersonInfo.ResumeLayout(false);
             this.tpageLoginInfo.ResumeLayout(false);

@@ -43,6 +43,43 @@ namespace DVLD_DataAccessLayer
             
         }
 
+        public static DataTable GetAllDataForFormDGV(out string errorMessage)
+        {
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+
+                    string query = "SELECT * FROM LocalDrivingLicenseAppicationListDetails";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            DataTable dataTable = new DataTable();
+
+                            if (reader.HasRows)
+                                dataTable.Load(reader);
+
+                            errorMessage = string.Empty;
+
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+            }
+
+            return null;
+            
+        }
+
         public static bool Add(int applicationID, int licenseClassID,
             out string errorMessage, out int localDrivingLicenseApplicationID)
         {
@@ -134,10 +171,44 @@ namespace DVLD_DataAccessLayer
             int rowsAffected = 0;
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = @"Update LocalDrivingLicenseApplications SET
-                                ApplicationID = @applicationID,
-                                LicenseClassID = @licenseClassID,
-                                WHERE localDrivingLicenseApplicationID = @id";
+                string query = @"Update [LocalDrivingLicenseApplications] SET
+                                [ApplicationID] = @applicationID,
+                                [LicenseClassID] = @licenseClassID
+                                WHERE [LocalDrivingLicenseApplicationID] = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@applicationID", applicationID);
+                    command.Parameters.AddWithValue("@licenseClassID", licenseClassID);
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        return false;
+                    }
+                }
+            }
+
+            errorMessage = string.Empty;
+            return (rowsAffected > 0);
+        }
+        public static bool UpdateStatus(int id, int applicationID, int licenseClassID,
+            out string errorMessage)
+        {
+
+            int rowsAffected = 0;
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"Update [LocalDrivingLicenseApplications] SET
+                                [ApplicationID] = @applicationID,
+                                [LicenseClassID] = @licenseClassID
+                                WHERE [LocalDrivingLicenseApplicationID] = @id";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

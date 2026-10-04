@@ -110,9 +110,9 @@ namespace DVLD_DataAccessLayer
             }
         }
 
-        public static bool Update(int id, ref int personId, ref int applicationTypeId,
-            ref enApplicationStatus applicationStatus, ref DateTime lastStatusUpdate,
-            ref decimal paidFees
+        public static bool Update(int id, int personId, int applicationTypeId,
+            enApplicationStatus applicationStatus, DateTime lastStatusUpdate,
+            decimal paidFees
             , out string errorMessage)
         {
 
@@ -120,18 +120,18 @@ namespace DVLD_DataAccessLayer
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 string query = @"UPDATE [dbo].[Applications]
-                                   SET [ApplicantPersonID] = @personId
+                                   SET [ApplicationPersonID] = @personId
                                       ,[ApplicationTypeID] = @applicationTypeId
                                       ,[ApplicationStatus] = @applicationStatus
                                       ,[LastStatusDate] = @lastStatusUpdate
                                       ,[PaidFees] = @paidFees
-                                 WHERE ApplicatioID = @id";
+                                 WHERE ApplicationID = @id";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@personId", personId);
-                    command.Parameters.AddWithValue("@applicationTypeId", (int)applicationTypeId);
+                    command.Parameters.AddWithValue("@applicationTypeId", applicationTypeId);
                     command.Parameters.AddWithValue("@applicationStatus", (int)applicationStatus);
 
                     command.Parameters.AddWithValue("@lastStatusUpdate", lastStatusUpdate);
@@ -151,7 +151,43 @@ namespace DVLD_DataAccessLayer
             }
 
             errorMessage = string.Empty;
-            return (rowsAffected > 0);
+            return rowsAffected > 0;
+        }
+
+        public static bool UpdateStatusByLDLAppID(int localDLAppId,
+            enApplicationStatus applicationStatus, DateTime lastStatusUpdate
+            , out string errorMessage)
+        {
+            int rowsAffected = 0;
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"UPDATE [dbo].[Applications]
+                                SET [ApplicationStatus] = @applicationStatus,
+                                [LastStatusDate] =  @lastStatusUpdate
+                                WHERE ApplicationID = (SELECT LDLApp.ApplicationID FROM LocalDrivingLicenseApplications LDLApp
+                                INNER JOIN Applications App ON App.ApplicationID = LDLApp.ApplicationID
+                                WHERE LDLApp.LocalDrivingLicenseApplicationID = @localDLAppId);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@localDLAppId", localDLAppId);
+                    command.Parameters.AddWithValue("@applicationStatus", (int)applicationStatus);
+                    command.Parameters.AddWithValue("@lastStatusUpdate", lastStatusUpdate);
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        return false;
+                    }
+                }
+            }
+
+            errorMessage = string.Empty;
+            return rowsAffected > 0;
         }
 
         public static DataTable GetAll(out string errorMessage)
@@ -195,7 +231,7 @@ namespace DVLD_DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = @"Delete Application where ApplicationID = @id";
+                string query = @"Delete Applications where ApplicationID = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
 

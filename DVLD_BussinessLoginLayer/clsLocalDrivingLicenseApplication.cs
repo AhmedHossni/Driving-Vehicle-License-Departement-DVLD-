@@ -1,6 +1,5 @@
 ﻿using DVLD_DataAccessLayer;
 using System.Data;
-using System.Runtime.Remoting.Messaging;
 
 namespace DVLD_BusinessLogicLayer
 {
@@ -47,6 +46,9 @@ namespace DVLD_BusinessLogicLayer
 
         public static DataTable GetAll(out string errorMessage)
             => clsLocalDrivingLicenseApplicationData.GetAll(out errorMessage);
+
+        public static DataTable GetAllDataForFormDGV(out string errorMessage)
+            => clsLocalDrivingLicenseApplicationData.GetAllDataForFormDGV(out errorMessage);
 
         public static bool Add(int applicationId, int licenseClassId, out int localDrivingLicenseId, out string errorMessage)
             => clsLocalDrivingLicenseApplicationData.Add(applicationId, licenseClassId, out errorMessage, out localDrivingLicenseId);

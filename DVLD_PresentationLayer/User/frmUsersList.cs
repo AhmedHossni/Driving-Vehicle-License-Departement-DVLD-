@@ -36,9 +36,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
             dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            LoadDataInGridDataView();       
-
-            pnlFrmBtns.MouseDown += frm_MouseDown;
+            LoadDataInGridDataView();
 
             cboxSearchBy.SelectedIndex = (int)enComboBoxSelections.None;
             cboxIsActiveOptions.SelectedIndex = (int)enComboBoxIsActive.All;
@@ -236,7 +234,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
             if (clsUser.Delete(currentUserId, out string errorMessage))
             {
-                MessageBox.Show($"Person with id equals ({currentUserId}) is deleted successfully",
+                MessageBox.Show($"User with id equals ({currentUserId}) is deleted successfully",
                     "Operation Done Successfully :)",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

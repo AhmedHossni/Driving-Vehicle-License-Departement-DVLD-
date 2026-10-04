@@ -200,6 +200,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblAppTypeIdValue);
             this.Controls.Add(this.lblId);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmEditTestType";
             this.Text = "Edit Test Type";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

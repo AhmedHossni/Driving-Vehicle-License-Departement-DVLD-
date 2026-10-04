@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pnlLoginComponents = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.btnFormClose = new System.Windows.Forms.Button();
             this.chboxRememberMe = new System.Windows.Forms.CheckBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
             this.pnlLoginComponents.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Gemini_Generated_Image_z6c4b0z6c4b0z6c4;
             this.pnlLoginComponents.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlLoginComponents.Controls.Add(this.btnLogin);
-            this.pnlLoginComponents.Controls.Add(this.btnFormClose);
             this.pnlLoginComponents.Controls.Add(this.chboxRememberMe);
             this.pnlLoginComponents.Controls.Add(this.lblPassword);
             this.pnlLoginComponents.Controls.Add(this.lblUsername);
@@ -74,19 +72,6 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // btnFormClose
-            // 
-            this.btnFormClose.BackColor = System.Drawing.Color.White;
-            this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
-            this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnFormClose.Location = new System.Drawing.Point(438, 12);
-            this.btnFormClose.Name = "btnFormClose";
-            this.btnFormClose.Size = new System.Drawing.Size(37, 34);
-            this.btnFormClose.TabIndex = 4;
-            this.btnFormClose.UseVisualStyleBackColor = false;
-            this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
             // 
             // chboxRememberMe
             // 
@@ -200,7 +185,9 @@
             this.Controls.Add(this.pnlLoginComponents);
             this.Controls.Add(this.pnlEgyptFlagImg);
             this.Font = new System.Drawing.Font("Segoe UI Black", 8F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "Driving And Vehicle License Departement (DVLD)";
             this.Load += new System.EventHandler(this.frmLogin_Load);
@@ -223,7 +210,6 @@
         private System.Windows.Forms.TextBox tboxUsername;
         private System.Windows.Forms.CheckBox chboxRememberMe;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Button btnFormClose;
         private System.Windows.Forms.Button btnLogin;
     }
 }

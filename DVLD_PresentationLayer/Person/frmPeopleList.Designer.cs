@@ -39,9 +39,6 @@
             this.cboxSearchBy = new System.Windows.Forms.ComboBox();
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlFrmBtns = new System.Windows.Forms.Panel();
-            this.buttonMinimize = new System.Windows.Forms.Button();
-            this.btnFormClose = new System.Windows.Forms.Button();
             this.dgvPeople = new System.Windows.Forms.DataGridView();
             this.cmsListFunc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +49,6 @@
             this.btnBigCloseForm = new System.Windows.Forms.Button();
             this.pnlFormUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnlFrmBtns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
             this.cmsListFunc.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +74,7 @@
             this.btnAddPerson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
             this.btnAddPerson.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddPerson.BackgroundImage")));
             this.btnAddPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddPerson.Location = new System.Drawing.Point(1030, 103);
+            this.btnAddPerson.Location = new System.Drawing.Point(1044, 101);
             this.btnAddPerson.Name = "btnAddPerson";
             this.btnAddPerson.Size = new System.Drawing.Size(75, 63);
             this.btnAddPerson.TabIndex = 7;
@@ -172,54 +168,18 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pnlFrmBtns
-            // 
-            this.pnlFrmBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(16)))), ((int)(((byte)(25)))));
-            this.pnlFrmBtns.Controls.Add(this.buttonMinimize);
-            this.pnlFrmBtns.Controls.Add(this.btnFormClose);
-            this.pnlFrmBtns.Location = new System.Drawing.Point(-11, 0);
-            this.pnlFrmBtns.Name = "pnlFrmBtns";
-            this.pnlFrmBtns.Size = new System.Drawing.Size(1164, 54);
-            this.pnlFrmBtns.TabIndex = 1;
-            // 
-            // buttonMinimize
-            // 
-            this.buttonMinimize.BackColor = System.Drawing.Color.White;
-            this.buttonMinimize.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.icons8_minimize_96;
-            this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.buttonMinimize.Location = new System.Drawing.Point(1055, 12);
-            this.buttonMinimize.Name = "buttonMinimize";
-            this.buttonMinimize.Size = new System.Drawing.Size(37, 34);
-            this.buttonMinimize.TabIndex = 5;
-            this.buttonMinimize.UseVisualStyleBackColor = false;
-            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
-            // 
-            // btnFormClose
-            // 
-            this.btnFormClose.BackColor = System.Drawing.Color.White;
-            this.btnFormClose.BackgroundImage = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.close;
-            this.btnFormClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFormClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnFormClose.Location = new System.Drawing.Point(1098, 12);
-            this.btnFormClose.Name = "btnFormClose";
-            this.btnFormClose.Size = new System.Drawing.Size(37, 34);
-            this.btnFormClose.TabIndex = 6;
-            this.btnFormClose.UseVisualStyleBackColor = false;
-            this.btnFormClose.Click += new System.EventHandler(this.btnFormClose_Click);
-            // 
             // dgvPeople
             // 
             this.dgvPeople.AllowUserToAddRows = false;
             this.dgvPeople.AllowUserToDeleteRows = false;
             this.dgvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPeople.ContextMenuStrip = this.cmsListFunc;
-            this.dgvPeople.Location = new System.Drawing.Point(2, 242);
+            this.dgvPeople.Location = new System.Drawing.Point(12, 242);
             this.dgvPeople.Name = "dgvPeople";
             this.dgvPeople.ReadOnly = true;
             this.dgvPeople.RowHeadersWidth = 51;
             this.dgvPeople.RowTemplate.Height = 26;
-            this.dgvPeople.Size = new System.Drawing.Size(1146, 245);
+            this.dgvPeople.Size = new System.Drawing.Size(1126, 245);
             this.dgvPeople.TabIndex = 1;
             this.dgvPeople.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPeople_CellMouseDown);
             // 
@@ -231,13 +191,13 @@
             this.deleteToolStripMenuItem,
             this.deleteToolStripMenuItem1});
             this.cmsListFunc.Name = "cmsListFunc";
-            this.cmsListFunc.Size = new System.Drawing.Size(225, 140);
+            this.cmsListFunc.Size = new System.Drawing.Size(137, 112);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(136, 36);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_EditPersonDetails);
             // 
@@ -245,7 +205,7 @@
             // 
             this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(136, 36);
             this.deleteToolStripMenuItem.Text = "Show";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ShowPersonDetails);
             // 
@@ -253,7 +213,7 @@
             // 
             this.deleteToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem1.Image")));
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(224, 36);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(136, 36);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.CMS_Click_Delete);
             // 
@@ -285,7 +245,7 @@
             this.btnBigCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBigCloseForm.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBigCloseForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnBigCloseForm.Location = new System.Drawing.Point(1032, 507);
+            this.btnBigCloseForm.Location = new System.Drawing.Point(1046, 505);
             this.btnBigCloseForm.Name = "btnBigCloseForm";
             this.btnBigCloseForm.Size = new System.Drawing.Size(92, 34);
             this.btnBigCloseForm.TabIndex = 7;
@@ -301,15 +261,14 @@
             this.Controls.Add(this.btnBigCloseForm);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblRecods);
-            this.Controls.Add(this.pnlFrmBtns);
             this.Controls.Add(this.dgvPeople);
             this.Controls.Add(this.pnlFormUpper);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmPeopleList";
-            this.Text = "frmPeopleList";
+            this.Text = "People List";
             this.pnlFormUpper.ResumeLayout(false);
             this.pnlFormUpper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnlFrmBtns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).EndInit();
             this.cmsListFunc.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -325,9 +284,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
-        private System.Windows.Forms.Panel pnlFrmBtns;
-        private System.Windows.Forms.Button buttonMinimize;
-        private System.Windows.Forms.Button btnFormClose;
         private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblFilterBy;

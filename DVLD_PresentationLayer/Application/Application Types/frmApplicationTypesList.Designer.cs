@@ -1,4 +1,4 @@
-﻿namespace Driving___Vehicle_License_Departement__DVLD_.Application
+﻿namespace Driving___Vehicle_License_Departement__DVLD_.Applications
 {
     partial class frmApplicationTypesList
     {
@@ -46,22 +46,24 @@
             // btnClose
             // 
             this.btnClose.AutoEllipsis = true;
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(557, 605);
+            this.btnClose.Location = new System.Drawing.Point(950, 606);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 112;
             this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnFormClose_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(133, 179);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.lblTitle.Location = new System.Drawing.Point(328, 161);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(446, 55);
             this.lblTitle.TabIndex = 116;
@@ -71,7 +73,8 @@
             // lblRecordsCount
             // 
             this.lblRecordsCount.AutoSize = true;
-            this.lblRecordsCount.Location = new System.Drawing.Point(137, 615);
+            this.lblRecordsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.lblRecordsCount.Location = new System.Drawing.Point(134, 624);
             this.lblRecordsCount.Name = "lblRecordsCount";
             this.lblRecordsCount.Size = new System.Drawing.Size(22, 17);
             this.lblRecordsCount.TabIndex = 115;
@@ -81,7 +84,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 608);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.label2.Location = new System.Drawing.Point(12, 617);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 25);
             this.label2.TabIndex = 114;
@@ -111,7 +115,7 @@
             this.dgvApplicationTypes.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvApplicationTypes.RowHeadersWidth = 51;
             this.dgvApplicationTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvApplicationTypes.Size = new System.Drawing.Size(679, 354);
+            this.dgvApplicationTypes.Size = new System.Drawing.Size(1072, 354);
             this.dgvApplicationTypes.TabIndex = 113;
             this.dgvApplicationTypes.TabStop = false;
             this.dgvApplicationTypes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvApplicationTypes_MouseDown);
@@ -122,7 +126,7 @@
             this.cmsAppTypeOperations.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editApplicationTypeToolStripMenuItem});
             this.cmsAppTypeOperations.Name = "cmsAppTypeOperations";
-            this.cmsAppTypeOperations.Size = new System.Drawing.Size(235, 68);
+            this.cmsAppTypeOperations.Size = new System.Drawing.Size(235, 40);
             // 
             // editApplicationTypeToolStripMenuItem
             // 
@@ -135,7 +139,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Application_Types_512;
-            this.pictureBox1.Location = new System.Drawing.Point(268, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(458, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(182, 146);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -146,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 663);
+            this.ClientSize = new System.Drawing.Size(1098, 663);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblRecordsCount);

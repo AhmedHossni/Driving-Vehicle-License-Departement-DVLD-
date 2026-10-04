@@ -14,10 +14,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             InitializeComponent();
 
-            // Move form position on the screen
-            pnlEgyptFlagImg.MouseDown += frm_MouseDown;
-            pnlLoginComponents.MouseDown += frm_MouseDown;
-
             // Allow the user to log in by pressing the Enter key
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(frmLogin_EnterKeyDown);

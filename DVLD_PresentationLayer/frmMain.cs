@@ -1,4 +1,5 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.Application;
+﻿using Driving___Vehicle_License_Departement__DVLD_.Applications;
+using Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Applications;
 using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type;
 using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
@@ -153,6 +154,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_
                 = new frmAddEditLocalDrivingLicenseApplication(-1);
 
             drivingLicenseApplication.ShowDialog();
+        }
+
+        private void manageLocalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLocalDrivingLicenseApplicationsList frm 
+                = new frmLocalDrivingLicenseApplicationsList();
+
+            frm.ShowDialog();
         }
     }
 }

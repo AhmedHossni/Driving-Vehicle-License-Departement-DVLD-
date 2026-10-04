@@ -7,65 +7,34 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 {
     public class frmMainStyle : Form
     {
-        private int cornerRadius = 8;
-
         public frmMainStyle()
         {
 
-            // Change form border style and radius
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.DoubleBuffered = true;
-
-            ApplyFormRegion();
         }
 
-        #region Change Form Position Without Form Borders
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        protected void frm_MouseDown(object sender, MouseEventArgs e)
+        protected override void WndProc(ref Message m)
         {
-            if (e.Button == MouseButtons.Left)
+            // WM_NCLBUTTONDBLCLK represents a double-click on a non-client area (such as the title bar)
+            const int WM_NCLBUTTONDBLCLK = 0x00A3;
+
+            // WM_SYSCOMMAND is used for system-level commands, and SC_MAXIMIZE is the command to maximize the window
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MAXIMIZE = 0xF030;
+
+            // Prevent the window from maximizing when double-clicking the title bar
+            if (m.Msg == WM_NCLBUTTONDBLCLK)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                return; // Ignore the double-click event on the title bar border
             }
-        }
-        #endregion
 
-        private void ApplyFormRegion()
-        {
-            using (GraphicsPath path = GetRoundedPath(new Rectangle(0, 0, this.Width, this.Height), cornerRadius))
+            // Prevent any other attempts to maximize the window (e.g., via the maximize button or system menu)
+            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_MAXIMIZE)
             {
-                this.Region = new Region(path);
+                return; // Block the maximize action
             }
-        }
 
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-            ApplyFormRegion();
-        }
-
-        private GraphicsPath GetRoundedPath(Rectangle rect, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            float diameter = radius * 2F;
-
-            path.StartFigure();
-            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
-            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
-            path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
-            path.CloseFigure();
-
-            return path;
+            // Pass all other window messages to the base class handler
+            base.WndProc(ref m);
         }
     }
 }

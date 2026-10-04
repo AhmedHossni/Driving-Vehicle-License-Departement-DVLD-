@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 {
-    public partial class frmAddEditUser : Form
+    public partial class frmAddEditUser : frmMainStyle
     {
         clsUser _formUser 
             = new clsUser();

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 {
-    public partial class frmUserFullInformaion : Form
+    public partial class frmUserFullInformaion : frmMainStyle
     {
         readonly int _userId = -1;
         readonly int _personId = -1;

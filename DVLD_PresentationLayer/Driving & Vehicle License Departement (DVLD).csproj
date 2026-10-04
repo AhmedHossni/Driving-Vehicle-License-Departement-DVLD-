@@ -50,11 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\AddEditLocalDrivingLicenseApplication.cs">
+    <Compile Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\AddEditLocalDrivingLicenseApplication.Designer.cs">
-      <DependentUpon>AddEditLocalDrivingLicenseApplication.cs</DependentUpon>
+    <Compile Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.Designer.cs">
+      <DependentUpon>frmAddEditLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Application\Application Types\frmApplicationTypesList.cs">
       <SubType>Form</SubType>
@@ -83,6 +83,12 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Local Driving License\Applications\frmLocalDrivingLicenseApplicationsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Local Driving License\Applications\frmLocalDrivingLicenseApplicationsList.Designer.cs">
+      <DependentUpon>frmLocalDrivingLicenseApplicationsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Person\Controls\ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
@@ -164,8 +170,8 @@
     <Compile Include="User\frmUsersList.Designer.cs">
       <DependentUpon>frmUsersList.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Application\AddEditLocalDrivingLicenseApplication.resx">
-      <DependentUpon>AddEditLocalDrivingLicenseApplication.cs</DependentUpon>
+    <EmbeddedResource Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.resx">
+      <DependentUpon>frmAddEditLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\Application Types\frmApplicationTypesList.resx">
       <DependentUpon>frmApplicationTypesList.cs</DependentUpon>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Local Driving License\Applications\frmLocalDrivingLicenseApplicationsList.resx">
+      <DependentUpon>frmLocalDrivingLicenseApplicationsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Controls\ctrlAddEditPerson.resx">
       <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
@@ -262,6 +271,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\Street Test 32.png" />
+    <None Include="Resources\Written Test 32 Sechdule.png" />
+    <None Include="Resources\Vision Test Schdule.png" />
+    <None Include="Resources\add document.png" />
+    <None Include="Resources\PersonLicenseHistory 32.png" />
+    <None Include="Resources\License View 32.png" />
+    <None Include="Resources\IssueDrivingLicense 32.png" />
+    <None Include="Resources\Schedule Test 32.png" />
+    <None Include="Resources\Delete 32.png" />
+    <None Include="Resources\Delete 32 2.png" />
+    <None Include="Resources\file_4722107.png" />
+    <None Include="Resources\document.png" />
+    <None Include="Resources\Local 321.png" />
+    <None Include="Resources\Applications1.png" />
     <None Include="Resources\User 32 -2.png" />
     <None Include="Resources\Calendar 32.png" />
     <None Include="Resources\Number 32.png" />

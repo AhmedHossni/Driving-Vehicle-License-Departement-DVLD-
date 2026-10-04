@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 {
-    public partial class frmChangeUserPassword : Form
+    public partial class frmChangeUserPassword : frmMainStyle
     {
         private clsUser _formUser 
             = new clsUser();

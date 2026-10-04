@@ -15,10 +15,11 @@
 
     public enum enApplicationStatus
     {
-        None = 0,
+        None = -1,
+        All = 0,
         New,
-        Canceled,
-        Completed
+        Cancel,
+        Complete
     }
 
 }

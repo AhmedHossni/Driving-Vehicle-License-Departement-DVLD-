@@ -1,4 +1,4 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.Application.Application_Types;
+﻿using Driving___Vehicle_License_Departement__DVLD_.Applications.Application_Types;
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Driving___Vehicle_License_Departement__DVLD_.Application
+namespace Driving___Vehicle_License_Departement__DVLD_.Applications
 {
-    public partial class frmApplicationTypesList : Form
+    public partial class frmApplicationTypesList : frmMainStyle
     {
         private DataView _dvApplicationTypesData
             = new DataView();
