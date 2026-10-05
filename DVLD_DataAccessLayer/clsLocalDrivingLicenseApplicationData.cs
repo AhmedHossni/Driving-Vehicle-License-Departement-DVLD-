@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonUseThings;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -152,6 +153,58 @@ namespace DVLD_DataAccessLayer
                         }
 
                         errorMessage = string.Empty;
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+
+                    return isFound;
+                }
+            }
+        }
+
+        public static bool GetBasicInfoBy(int localDLAppId, ref string appliedForLicense,
+            ref int passedTests, out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            appliedForLicense = string.Empty;
+            passedTests = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                // استدعاء الـ Table-Valued Function التي أنشأتها في قاعدة البيانات
+                string query = "SELECT * FROM dbo.GetLocalDrivingLicenseAppBasicDetails(@LocalDrivingLicenseApplicationID)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDLAppId);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // تم العثور على السجل
+                                isFound = true;
+
+                                appliedForLicense = reader["Driving Class"] != DBNull.Value
+                                    ? (string)reader["Driving Class"] : string.Empty;
+
+                                passedTests = reader["Passed Tests"] != DBNull.Value
+                                    ? Convert.ToInt32(reader["Passed Tests"]) : 0;
+                            }
+                            else
+                            {
+                                // لم يتم العثور على السجل
+                                isFound = false;
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {

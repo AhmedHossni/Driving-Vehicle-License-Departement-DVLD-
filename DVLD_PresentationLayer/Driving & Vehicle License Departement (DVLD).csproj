@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Control\ctrlApplicationFullInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Application\Control\ctrlApplicationFullInfo.Designer.cs">
+      <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,18 @@
     <Compile Include="Test\Test Type\frmTestTypesList.Designer.cs">
       <DependentUpon>frmTestTypesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Local Driving License\Control\ctrlLocalDrivingLicenseApplicationBasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Local Driving License\Control\ctrlLocalDrivingLicenseApplicationBasicInfo.Designer.cs">
+      <DependentUpon>ctrlLocalDrivingLicenseApplicationBasicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Tests\frmVisionTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\Tests\frmVisionTestAppointments.Designer.cs">
+      <DependentUpon>frmVisionTestAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\Controls\ctrlUserInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +188,9 @@
     <Compile Include="User\frmUsersList.Designer.cs">
       <DependentUpon>frmUsersList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Application\Control\ctrlApplicationFullInfo.resx">
+      <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddEditLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +237,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Test\Test Type\frmTestTypesList.resx">
       <DependentUpon>frmTestTypesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Local Driving License\Control\ctrlLocalDrivingLicenseApplicationBasicInfo.resx">
+      <DependentUpon>ctrlLocalDrivingLicenseApplicationBasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\Tests\frmVisionTestAppointments.resx">
+      <DependentUpon>frmVisionTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\Controls\ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
@@ -271,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\License View 321.png" />
     <None Include="Resources\Street Test 32.png" />
     <None Include="Resources\Written Test 32 Sechdule.png" />
     <None Include="Resources\Vision Test Schdule.png" />

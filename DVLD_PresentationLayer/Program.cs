@@ -1,4 +1,4 @@
-﻿using Driving___Vehicle_License_Departement__DVLD_.Applications;
+﻿using Driving___Vehicle_License_Departement__DVLD_.Test.Tests;
 using System;
 using System.Windows.Forms;
 
@@ -13,18 +13,19 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new frmAddEditLocalDrivingLicenseApplication(37));
-            frmLogin frmLogin = new frmLogin();
-            frmMain MainScreen;
-            do
-            {
-                MainScreen = new frmMain();
-                if (frmLogin.ShowDialog() == DialogResult.OK)
-                    Application.Run(MainScreen);
-            } while (MainScreen.DialogResult == DialogResult.OK);
+            System.Windows.Forms.Application.Run(new frmVisionTestAppointments(32, 43));
+
+            //frmLogin frmLogin = new frmLogin();
+            //frmMain MainScreen;
+            //do
+            //{
+            //    MainScreen = new frmMain();
+            //    if (frmLogin.ShowDialog() == DialogResult.OK)
+            //        Application.Run(MainScreen);
+            //} while (MainScreen.DialogResult == DialogResult.OK);
         }
     }
 }

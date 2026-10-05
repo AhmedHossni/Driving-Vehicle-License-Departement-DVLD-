@@ -59,6 +59,35 @@ namespace DVLD_BusinessLogicLayer
                 return null;
         }
 
+        public static clsApplication GetFullInfoBy(int applicationId,
+            ref string applicationTypeTitle, ref string fullName, ref string userName,
+            out string errorMessage)
+        {
+            int personId = -1;
+            DateTime applicationDate = new DateTime();
+            int applicationTypeId = -1;
+            enApplicationStatus applicationStatus = enApplicationStatus.New;
+            DateTime lastStatusDate = new DateTime();
+            decimal paidFees = 0;
+            int createdByUserId = -1;
+
+            applicationTypeTitle = string.Empty;
+            fullName = string.Empty;
+            userName = string.Empty;
+
+            if (clsApplicationData.GetApplicationFullInfoBy(applicationId, ref personId, ref applicationDate,
+                ref applicationTypeId, ref applicationStatus, ref lastStatusDate, ref paidFees, ref createdByUserId,
+                ref applicationTypeTitle, ref fullName, ref userName, out errorMessage))
+            {
+                return new clsApplication(applicationId, personId, applicationDate, applicationTypeId,
+                    applicationStatus, lastStatusDate, paidFees, createdByUserId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public bool Save(out string errorMessage)
         {
             errorMessage = string.Empty;

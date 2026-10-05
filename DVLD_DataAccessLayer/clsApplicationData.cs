@@ -110,6 +110,67 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static bool GetApplicationFullInfoBy(int applicationId,
+            ref int personId, ref DateTime applicationDate, ref int applicationTypeId,
+            ref enApplicationStatus applicationStatus, ref DateTime lastStatusDate,
+            ref decimal paidFees, ref int createdByUserId,
+            ref string applicationTypeTitle, ref string fullName, ref string userName,
+            out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT * FROM dbo.GetApplicationFullInfo(@ApplicationID)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ApplicationID", applicationId);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                personId = (int)reader["ApplicationPersonID"];
+                                applicationDate = (DateTime)reader["ApplicationDate"];
+                                applicationTypeId = (int)reader["ApplicationTypeID"];
+                                applicationStatus = (enApplicationStatus)(byte)reader["ApplicationStatus"];
+                                lastStatusDate = (DateTime)reader["LastStatusDate"];
+                                paidFees = (decimal)reader["PaidFees"];
+                                createdByUserId = (int)reader["CreatedByUserID"];
+
+                                applicationTypeTitle = reader["ApplicationTypeTitle"] != DBNull.Value 
+                                    ? reader["ApplicationTypeTitle"].ToString() : string.Empty;
+
+                                fullName = reader["Full Name"] != DBNull.Value 
+                                    ? reader["Full Name"].ToString() : string.Empty;
+
+                                userName = reader["UserName"] != DBNull.Value 
+                                    ? reader["UserName"].ToString() : string.Empty;
+                            }
+                            else
+                            {
+                                isFound = false;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+
+                    return isFound;
+                }
+            }
+        }
+
         public static bool Update(int id, int personId, int applicationTypeId,
             enApplicationStatus applicationStatus, DateTime lastStatusUpdate,
             decimal paidFees

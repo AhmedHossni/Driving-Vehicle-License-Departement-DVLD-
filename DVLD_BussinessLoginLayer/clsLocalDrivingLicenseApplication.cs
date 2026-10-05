@@ -32,16 +32,22 @@ namespace DVLD_BusinessLogicLayer
                 return Update(_id, ApplicationId, LicenseClassId, out errorMessage);
         }
 
-        public static clsLocalDrivingLicenseApplication GetBy(int localDrivingLicenseId, out string errorMessage)
+        public static clsLocalDrivingLicenseApplication GetBy(int localDrivingLicenseAppId, out string errorMessage)
         {
             int applicationId = -1;
             int licenseClasssId = -1;
 
             if (clsLocalDrivingLicenseApplicationData.GetBy
-                (localDrivingLicenseId, ref applicationId, ref licenseClasssId, out errorMessage))
-                return new clsLocalDrivingLicenseApplication(localDrivingLicenseId, applicationId, licenseClasssId);
+                (localDrivingLicenseAppId, ref applicationId, ref licenseClasssId, out errorMessage))
+                return new clsLocalDrivingLicenseApplication(localDrivingLicenseAppId, applicationId, licenseClasssId);
             else
                 return null;
+        }
+        public static bool GetBasicInfoBy(int localDrivingLicenseAppId,
+            ref string appliedForLicense, ref int passedTests, out string errorMessage)
+        {
+            return clsLocalDrivingLicenseApplicationData.GetBasicInfoBy
+                (localDrivingLicenseAppId, ref appliedForLicense, ref passedTests, out errorMessage);
         }
 
         public static DataTable GetAll(out string errorMessage)
