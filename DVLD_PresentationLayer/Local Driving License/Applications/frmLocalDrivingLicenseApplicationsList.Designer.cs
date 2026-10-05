@@ -49,7 +49,7 @@
             this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.secduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secduleVisionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleVisionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleWrittenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleStreetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.issueDrivingLicenseFirstTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -249,6 +249,7 @@
             this.showPersonLicenseHistoryToolStripMenuItem});
             this.cmsLDLApplication.Name = "cmsLDLApplication";
             this.cmsLDLApplication.Size = new System.Drawing.Size(309, 336);
+            this.cmsLDLApplication.Opening += new System.ComponentModel.CancelEventHandler(this.cmsLDLApplication_Opening);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -285,7 +286,7 @@
             // secduleToolStripMenuItem
             // 
             this.secduleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.secduleVisionTestToolStripMenuItem,
+            this.scheduleVisionTestToolStripMenuItem,
             this.scheduleWrittenTestToolStripMenuItem,
             this.scheduleStreetTestToolStripMenuItem});
             this.secduleToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Schedule_Test_32;
@@ -293,25 +294,27 @@
             this.secduleToolStripMenuItem.Size = new System.Drawing.Size(308, 38);
             this.secduleToolStripMenuItem.Text = "Schedule Tests";
             // 
-            // secduleVisionTestToolStripMenuItem
+            // scheduleVisionTestToolStripMenuItem
             // 
-            this.secduleVisionTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Vision_Test_Schdule;
-            this.secduleVisionTestToolStripMenuItem.Name = "secduleVisionTestToolStripMenuItem";
-            this.secduleVisionTestToolStripMenuItem.Size = new System.Drawing.Size(247, 38);
-            this.secduleVisionTestToolStripMenuItem.Text = "Secdule Vision Test";
+            this.scheduleVisionTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Vision_Test_Schdule;
+            this.scheduleVisionTestToolStripMenuItem.Name = "scheduleVisionTestToolStripMenuItem";
+            this.scheduleVisionTestToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.scheduleVisionTestToolStripMenuItem.Text = "Schedule Vision Test";
             // 
             // scheduleWrittenTestToolStripMenuItem
             // 
+            this.scheduleWrittenTestToolStripMenuItem.Enabled = false;
             this.scheduleWrittenTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Written_Test_32_Sechdule;
             this.scheduleWrittenTestToolStripMenuItem.Name = "scheduleWrittenTestToolStripMenuItem";
-            this.scheduleWrittenTestToolStripMenuItem.Size = new System.Drawing.Size(247, 38);
+            this.scheduleWrittenTestToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.scheduleWrittenTestToolStripMenuItem.Text = "Schedule Written Test";
             // 
             // scheduleStreetTestToolStripMenuItem
             // 
+            this.scheduleStreetTestToolStripMenuItem.Enabled = false;
             this.scheduleStreetTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Street_Test_32;
             this.scheduleStreetTestToolStripMenuItem.Name = "scheduleStreetTestToolStripMenuItem";
-            this.scheduleStreetTestToolStripMenuItem.Size = new System.Drawing.Size(247, 38);
+            this.scheduleStreetTestToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.scheduleStreetTestToolStripMenuItem.Text = "Schedule Street Test";
             // 
             // issueDrivingLicenseFirstTimeToolStripMenuItem
@@ -386,7 +389,7 @@
         private System.Windows.Forms.ToolStripMenuItem showLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPersonLicenseHistoryToolStripMenuItem;
         private System.Windows.Forms.Button btnAddPerson;
-        private System.Windows.Forms.ToolStripMenuItem secduleVisionTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scheduleVisionTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scheduleWrittenTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scheduleStreetTestToolStripMenuItem;
     }

@@ -21,5 +21,11 @@
         Cancel,
         Complete
     }
+    public enum enTestTypes
+    {
+        VisionTest = 1,
+        WrittenTest,
+        PracticalTest
+    }
 
 }

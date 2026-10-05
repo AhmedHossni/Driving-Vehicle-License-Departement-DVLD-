@@ -1,6 +1,5 @@
 ﻿using CommonUseThings;
 using Driving___Vehicle_License_Departement__DVLD_.Applications;
-using Driving___Vehicle_License_Departement__DVLD_.User_Forms;
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
@@ -29,7 +28,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         {
             InitializeComponent();
 
-
             dgvLocalDrivingLicenseApplicationsData.AutoSizeColumnsMode 
                 = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -42,7 +40,47 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 = (int)enApplicationStatus.All;
         }
 
-        private void GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo)
+        private void UpdateTestSchedulingUI(int localDLAppId, int preTestTypeId,
+            ToolStripMenuItem menuItem)
+        {
+            if (clsTestAppointments.DidExamineePass(localDLAppId, 1, out string errorMessage))
+            {
+                menuItem.Enabled = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(errorMessage))
+                    menuItem.Enabled = false;
+                else
+                    HandleErrorMessage(ref errorMessage);
+            }
+        }
+
+        private void ManagingAvailableTests(int localDLAppId)
+        {
+            int selectedPassedTest = GetSelectedItemPassedTests();
+
+            if (selectedPassedTest == 0)
+            {
+                scheduleVisionTestToolStripMenuItem.Enabled = true;
+            }
+            else if (selectedPassedTest == 1)
+            {
+                UpdateTestSchedulingUI(localDLAppId, (int)enTestTypes.VisionTest,
+                    scheduleWrittenTestToolStripMenuItem);
+            }
+            else if (selectedPassedTest == 2)
+            {
+                UpdateTestSchedulingUI(localDLAppId, (int)enTestTypes.WrittenTest, 
+                    scheduleStreetTestToolStripMenuItem);
+            }
+            else if (selectedPassedTest == 3) 
+            {
+                scheduleVisionTestToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests)
         {
             DataGridView.HitTestInfo hitInfo = 
                 dgvLocalDrivingLicenseApplicationsData.HitTest(_point.X, _point.Y);
@@ -54,19 +92,28 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 dgvLocalDrivingLicenseApplicationsData.CurrentCell = dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[0];
                 LDLAppId = (int)dgvLocalDrivingLicenseApplicationsData.CurrentCell.Value;
                 NationalNo = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[1].Value;
+                passedTests = (int)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[5].Value;
             }
             else
             {
                 LDLAppId = -1;
                 NationalNo = string.Empty;
+                passedTests = 0;
             }
 
         }
+
+        private int GetSelectedItemPassedTests()
+        {
+            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests);
+            return passedTests;
+        }
+
         private int GetAndSelectCurrentGridRowId()
         {
-            GetAndSelectCurrentGridRowId(out int userId, out string personId);
+            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests);
 
-            return userId;
+            return LDLAppId;
         }
 
         private void dgv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -284,6 +331,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             => this.Close();
 
         private void btnAddPerson_Click(object sender, EventArgs e)
-            => CallAddEditLocalDrivingLicenseForm(-1);        
+            => CallAddEditLocalDrivingLicenseForm(-1);
+
+        private void cmsLDLApplication_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ManagingAvailableTests(GetAndSelectCurrentGridRowId());
+        }
     }
 }
