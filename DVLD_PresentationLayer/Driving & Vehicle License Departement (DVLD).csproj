@@ -36,7 +36,9 @@
     <ApplicationIcon>Gemini_Generated_Image_inwmqcinwmqcinwm.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -152,6 +154,18 @@
     <Compile Include="Local Driving License\Control\ctrlLocalDrivingLicenseApplicationBasicInfo.Designer.cs">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationBasicInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test\Tests\Control\ctrlScheduleTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Test\Tests\Control\ctrlScheduleTest.Designer.cs">
+      <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Tests\frmScheduleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\Tests\frmScheduleTest.Designer.cs">
+      <DependentUpon>frmScheduleTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Test\Tests\frmVisionTestAppointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +255,12 @@
     <EmbeddedResource Include="Local Driving License\Control\ctrlLocalDrivingLicenseApplicationBasicInfo.resx">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationBasicInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Test\Tests\Control\ctrlScheduleTest.resx">
+      <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\Tests\frmScheduleTest.resx">
+      <DependentUpon>frmScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Test\Tests\frmVisionTestAppointments.resx">
       <DependentUpon>frmVisionTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +318,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\Save 32.png" />
+    <None Include="Resources\Vision 512.png" />
+    <None Include="Resources\Close 32.png" />
+    <None Include="Resources\AddAppointment 32.png" />
     <None Include="Resources\License View 321.png" />
     <None Include="Resources\Street Test 32.png" />
     <None Include="Resources\Written Test 32 Sechdule.png" />

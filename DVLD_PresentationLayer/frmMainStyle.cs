@@ -9,7 +9,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
     {
         public frmMainStyle()
         {
-
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
         protected override void WndProc(ref Message m)
