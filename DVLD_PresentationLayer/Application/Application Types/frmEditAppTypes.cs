@@ -30,7 +30,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Applications.Application_
             {
                 lblAppTypeIdValue.Text = _applicationType.Id.ToString();
                 tboxAppTypeName.Text = _applicationType.Title;
-                tboxAppTypeFees.Text = _applicationType.Fees.ToString("0.00");
+                tboxAppTypeFees.Text = _applicationType.Fees.ToString("0.0");
             }
             else
                 HandleErrorMessage(errorMessage);

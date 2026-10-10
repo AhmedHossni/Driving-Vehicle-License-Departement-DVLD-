@@ -46,7 +46,7 @@
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecods = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
-            this.btnBigCloseForm = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnlFormUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
@@ -239,26 +239,25 @@
             this.lblNumberOfRecords.TabIndex = 5;
             this.lblNumberOfRecords.Text = "0";
             // 
-            // btnBigCloseForm
+            // btnClose
             // 
-            this.btnBigCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.btnBigCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBigCloseForm.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBigCloseForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnBigCloseForm.Location = new System.Drawing.Point(1046, 505);
-            this.btnBigCloseForm.Name = "btnBigCloseForm";
-            this.btnBigCloseForm.Size = new System.Drawing.Size(92, 34);
-            this.btnBigCloseForm.TabIndex = 7;
-            this.btnBigCloseForm.Text = "Close";
-            this.btnBigCloseForm.UseVisualStyleBackColor = false;
-            this.btnBigCloseForm.Click += new System.EventHandler(this.btnBigCloseForm_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1006, 503);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(132, 43);
+            this.btnClose.TabIndex = 155;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnBigCloseForm_Click);
             // 
             // frmPeopleList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 555);
-            this.Controls.Add(this.btnBigCloseForm);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblRecods);
             this.Controls.Add(this.dgvPeople);
@@ -294,6 +293,6 @@
         private System.Windows.Forms.Button btnAddPerson;
         private System.Windows.Forms.Label lblRecods;
         private System.Windows.Forms.Label lblNumberOfRecords;
-        private System.Windows.Forms.Button btnBigCloseForm;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -38,7 +38,6 @@
             this.ctrlScheduleTest1.Name = "ctrlScheduleTest1";
             this.ctrlScheduleTest1.Size = new System.Drawing.Size(509, 694);
             this.ctrlScheduleTest1.TabIndex = 0;
-            this.ctrlScheduleTest1.testName = "(Test Name) Test";
             // 
             // btnClose
             // 

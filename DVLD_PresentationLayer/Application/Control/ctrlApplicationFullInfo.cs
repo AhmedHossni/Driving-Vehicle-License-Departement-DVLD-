@@ -20,7 +20,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application.Control
             string applicationTypeTitle = null;
             string fullname = null;
             string username = null;
-            int passedTest = 0;
 
             clsApplication application = clsApplication.GetFullInfoBy(applicationId, ref applicationTypeTitle,
                 ref fullname, ref username, out string errorMessage);
@@ -29,7 +28,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application.Control
             {
                 lblAppIdValue.Text = applicationId.ToString();
                 lblStatusValue.Text = application.ApplicaionStatus.ToString();
-                lblFeesValue.Text = application.PaidFees.ToString();
+                lblFeesValue.Text = application.PaidFees.ToString("0.0");
                 lblTypeTitleValue.Text = applicationTypeTitle;
                 lblApplicant.Text = fullname;
 

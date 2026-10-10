@@ -45,9 +45,9 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBigCloseForm = new System.Windows.Forms.Button();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblRecods = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnlFormUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -220,20 +220,6 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.CMS_Click_ChangePassword);
             // 
-            // btnBigCloseForm
-            // 
-            this.btnBigCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.btnBigCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBigCloseForm.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBigCloseForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(24)))), ((int)(((byte)(34)))));
-            this.btnBigCloseForm.Location = new System.Drawing.Point(1059, 484);
-            this.btnBigCloseForm.Name = "btnBigCloseForm";
-            this.btnBigCloseForm.Size = new System.Drawing.Size(92, 34);
-            this.btnBigCloseForm.TabIndex = 10;
-            this.btnBigCloseForm.Text = "Close";
-            this.btnBigCloseForm.UseVisualStyleBackColor = false;
-            this.btnBigCloseForm.Click += new System.EventHandler(this.btnBigCloseForm_Click);
-            // 
             // lblNumberOfRecords
             // 
             this.lblNumberOfRecords.AutoSize = true;
@@ -256,12 +242,25 @@
             this.lblRecods.TabIndex = 8;
             this.lblRecods.Text = "# Records : ";
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1019, 484);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(132, 43);
+            this.btnClose.TabIndex = 159;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnFormClose_Click);
+            // 
             // frmUsersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1163, 530);
-            this.Controls.Add(this.btnBigCloseForm);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblRecods);
             this.Controls.Add(this.dgvUsers);
@@ -289,7 +288,6 @@
         private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.PictureBox pbFormMainImage;
         private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.Button btnBigCloseForm;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label lblRecods;
         private System.Windows.Forms.ContextMenuStrip cmsOperationsOnUser;
@@ -299,5 +297,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ComboBox cboxIsActiveOptions;
+        private System.Windows.Forms.Button btnClose;
     }
 }

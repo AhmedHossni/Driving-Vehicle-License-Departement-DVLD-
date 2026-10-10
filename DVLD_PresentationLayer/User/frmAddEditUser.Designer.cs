@@ -32,6 +32,7 @@
             this.tctrlAddEditUser = new System.Windows.Forms.TabControl();
             this.tpagePersonInfo = new System.Windows.Forms.TabPage();
             this.btnNextTab = new System.Windows.Forms.Button();
+            this.ctrlSearchForPerson = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
             this.tpageLoginInfo = new System.Windows.Forms.TabPage();
             this.btnPreviousTab = new System.Windows.Forms.Button();
             this.lblUserIdValue = new System.Windows.Forms.Label();
@@ -43,10 +44,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tboxPassword = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.epIsUserDataValid = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlSearchForPerson = new Driving___Vehicle_License_Departement__DVLD_.Person_Forms.ctrlSearchForPerson();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.tctrlAddEditUser.SuspendLayout();
             this.tpagePersonInfo.SuspendLayout();
             this.tpageLoginInfo.SuspendLayout();
@@ -88,6 +88,13 @@
             this.btnNextTab.Text = "Next";
             this.btnNextTab.UseVisualStyleBackColor = true;
             this.btnNextTab.Click += new System.EventHandler(this.btnPersonInfoNext_Click);
+            // 
+            // ctrlSearchForPerson
+            // 
+            this.ctrlSearchForPerson.Location = new System.Drawing.Point(3, 6);
+            this.ctrlSearchForPerson.Name = "ctrlSearchForPerson";
+            this.ctrlSearchForPerson.Size = new System.Drawing.Size(935, 429);
+            this.ctrlSearchForPerson.TabIndex = 0;
             // 
             // tpageLoginInfo
             // 
@@ -225,42 +232,33 @@
             this.tboxPassword.Tag = "Password";
             this.tboxPassword.Leave += new System.EventHandler(this.userDataTextBox_Leave);
             // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(821, 525);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(126, 37);
-            this.btnSave.TabIndex = 121;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.Location = new System.Drawing.Point(687, 525);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(126, 37);
-            this.btnClose.TabIndex = 122;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // epIsUserDataValid
             // 
             this.epIsUserDataValid.ContainerControl = this;
             // 
-            // ctrlSearchForPerson
+            // btnClose
             // 
-            this.ctrlSearchForPerson.Location = new System.Drawing.Point(3, 6);
-            this.ctrlSearchForPerson.Name = "ctrlSearchForPerson";
-            this.ctrlSearchForPerson.Size = new System.Drawing.Size(935, 429);
-            this.ctrlSearchForPerson.TabIndex = 0;
+            this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(667, 519);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(132, 43);
+            this.btnClose.TabIndex = 158;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Save_32;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(815, 519);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(132, 43);
+            this.btnSave.TabIndex = 157;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmAddEditUser
             // 
@@ -289,8 +287,6 @@
         private System.Windows.Forms.TabPage tpageLoginInfo;
         private Person_Forms.ctrlSearchForPerson ctrlSearchForPerson;
         private System.Windows.Forms.Button btnNextTab;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblUserIdValue;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chboxIsActive;
@@ -302,5 +298,7 @@
         private System.Windows.Forms.TextBox tboxPassword;
         private System.Windows.Forms.Button btnPreviousTab;
         private System.Windows.Forms.ErrorProvider epIsUserDataValid;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSave;
     }
 }

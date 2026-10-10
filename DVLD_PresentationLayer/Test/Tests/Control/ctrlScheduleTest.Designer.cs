@@ -34,10 +34,11 @@
             this.grboxRetakeTestInfo = new System.Windows.Forms.GroupBox();
             this.lblTotalFeesValue = new System.Windows.Forms.Label();
             this.lblTotalFees = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTestRAppIdValue = new System.Windows.Forms.Label();
             this.lblTestRAppId = new System.Windows.Forms.Label();
             this.lblRAppFeesValue = new System.Windows.Forms.Label();
             this.lblRAppFees = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblFeesValue = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.lblLocalDLIdValue = new System.Windows.Forms.Label();
             this.lblLocalDLId = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.gbBoxTestName.SuspendLayout();
             this.grboxRetakeTestInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -102,12 +102,13 @@
             this.btnSave.TabIndex = 142;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // grboxRetakeTestInfo
             // 
             this.grboxRetakeTestInfo.Controls.Add(this.lblTotalFeesValue);
             this.grboxRetakeTestInfo.Controls.Add(this.lblTotalFees);
-            this.grboxRetakeTestInfo.Controls.Add(this.label1);
+            this.grboxRetakeTestInfo.Controls.Add(this.lblTestRAppIdValue);
             this.grboxRetakeTestInfo.Controls.Add(this.lblTestRAppId);
             this.grboxRetakeTestInfo.Controls.Add(this.lblRAppFeesValue);
             this.grboxRetakeTestInfo.Controls.Add(this.lblRAppFees);
@@ -138,15 +139,15 @@
             this.lblTotalFees.TabIndex = 133;
             this.lblTotalFees.Text = "Total Fees :";
             // 
-            // label1
+            // lblTestRAppIdValue
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(156, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 24);
-            this.label1.TabIndex = 132;
-            this.label1.Text = "N\\A";
+            this.lblTestRAppIdValue.AutoSize = true;
+            this.lblTestRAppIdValue.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTestRAppIdValue.Location = new System.Drawing.Point(156, 86);
+            this.lblTestRAppIdValue.Name = "lblTestRAppIdValue";
+            this.lblTestRAppIdValue.Size = new System.Drawing.Size(43, 24);
+            this.lblTestRAppIdValue.TabIndex = 132;
+            this.lblTestRAppIdValue.Text = "N\\A";
             // 
             // lblTestRAppId
             // 
@@ -177,6 +178,15 @@
             this.lblRAppFees.Size = new System.Drawing.Size(122, 24);
             this.lblRAppFees.TabIndex = 129;
             this.lblRAppFees.Text = "R.App.Fees :";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(161, 371);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 24);
+            this.dateTimePicker1.TabIndex = 139;
             // 
             // lblFeesValue
             // 
@@ -214,9 +224,9 @@
             this.lblTrialValue.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrialValue.Location = new System.Drawing.Point(157, 318);
             this.lblTrialValue.Name = "lblTrialValue";
-            this.lblTrialValue.Size = new System.Drawing.Size(43, 24);
+            this.lblTrialValue.Size = new System.Drawing.Size(21, 24);
             this.lblTrialValue.TabIndex = 134;
-            this.lblTrialValue.Text = "N\\A";
+            this.lblTrialValue.Text = "0";
             // 
             // lblTrial
             // 
@@ -282,26 +292,21 @@
             // 
             this.lblLocalDLId.AutoSize = true;
             this.lblLocalDLId.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocalDLId.Location = new System.Drawing.Point(6, 159);
+            this.lblLocalDLId.Location = new System.Drawing.Point(31, 159);
             this.lblLocalDLId.Name = "lblLocalDLId";
-            this.lblLocalDLId.Size = new System.Drawing.Size(145, 24);
+            this.lblLocalDLId.Size = new System.Drawing.Size(120, 24);
             this.lblLocalDLId.TabIndex = 127;
-            this.lblLocalDLId.Text = "Application Id :";
+            this.lblLocalDLId.Text = "D.L.App ID :";
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Written_Test_Big;
             this.pictureBox1.Location = new System.Drawing.Point(211, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(87, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(161, 371);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(253, 24);
-            this.dateTimePicker1.TabIndex = 139;
             // 
             // ctrlScheduleTest
             // 
@@ -325,7 +330,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox gbBoxTestName;
         private System.Windows.Forms.Label lblLocalDLIdValue;
-        private System.Windows.Forms.Label lblLocalDLId;
         private System.Windows.Forms.Label lblFeesValue;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblDate;
@@ -338,11 +342,12 @@
         private System.Windows.Forms.GroupBox grboxRetakeTestInfo;
         private System.Windows.Forms.Label lblRAppFeesValue;
         private System.Windows.Forms.Label lblRAppFees;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTestRAppIdValue;
         private System.Windows.Forms.Label lblTestRAppId;
         private System.Windows.Forms.Label lblTotalFeesValue;
         private System.Windows.Forms.Label lblTotalFees;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblLocalDLId;
     }
 }

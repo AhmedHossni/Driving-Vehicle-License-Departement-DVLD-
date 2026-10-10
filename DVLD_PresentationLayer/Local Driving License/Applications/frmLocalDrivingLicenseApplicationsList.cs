@@ -1,5 +1,6 @@
 ﻿using CommonUseThings;
 using Driving___Vehicle_License_Departement__DVLD_.Applications;
+using Driving___Vehicle_License_Departement__DVLD_.Test.Tests;
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
@@ -43,7 +44,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         private void UpdateTestSchedulingUI(int localDLAppId, int preTestTypeId,
             ToolStripMenuItem menuItem)
         {
-            if (clsTestAppointments.DidExamineePass(localDLAppId, 1, out string errorMessage))
+            if (clsTestAppointment.DidExamineePass(localDLAppId, 1, out string errorMessage))
             {
                 menuItem.Enabled = true;
             }
@@ -59,6 +60,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         private void ManagingAvailableTests(int localDLAppId)
         {
             int selectedPassedTest = GetSelectedItemPassedTests();
+
+            secduleToolStripMenuItem.Enabled = true;
 
             if (selectedPassedTest == 0)
             {
@@ -76,7 +79,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             }
             else if (selectedPassedTest == 3) 
             {
-                scheduleVisionTestToolStripMenuItem.Enabled = false;
+                secduleToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -336,6 +339,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         private void cmsLDLApplication_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ManagingAvailableTests(GetAndSelectCurrentGridRowId());
+        }
+
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestAppointments frmTestAppointments
+                = new frmTestAppointments(enTestTypes.VisionTest, GetAndSelectCurrentGridRowId());
+
+            frmTestAppointments.ShowDialog();
         }
     }
 }

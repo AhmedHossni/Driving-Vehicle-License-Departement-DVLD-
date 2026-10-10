@@ -166,11 +166,11 @@
     <Compile Include="Test\Tests\frmScheduleTest.Designer.cs">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test\Tests\frmVisionTestAppointments.cs">
+    <Compile Include="Test\Tests\frmTestAppointments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test\Tests\frmVisionTestAppointments.Designer.cs">
-      <DependentUpon>frmVisionTestAppointments.cs</DependentUpon>
+    <Compile Include="Test\Tests\frmTestAppointments.Designer.cs">
+      <DependentUpon>frmTestAppointments.cs</DependentUpon>
     </Compile>
     <Compile Include="User\Controls\ctrlUserInfo.cs">
       <SubType>UserControl</SubType>
@@ -261,8 +261,8 @@
     <EmbeddedResource Include="Test\Tests\frmScheduleTest.resx">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test\Tests\frmVisionTestAppointments.resx">
-      <DependentUpon>frmVisionTestAppointments.cs</DependentUpon>
+    <EmbeddedResource Include="Test\Tests\frmTestAppointments.resx">
+      <DependentUpon>frmTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\Controls\ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
@@ -318,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\Test 32.png" />
+    <None Include="Resources\Written Test Big.png" />
+    <None Include="Resources\Driving Test Big.png" />
     <None Include="Resources\Save 32.png" />
     <None Include="Resources\Vision 512.png" />
     <None Include="Resources\Close 32.png" />

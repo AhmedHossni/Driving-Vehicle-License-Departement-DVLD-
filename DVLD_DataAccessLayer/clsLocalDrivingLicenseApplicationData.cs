@@ -176,7 +176,6 @@ namespace DVLD_DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                // استدعاء الـ Table-Valued Function التي أنشأتها في قاعدة البيانات
                 string query = "SELECT * FROM dbo.GetLocalDrivingLicenseAppBasicDetails(@LocalDrivingLicenseApplicationID)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -190,7 +189,6 @@ namespace DVLD_DataAccessLayer
                         {
                             if (reader.Read())
                             {
-                                // تم العثور على السجل
                                 isFound = true;
 
                                 appliedForLicense = reader["Driving Class"] != DBNull.Value
@@ -201,7 +199,6 @@ namespace DVLD_DataAccessLayer
                             }
                             else
                             {
-                                // لم يتم العثور على السجل
                                 isFound = false;
                             }
                         }
@@ -215,6 +212,57 @@ namespace DVLD_DataAccessLayer
                     return isFound;
                 }
             }
+        }
+
+        public static bool GetDrivingLicenseAppScheduleTestInfo(
+            int localDrivingLicenseApplicationID,
+            enTestTypes testType,
+            ref string className,
+            ref string fullName,
+            ref decimal fees,
+            ref int trials,
+            out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT *
+FROM GetDrivingLicenseAppScheduleTestInfo(@LocalDrivingLicenseApplicationID,@TestTypeID);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", 
+                        localDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", (int)testType);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                className = reader["ClassName"].ToString();
+                                fees = Convert.ToDecimal(reader["Fees"]);
+                                fullName = Convert.ToString(reader["Full Name"]);
+                                trials = Convert.ToInt32(reader["Trials"]);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
         }
 
         public static bool Update(int id, int applicationID, int licenseClassID,

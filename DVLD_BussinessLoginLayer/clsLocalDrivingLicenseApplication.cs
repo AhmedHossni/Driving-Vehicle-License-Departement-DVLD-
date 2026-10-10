@@ -1,4 +1,5 @@
-﻿using DVLD_DataAccessLayer;
+﻿using CommonUseThings;
+using DVLD_DataAccessLayer;
 using System.Data;
 
 namespace DVLD_BusinessLogicLayer
@@ -64,5 +65,27 @@ namespace DVLD_BusinessLogicLayer
 
         public static bool Update(int localDrivingLicenseId, int applicationId, int licenseClassId, out string errorMessage)
             => clsLocalDrivingLicenseApplicationData.Update(localDrivingLicenseId, applicationId, licenseClassId, out errorMessage);
+        public static bool GetDrivingLicenseAppScheduleTestInfo(
+            int localDrivingLicenseApplicationID,
+            enTestTypes testType,
+            ref string className,
+            ref decimal fees,
+            ref string fullName,
+            ref int trials,
+            out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            return clsLocalDrivingLicenseApplicationData.GetDrivingLicenseAppScheduleTestInfo(
+                localDrivingLicenseApplicationID,
+                testType,
+                ref className,
+                ref fullName,
+                ref fees,
+                ref trials,
+                out errorMessage
+            );
+        }
+
     }
 }
