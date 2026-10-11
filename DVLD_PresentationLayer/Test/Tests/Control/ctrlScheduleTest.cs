@@ -9,7 +9,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
     public partial class ctrlScheduleTest : UserControl
     {
         clsTestAppointment _formTestAppointment = new clsTestAppointment();
-        enTestTypes _testType;
+        public event EventHandler OnTestSchedulesChange;
+        enTestTypes _testType = enTestTypes.VisionTest;
+
         public enTestTypes testType 
         { 
             get 
@@ -36,7 +38,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             string className = string.Empty;
             string fullName = string.Empty;
             int trials = 0;
-            DateTime scheduleDate = DateTime.Now;
+            DateTime? formScheduleDate = null;
             decimal testTypeFees = 0;
             int? rtAppID = null;
             decimal rtFees = 0;
@@ -44,18 +46,21 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
 
             if(testAppointmentID != -1)
             {
+                DateTime databaseScheduleDate = DateTime.Now;
                 clsTestAppointment.GetFullTestAppointmentDetails(testAppointmentID,
                     ref LDLAppID,
                     ref className,
                     ref fullName,
                     ref trials,
-                    ref scheduleDate,
+                    ref databaseScheduleDate,
                     ref testTypeFees,
                     ref rtAppID,
                     ref rtFees,
                     ref isLocked,
                     out errorMessage
                     );
+
+                formScheduleDate = databaseScheduleDate;
 
                 if (clsTestAppointment.GetBy(testAppointmentID)
                     is clsTestAppointment testAppointment && !(testAppointment is null))
@@ -80,12 +85,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             lblNameValue.Text = fullName;
             lblTrialValue.Text = trials.ToString();
 
-            if (scheduleDate < DateTime.Now && 
-                testAppointmentID != -1)
+            if(!(formScheduleDate is null))
             {
-                dateTimePicker1.MinDate = scheduleDate;
-                dateTimePicker1.Value = scheduleDate;
-                HandleScheduleIsLocked(true);
+                if(formScheduleDate < DateTime.Now)
+                    HandleScheduleIsLocked(true);
+                else
+                    dateTimePicker1.Value = (DateTime)formScheduleDate;
             }
 
             lblFeesValue.Text = testTypeFees.ToString("0.0");
@@ -137,7 +142,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
 
         private void DefaultStartValues()
         {
-            dateTimePicker1.MinDate = DateTime.Now.AddDays(1);
+            dateTimePicker1.MinDate = DateTime.Now;
         }
 
         private void LoadTestAppointmentDataFromForm()
@@ -145,11 +150,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             _formTestAppointment.TestType = _testType;
 
             _formTestAppointment.LocalDrivingLicenseApplicationID = 
-                Convert.ToInt32(lblDClassValue.Text);
+                Convert.ToInt32(lblLocalDLIdValue.Text);
             
             _formTestAppointment.AppointmentDate = dateTimePicker1.Value;
 
-            _formTestAppointment.PaidFees = Convert.ToDecimal(lblTotalFeesValue);
+            _formTestAppointment.PaidFees = Convert.ToDecimal(lblTotalFeesValue.Text);
 
             if (_formTestAppointment.CreatedByUserID == -1)
                 _formTestAppointment.CreatedByUserID = clsUser.SystemUser.Id;
@@ -165,6 +170,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             {
                 MessageBox.Show("Saving operation is done successfully.", "Operation Done Successfully :)",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LoadFormData(_formTestAppointment.Id, _formTestAppointment.LocalDrivingLicenseApplicationID);
+                
+                OnTestSchedulesChange.Invoke(this, new EventArgs());
             }
             else
             {

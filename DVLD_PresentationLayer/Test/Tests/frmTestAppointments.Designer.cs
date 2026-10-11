@@ -33,18 +33,18 @@
             this.ctrlApplicationFullInfo1 = new Driving___Vehicle_License_Departement__DVLD_.Application.Control.ctrlApplicationFullInfo();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvAppointmentsList = new System.Windows.Forms.DataGridView();
+            this.cmsAppointmentList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddScheduleTest = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.cmsAppointmentList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointmentsList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.cmsAppointmentList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlLocalDrivingLicenseApplicationBasicInfo1
@@ -85,6 +85,32 @@
             this.dgvAppointmentsList.RowTemplate.Height = 26;
             this.dgvAppointmentsList.Size = new System.Drawing.Size(905, 162);
             this.dgvAppointmentsList.TabIndex = 10;
+            this.dgvAppointmentsList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAppointmentsList_CellMouseDown);
+            // 
+            // cmsAppointmentList
+            // 
+            this.cmsAppointmentList.ImageScalingSize = new System.Drawing.Size(30, 30);
+            this.cmsAppointmentList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editTestToolStripMenuItem,
+            this.takeTestToolStripMenuItem});
+            this.cmsAppointmentList.Name = "cmsAppointmentList";
+            this.cmsAppointmentList.Size = new System.Drawing.Size(241, 76);
+            // 
+            // editTestToolStripMenuItem
+            // 
+            this.editTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.edit_32;
+            this.editTestToolStripMenuItem.Name = "editTestToolStripMenuItem";
+            this.editTestToolStripMenuItem.Size = new System.Drawing.Size(240, 36);
+            this.editTestToolStripMenuItem.Text = "Edit Test Appointment";
+            this.editTestToolStripMenuItem.Click += new System.EventHandler(this.editTestToolStripMenuItem_Click);
+            // 
+            // takeTestToolStripMenuItem
+            // 
+            this.takeTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Test_32;
+            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(240, 36);
+            this.takeTestToolStripMenuItem.Text = "Take Test";
+            this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
             // lblRecordsCount
             // 
@@ -152,29 +178,6 @@
             this.pictureBox2.TabIndex = 126;
             this.pictureBox2.TabStop = false;
             // 
-            // cmsAppointmentList
-            // 
-            this.cmsAppointmentList.ImageScalingSize = new System.Drawing.Size(30, 30);
-            this.cmsAppointmentList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editTestToolStripMenuItem,
-            this.takeTestToolStripMenuItem});
-            this.cmsAppointmentList.Name = "cmsAppointmentList";
-            this.cmsAppointmentList.Size = new System.Drawing.Size(241, 76);
-            // 
-            // editTestToolStripMenuItem
-            // 
-            this.editTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.edit_32;
-            this.editTestToolStripMenuItem.Name = "editTestToolStripMenuItem";
-            this.editTestToolStripMenuItem.Size = new System.Drawing.Size(240, 36);
-            this.editTestToolStripMenuItem.Text = "Edit Test Appointment";
-            // 
-            // takeTestToolStripMenuItem
-            // 
-            this.takeTestToolStripMenuItem.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Test_32;
-            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(240, 36);
-            this.takeTestToolStripMenuItem.Text = "Take Test";
-            // 
             // frmTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -194,8 +197,8 @@
             this.Name = "frmTestAppointments";
             this.Text = "Test Appointments";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointmentsList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.cmsAppointmentList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

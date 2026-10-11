@@ -3,6 +3,7 @@ using Driving___Vehicle_License_Departement__DVLD_.Properties;
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
@@ -12,6 +13,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
         enTestTypes _formTestType;
         int _localDLAppId;
         int _applicatioId;
+
+        private Point _point = new Point();
 
         public frmTestAppointments(enTestTypes testType, int localDLAppId)
         {
@@ -31,6 +34,26 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 
             ctrlApplicationFullInfo1.LoadLocalDLAppFormInfo(_applicatioId);
         }
+
+        private int GetAndSelectCurrentGridRowId()
+        {
+            DataGridView.HitTestInfo hitInfo = dgvAppointmentsList.HitTest(_point.X, _point.Y);
+
+            if (hitInfo.RowIndex != -1)
+            {
+                dgvAppointmentsList.ClearSelection();
+                dgvAppointmentsList.Rows[hitInfo.RowIndex].Selected = true;
+                dgvAppointmentsList.CurrentCell = dgvAppointmentsList.Rows[hitInfo.RowIndex].Cells[0];
+                return (int)dgvAppointmentsList.CurrentCell.Value;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private void dgvAppointmentsList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+            => _point = dgvAppointmentsList.PointToClient(Cursor.Position);
 
         private void LoadDGVAppointments(int localDLAppId)
         {
@@ -79,15 +102,41 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 
         private void btnAddScheduleTest_Click(object sender, System.EventArgs e)
         {
-            CallSheduleTestForm(enTestTypes.VisionTest);
+            if (clsTestAppointment.DoesApplicationHavePassedOrUnlockedTest
+                (_localDLAppId, (int)_formTestType, out bool result, out string errorMessage) && result)
+            {
+                MessageBox.Show("Person already has an active appointment for this test or has already passed it.",
+                    "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else CallSheduleTestForm(-1);
         }
 
-        private void CallSheduleTestForm(enTestTypes testType)
+        private void CallSheduleTestForm(int testAppointmentID)
         {
             frmScheduleTest frmScheduleTest
-                = new frmScheduleTest(_formTestType, -1, _localDLAppId);
+                = new frmScheduleTest(_formTestType, testAppointmentID, _localDLAppId);
 
-            frmScheduleTest.ShowDialog();
+            frmScheduleTest.OnTestSchedulesChange += FrmScheduleTest_OnTestSchedulesChange;
+
+            frmScheduleTest.ShowDialog();      
+        }
+
+        private void FrmScheduleTest_OnTestSchedulesChange(object sender, EventArgs e)
+        {
+            LoadDGVAppointments(_localDLAppId);
+        }
+
+        private void editTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CallSheduleTestForm(GetAndSelectCurrentGridRowId());
+        }
+
+        private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTakeTest frmTakeTest 
+                = new frmTakeTest(_formTestType, GetAndSelectCurrentGridRowId());
+
+            frmTakeTest.ShowDialog();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DVLD_DataAccessLayer
 {
     public class clsTestAppointmentData
     {
-        public static bool DidExamineePass(int localDLAppID, 
+        public static bool DidExamineePass(int localDLAppID,
             int testTypeId, out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -32,7 +32,7 @@ namespace DVLD_DataAccessLayer
                     {
                         connection.Open();
 
-                        object result =  command.ExecuteScalar();
+                        object result = command.ExecuteScalar();
 
                         return Convert.ToInt32(result) == 1;
                     }
@@ -78,7 +78,7 @@ namespace DVLD_DataAccessLayer
             return (rowsAffected > 0);
         }
 
-        public static bool Add(int testTypeID, int localDrivingLicenseID, 
+        public static bool Add(int testTypeID, int localDrivingLicenseID,
             DateTime appointmentDate, decimal paidFees,
             int createdByUserID,
             out string errorMessage, out int appointemntID)
@@ -210,8 +210,8 @@ namespace DVLD_DataAccessLayer
             return isFound;
         }
 
-        public static bool GetBy(int testAppointmentID, ref enTestTypes testTypes, ref int localDLAppID, 
-            ref DateTime appointmentDate, ref decimal paidFees, ref int createdByUserID, 
+        public static bool GetBy(int testAppointmentID, ref enTestTypes testTypes, ref int localDLAppID,
+            ref DateTime appointmentDate, ref decimal paidFees, ref int createdByUserID,
             ref bool isLocked, out string errorMessage)
         {
             bool isFound = false;
@@ -297,6 +297,42 @@ WHERE LocalDrivingLicenseApplicationID = @localDLAppID AND TestTypeID = @testTyp
                     return dataTable;
                 }
             }
-        }     
+        }
+
+        public static bool DoesApplicationHavePassedOrUnlockedTest(int localDLAppID, int testTypeID
+            , out bool result, out string errorMessage)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT " +
+                    "dbo.FN_DoesApplicationHavePassedOrUnlockedTest(@localDLAppID, @testTypeID) AS Result;";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@localDLAppID", localDLAppID);
+                    command.Parameters.AddWithValue("@testTypeID", testTypeID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        result = Convert.ToBoolean(command.ExecuteScalar());
+
+                        errorMessage = string.Empty;
+                    }
+                    catch (Exception ex)
+                    {
+                        result = true;
+                        errorMessage = ex.Message;
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        }
     }
 }

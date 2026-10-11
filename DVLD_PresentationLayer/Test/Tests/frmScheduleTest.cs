@@ -13,7 +13,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 {
     public partial class frmScheduleTest : frmMainStyle
     {
-        public frmScheduleTest(enTestTypes testType, 
+
+        public event EventHandler OnTestSchedulesChange;
+
+        public frmScheduleTest(enTestTypes testType,
             int testAppointmentID, int localDLAppID)
         {
             InitializeComponent();
@@ -21,6 +24,18 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
             ctrlScheduleTest1.testType = testType;
 
             ctrlScheduleTest1.LoadFormData(testAppointmentID, localDLAppID);
+
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            ctrlScheduleTest1.OnTestSchedulesChange += FrmScheduleTest_OnTestSchedulesChange;
+        }
+
+        private void FrmScheduleTest_OnTestSchedulesChange(object sender, EventArgs e)
+        {
+            OnTestSchedulesChange.Invoke(this, new EventArgs());
         }
 
         private void btnClose_Click(object sender, EventArgs e)

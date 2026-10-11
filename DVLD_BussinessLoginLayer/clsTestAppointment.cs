@@ -45,13 +45,17 @@ namespace DVLD_BusinessLogicLayer
 
             if (Id == -1)
             {
-                result = clsTestAppointmentData.Add( (int)TestType,
+                result = clsTestAppointmentData.Add((int)TestType,
                     LocalDrivingLicenseApplicationID,
                     AppointmentDate,
                     PaidFees,
                     CreatedByUserID
                     , out errorMessage, 
                     out _id);
+            }
+            else
+            {
+                result = clsTestAppointmentData.UpdateDate(Id, AppointmentDate, out errorMessage);
             }
 
             return result;
@@ -150,6 +154,14 @@ namespace DVLD_BusinessLogicLayer
             out string errorMessage)
         {
             return clsTestAppointmentData.DidExamineePass(localDLAppId, testTypeId, out errorMessage);
+        }
+
+        public static bool DoesApplicationHavePassedOrUnlockedTest
+            (int localDLAppId, int testTypeId, out bool result ,out string errorMessage)
+        {
+            return clsTestAppointmentData.DoesApplicationHavePassedOrUnlockedTest
+                (localDLAppId, testTypeId,
+                out result, out errorMessage);
         }
     }
 }
