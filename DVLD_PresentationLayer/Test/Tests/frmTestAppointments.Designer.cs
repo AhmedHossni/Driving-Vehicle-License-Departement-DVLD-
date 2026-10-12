@@ -94,7 +94,8 @@
             this.editTestToolStripMenuItem,
             this.takeTestToolStripMenuItem});
             this.cmsAppointmentList.Name = "cmsAppointmentList";
-            this.cmsAppointmentList.Size = new System.Drawing.Size(241, 76);
+            this.cmsAppointmentList.Size = new System.Drawing.Size(241, 104);
+            this.cmsAppointmentList.Opening += new System.ComponentModel.CancelEventHandler(this.cmsAppointmentList_Opening);
             // 
             // editTestToolStripMenuItem
             // 

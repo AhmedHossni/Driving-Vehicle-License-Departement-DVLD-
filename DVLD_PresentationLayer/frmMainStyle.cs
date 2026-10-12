@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
@@ -35,6 +36,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
             // Pass all other window messages to the base class handler
             base.WndProc(ref m);
+        }
+
+        public static void HandleErrorMessage(ref string errorMessage, string caption)
+        {
+            if (!string.IsNullOrEmpty(errorMessage))
+                MessageBox.Show(errorMessage, caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

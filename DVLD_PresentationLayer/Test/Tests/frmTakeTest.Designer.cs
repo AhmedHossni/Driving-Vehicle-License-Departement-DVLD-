@@ -31,11 +31,11 @@
             this.lblResult = new System.Windows.Forms.Label();
             this.rbtnPass = new System.Windows.Forms.RadioButton();
             this.rbtnFail = new System.Windows.Forms.RadioButton();
-            this.ctrlScheduleTestInfo1 = new Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control.ctrlScheduleTestInfo();
             this.lblNotes = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtboxNotes = new System.Windows.Forms.RichTextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlScheduleTestInfo1 = new Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control.ctrlScheduleTestInfo();
             this.SuspendLayout();
             // 
             // lblResult
@@ -72,14 +72,6 @@
             this.rbtnFail.Text = "Fail";
             this.rbtnFail.UseVisualStyleBackColor = true;
             // 
-            // ctrlScheduleTestInfo1
-            // 
-            this.ctrlScheduleTestInfo1.Location = new System.Drawing.Point(2, 3);
-            this.ctrlScheduleTestInfo1.Name = "ctrlScheduleTestInfo1";
-            this.ctrlScheduleTestInfo1.Size = new System.Drawing.Size(510, 481);
-            this.ctrlScheduleTestInfo1.TabIndex = 0;
-            this.ctrlScheduleTestInfo1.testType = CommonUseThings.enTestTypes.VisionTest;
-            // 
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
@@ -90,14 +82,14 @@
             this.lblNotes.TabIndex = 4;
             this.lblNotes.Text = "Notes :";
             // 
-            // richTextBox1
+            // rtxtboxNotes
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(92, 541);
-            this.richTextBox1.MaxLength = 500;
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(410, 100);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.rtxtboxNotes.Location = new System.Drawing.Point(92, 541);
+            this.rtxtboxNotes.MaxLength = 500;
+            this.rtxtboxNotes.Name = "rtxtboxNotes";
+            this.rtxtboxNotes.Size = new System.Drawing.Size(410, 100);
+            this.rtxtboxNotes.TabIndex = 5;
+            this.rtxtboxNotes.Text = "";
             // 
             // btnSave
             // 
@@ -109,6 +101,7 @@
             this.btnSave.TabIndex = 145;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -122,6 +115,14 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ctrlScheduleTestInfo1
+            // 
+            this.ctrlScheduleTestInfo1.Location = new System.Drawing.Point(2, 3);
+            this.ctrlScheduleTestInfo1.Name = "ctrlScheduleTestInfo1";
+            this.ctrlScheduleTestInfo1.Size = new System.Drawing.Size(510, 481);
+            this.ctrlScheduleTestInfo1.TabIndex = 0;
+            this.ctrlScheduleTestInfo1.testType = CommonUseThings.enTestTypes.VisionTest;
+            // 
             // frmTakeTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -129,14 +130,14 @@
             this.ClientSize = new System.Drawing.Size(514, 715);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtboxNotes);
             this.Controls.Add(this.lblNotes);
             this.Controls.Add(this.rbtnFail);
             this.Controls.Add(this.rbtnPass);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.ctrlScheduleTestInfo1);
             this.Name = "frmTakeTest";
-            this.Text = "frmTakeTest";
+            this.Text = "Take Test";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,7 +150,7 @@
         private System.Windows.Forms.RadioButton rbtnPass;
         private System.Windows.Forms.RadioButton rbtnFail;
         private System.Windows.Forms.Label lblNotes;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtboxNotes;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
     }

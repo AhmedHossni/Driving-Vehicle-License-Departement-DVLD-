@@ -1,21 +1,18 @@
 ﻿using CommonUseThings;
+using DVLD_BusinessLogicLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 {
     public partial class frmTakeTest : Form
     {
+        int _testAppointmentID = -1;
         public frmTakeTest(enTestTypes testType, int testAppointmentID)
         {
             InitializeComponent();
+
+            _testAppointmentID = testAppointmentID;
 
             rbtnPass.Checked = true;
 
@@ -26,5 +23,24 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 
         private void btnClose_Click(object sender, EventArgs e)
             => this.Close();
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(!clsTestAppointment.LockAppointment(_testAppointmentID, out string errorMessage))
+            {
+                frmMainStyle.HandleErrorMessage(ref errorMessage, "Process Faild :(");
+                return;
+            }
+
+            if (clsTest.AddResultRow(_testAppointmentID,
+                rbtnPass.Checked ? true : false, rtxtboxNotes.Text, clsUser.SystemUser.Id,
+                out int testID, out errorMessage))
+            {
+                MessageBox.Show("Saving row is done successfully.", "Operation Done Sucessfully",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                frmMainStyle.HandleErrorMessage(ref errorMessage, "Saving Process Faild :(");
+        }
     }
 }

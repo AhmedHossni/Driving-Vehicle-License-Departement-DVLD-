@@ -15,7 +15,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Application.Control
             InitializeComponent();
         }
 
-        public void LoadLocalDLAppFormInfo(int applicationId)
+        public void LoadFormInfo(int applicationId)
         {
             string applicationTypeTitle = null;
             string fullname = null;

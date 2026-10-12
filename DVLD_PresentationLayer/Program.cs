@@ -1,4 +1,5 @@
 ﻿using CommonUseThings;
+using Driving___Vehicle_License_Departement__DVLD_.License;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Tests;
 using System;
 using System.Windows.Forms;
@@ -17,7 +18,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-            //System.Windows.Forms.Application.Run(new frmTestAppointments(enTestTypes.VisionTest , 37));
+            //System.Windows.Forms.Application.Run(new frmIssueLicense(37));
 
             frmLogin frmLogin = new frmLogin();
             frmMain MainScreen;

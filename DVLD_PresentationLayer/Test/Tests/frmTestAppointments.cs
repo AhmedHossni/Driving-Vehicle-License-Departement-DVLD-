@@ -32,9 +32,32 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
 
             ctrlLocalDrivingLicenseApplicationBasicInfo1.LoadLocalDLAppFormInfo(localDLAppId);
 
-            ctrlApplicationFullInfo1.LoadLocalDLAppFormInfo(_applicatioId);
+            ctrlApplicationFullInfo1.LoadFormInfo(_applicatioId);
         }
 
+        private bool GetRowData(out int testAppointmentID, out bool isLocked)
+        {
+            DataGridView.HitTestInfo hitInfo = dgvAppointmentsList.HitTest(_point.X, _point.Y);
+
+            if (hitInfo.RowIndex != -1)
+            {
+                dgvAppointmentsList.ClearSelection();
+                dgvAppointmentsList.Rows[hitInfo.RowIndex].Selected = true;
+
+                dgvAppointmentsList.CurrentCell = dgvAppointmentsList.Rows[hitInfo.RowIndex].Cells[0];
+                testAppointmentID = (int)dgvAppointmentsList.CurrentCell.Value;
+
+                dgvAppointmentsList.CurrentCell = dgvAppointmentsList.Rows[hitInfo.RowIndex].Cells[6];
+                isLocked = (bool)dgvAppointmentsList.CurrentCell.Value;
+                return true;
+            }
+            else
+            {
+                testAppointmentID = -1;
+                isLocked = false;
+                return false;
+            }
+        }
         private int GetAndSelectCurrentGridRowId()
         {
             DataGridView.HitTestInfo hitInfo = dgvAppointmentsList.HitTest(_point.X, _point.Y);
@@ -131,12 +154,30 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
             CallSheduleTestForm(GetAndSelectCurrentGridRowId());
         }
 
-        private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CallTakeTestForm(int testAppointmentID)
         {
-            frmTakeTest frmTakeTest 
-                = new frmTakeTest(_formTestType, GetAndSelectCurrentGridRowId());
+            frmTakeTest frmTakeTest
+                = new frmTakeTest(_formTestType, testAppointmentID);
 
             frmTakeTest.ShowDialog();
+
+            LoadDGVAppointments(_localDLAppId);
+        }
+
+        private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CallTakeTestForm(GetAndSelectCurrentGridRowId());
+        }
+
+        private void cmsAppointmentList_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(GetRowData(out int testAppointmentID, out bool isLocked))
+            {
+                if(isLocked)
+                    cmsAppointmentList.Enabled = false;
+                else
+                    cmsAppointmentList.Enabled = true;
+            }
         }
     }
 }

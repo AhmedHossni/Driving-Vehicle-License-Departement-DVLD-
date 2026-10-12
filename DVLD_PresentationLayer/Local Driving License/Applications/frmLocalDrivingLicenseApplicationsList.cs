@@ -66,14 +66,20 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             if (selectedPassedTest == 0)
             {
                 scheduleVisionTestToolStripMenuItem.Enabled = true;
+                scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                scheduleStreetTestToolStripMenuItem.Enabled = false;
             }
             else if (selectedPassedTest == 1)
             {
+                scheduleVisionTestToolStripMenuItem.Enabled = false;
                 UpdateTestSchedulingUI(localDLAppId, (int)enTestTypes.VisionTest,
                     scheduleWrittenTestToolStripMenuItem);
+                scheduleStreetTestToolStripMenuItem.Enabled = false;
             }
             else if (selectedPassedTest == 2)
             {
+                scheduleVisionTestToolStripMenuItem.Enabled = false;
+                scheduleWrittenTestToolStripMenuItem.Enabled = false;
                 UpdateTestSchedulingUI(localDLAppId, (int)enTestTypes.WrittenTest, 
                     scheduleStreetTestToolStripMenuItem);
             }
@@ -315,9 +321,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         private void HandleErrorMessage(ref string errorMessage)
         {
             if (!string.IsNullOrEmpty(errorMessage))
-                MessageBox.Show(errorMessage,
-                    "Error Message :(", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage,"Error Message :(",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void CallAddEditLocalDrivingLicenseForm(int LDLAppId)
@@ -347,6 +352,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 = new frmTestAppointments(enTestTypes.VisionTest, GetAndSelectCurrentGridRowId());
 
             frmTestAppointments.ShowDialog();
+
+            LoadDataInGridDataView();
         }
     }
 }

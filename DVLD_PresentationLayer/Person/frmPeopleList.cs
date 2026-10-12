@@ -268,6 +268,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.People_Forms
 
             dgvPeople.DataSource = this._dvPeopleData;
 
+            if (dgvPeople.Columns["DateOfBirth"] != null)
+                dgvPeople.Columns["DateOfBirth"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
             lblNumberOfRecords.Text = 
                 this._dvPeopleData.Count.ToString();
         }

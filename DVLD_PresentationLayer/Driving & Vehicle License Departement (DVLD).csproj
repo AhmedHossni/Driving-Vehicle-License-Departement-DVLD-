@@ -58,6 +58,12 @@
     <Compile Include="Application\Control\ctrlApplicationFullInfo.Designer.cs">
       <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\frmIssueLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\frmIssueLicense.Designer.cs">
+      <DependentUpon>frmIssueLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +223,9 @@
     <EmbeddedResource Include="Application\Control\ctrlApplicationFullInfo.resx">
       <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\frmIssueLicense.resx">
+      <DependentUpon>frmIssueLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddEditLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\IssueDrivingLicense 321.png" />
     <None Include="Resources\Test 32.png" />
     <None Include="Resources\Written Test Big.png" />
     <None Include="Resources\Driving Test Big.png" />
