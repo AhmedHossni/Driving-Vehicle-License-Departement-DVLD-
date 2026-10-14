@@ -1,6 +1,10 @@
-﻿using System;
+﻿using CommonUseThings;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,9 +12,157 @@ namespace DVLD_DataAccessLayer
 {
     public class clsLicenseData
     {
-        public static void GetByApplicationId()
-        {
+        //public static void GetByApplicationId(int applicationID,
+        //    out string errorMessage)
+        //{
+        //    bool isFound = false;
 
+        //    using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        //    {
+        //        string query = "SELECT TOP 1 * FROM Licenses WHERE ApplicationID = @applicationID;";
+
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@applicationID", applicationID);
+
+        //            try
+        //            {
+        //                connection.Open();
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    if (reader.Read())
+        //                    {
+        //                        // The record was found
+        //                        isFound = true;
+
+        //                        firstName = (string)reader["FirstName"];
+        //                        secondName = (string)reader["SecondName"];
+        //                        thirdName = (string)reader["ThirdName"];
+        //                        lastName = (string)reader["LastName"];
+        //                        nationalNo = (string)reader["NationalNo"];
+
+        //                        dateOfBirth = (DateTime)reader["DateOfBirth"];
+
+        //                        gender = (string)reader["Gender"] == "Male" ?
+        //                            enPersonGender.Male : enPersonGender.Female;
+
+        //                        address = (string)reader["Address"];
+        //                        phone = (string)reader["Phone"];
+        //                        email = (string)reader["Email"];
+        //                        nationalityCountryId = (int)reader["NationalityCountryId"];
+        //                        countryName = (string)reader["countryName"];
+
+        //                        object imgPathObject = reader["ImagePath"];
+
+        //                        imagePath = imgPathObject != DBNull.Value ?
+        //                            (string)imgPathObject : string.Empty;
+
+        //                    }
+        //                    else
+        //                    {
+        //                        // The record was not found
+        //                        isFound = false;
+        //                    }
+        //                }
+
+        //                errorMessage = string.Empty;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                isFound = false;
+        //                errorMessage = ex.Message;
+        //            }
+
+        //            return isFound;
+        //        }
+        //    }
+        //}
+
+        public static bool IsThisLDLAppHaveLocalDrivingIssue(int localDLAppID,
+            out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT dbo.IsThisLDLAppHaveLocalDrivingIssue(@localDLAppID) AS Result;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@localDLAppID", localDLAppID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result 
+                            = command.ExecuteScalar();
+
+                        return Convert.ToInt32(result) == 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public static bool AddNewLDLicense(
+            int applicationID, int driverID, int licenseClass,
+            DateTime issueDate, string notes,
+            bool isActive, byte issueReason,
+            int createdByUserID, ref int licenseID,
+            out string errorMessage)
+        {
+            bool isInserted = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SP_AddNewLocalDrivingLicense", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@ApplicationID", applicationID);
+                    command.Parameters.AddWithValue("@DriverID", driverID);
+                    command.Parameters.AddWithValue("@LicenseClass", licenseClass);
+                    command.Parameters.AddWithValue("@IssueDate", issueDate);
+
+                    if (string.IsNullOrEmpty(notes))
+                        command.Parameters.AddWithValue("@Notes", DBNull.Value);
+                    else
+                        command.Parameters.AddWithValue("@Notes", notes);
+
+                    command.Parameters.AddWithValue("@IsActive", isActive);
+                    command.Parameters.AddWithValue("@IssueReason", issueReason);
+                    command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
+
+                    SqlParameter outputIdParam = new SqlParameter("@LicenseID", SqlDbType.Int);
+                    outputIdParam.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(outputIdParam);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        if (outputIdParam.Value != DBNull.Value)
+                        {
+                            licenseID = Convert.ToInt32(outputIdParam.Value);
+                            isInserted = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        isInserted = false;
+                    }
+                }
+            }
+            errorMessage = string.Empty;
+            return isInserted;
         }
     }
 }

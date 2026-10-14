@@ -111,10 +111,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests
                     break;
                 case enTestTypes.WrittenTest:
                     this.Text = "Written Test Appointments";
+                    lblTitle.Text = "Written Test Appointments";
                     pictureBox2.Image = Resources.Written_Test_Big;
                     break;
                 case enTestTypes.PracticalTest:
                     this.Text = "Practical Test Appointments";
+                    lblTitle.Text = "Practical Test Appointments";
                     pictureBox2.Image = Resources.Driving_Test_Big;
                     break;
             }

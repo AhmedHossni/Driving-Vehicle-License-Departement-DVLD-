@@ -61,6 +61,18 @@ namespace DVLD_BusinessLogicLayer
             return result;
         }
 
+        public static bool HaveAnyTestAppointment(
+                int localDrivingLicenseApplicationID,
+                int testTypeID,
+                out string errorMessage)
+        {
+            return clsTestAppointmentData.HaveAnyTestAppointment(
+                localDrivingLicenseApplicationID,
+                testTypeID,
+                out errorMessage
+            );
+        }
+
         public static clsTestAppointment GetBy(int testAppointmentID)
         {
             enTestTypes testTypeID = default;

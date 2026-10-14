@@ -94,8 +94,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             }
 
             lblFeesValue.Text = testTypeFees.ToString("0.0");
-            lblRAppFeesValue.Text = rtFees != 0 
-                ? rtFees.ToString("0.0") : rtFees.ToString();
+
+            if(clsTestAppointment.HaveAnyTestAppointment(LDLAppID, (int)testType, out errorMessage))
+            {
+                lblRAppFeesValue.Text = 5m.ToString("0.0");
+            }
+            else
+            {
+
+            }
+
             lblTotalFeesValue.Text = (rtFees + testTypeFees).ToString("0.0");
 
             if(rtAppID != null)

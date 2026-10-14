@@ -67,6 +67,7 @@
             this.btnIssue.TabIndex = 147;
             this.btnIssue.Text = "Issue";
             this.btnIssue.UseVisualStyleBackColor = true;
+            this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
             // btnClose
             // 

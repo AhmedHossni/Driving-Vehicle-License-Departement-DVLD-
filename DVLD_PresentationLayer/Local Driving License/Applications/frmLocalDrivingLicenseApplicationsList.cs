@@ -1,5 +1,6 @@
 ﻿using CommonUseThings;
 using Driving___Vehicle_License_Departement__DVLD_.Applications;
+using Driving___Vehicle_License_Departement__DVLD_.License;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Tests;
 using DVLD_BusinessLogicLayer;
 using System;
@@ -86,6 +87,22 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             else if (selectedPassedTest == 3) 
             {
                 secduleToolStripMenuItem.Enabled = false;
+            }
+        }
+        
+        private void IssueLicenseAvailability(int localDLAppId)
+        {
+            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+
+            if (GetSelectedItemPassedTests() != 3)
+                return;
+
+            if (!clsLicense.IsThisLDLAppHaveLocalDrivingIssue(localDLAppId, out string errorMessage))
+            {
+                if (string.IsNullOrEmpty(errorMessage))
+                    issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
+                else
+                    frmMainStyle.HandleErrorMessage(ref errorMessage, "error Message :(");
             }
         }
 
@@ -343,17 +360,53 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
 
         private void cmsLDLApplication_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ManagingAvailableTests(GetAndSelectCurrentGridRowId());
+            int localDLAppID = GetAndSelectCurrentGridRowId();
+
+            ManagingAvailableTests(localDLAppID);
+
+            IssueLicenseAvailability(localDLAppID);
         }
 
-        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenTestAppointmentsForm(enTestTypes testType, int localDLAppID)
         {
             frmTestAppointments frmTestAppointments
-                = new frmTestAppointments(enTestTypes.VisionTest, GetAndSelectCurrentGridRowId());
+                = new frmTestAppointments(testType,
+                localDLAppID);
 
             frmTestAppointments.ShowDialog();
 
             LoadDataInGridDataView();
         }
+
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int localDLAppID = GetAndSelectCurrentGridRowId();
+
+            OpenTestAppointmentsForm(enTestTypes.VisionTest, localDLAppID);
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int localDLAppID = GetAndSelectCurrentGridRowId();
+
+            OpenTestAppointmentsForm(enTestTypes.WrittenTest, localDLAppID);
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int localDLAppID = GetAndSelectCurrentGridRowId();
+
+            OpenTestAppointmentsForm(enTestTypes.PracticalTest, localDLAppID);
+        }
+
+        private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmIssueLicense frmIssueLicense
+                = new frmIssueLicense(GetAndSelectCurrentGridRowId());
+
+            frmIssueLicense.ShowDialog();
+        }
+
+
     }
 }

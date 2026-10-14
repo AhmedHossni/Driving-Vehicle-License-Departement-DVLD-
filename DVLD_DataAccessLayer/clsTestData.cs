@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
     public class clsTestData
     {
-        public static bool AddResultRow(int testAppointmentID, 
+        public static bool AddResultRow(int testAppointmentID,
             bool testResult, string notes, int createdByUserID
-            , out int testID,out string errorMessage)
+            , out int testID, out string errorMessage)
         {
             try
             {
@@ -42,5 +43,6 @@ namespace DVLD_DataAccessLayer
             errorMessage = string.Empty;
             return true;
         }
+
     }
 }

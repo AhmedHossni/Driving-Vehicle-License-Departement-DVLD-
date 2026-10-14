@@ -333,6 +333,47 @@ WHERE LocalDrivingLicenseApplicationID = @localDLAppID AND TestTypeID = @testTyp
                     return true;
                 }
             }
+
+        }
+
+        public static bool HaveAnyTestAppointment(
+            int localDrivingLicenseApplicationID,
+            int testTypeID,
+            out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            string query = @"SELECT TOP 1 1 FROM TestAppointments 
+                         WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                           AND TestTypeID = @TestTypeID";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", testTypeID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            isFound = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
         }
     }
 }
