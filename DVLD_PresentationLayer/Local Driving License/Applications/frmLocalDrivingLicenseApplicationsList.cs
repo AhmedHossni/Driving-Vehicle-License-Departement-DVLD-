@@ -106,7 +106,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             }
         }
 
-        private void GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests)
+        private void GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests,
+            out string applicatioStatus)
         {
             DataGridView.HitTestInfo hitInfo = 
                 dgvLocalDrivingLicenseApplicationsData.HitTest(_point.X, _point.Y);
@@ -119,25 +120,30 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 LDLAppId = (int)dgvLocalDrivingLicenseApplicationsData.CurrentCell.Value;
                 NationalNo = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[1].Value;
                 passedTests = (int)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[5].Value;
+                applicatioStatus = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[6].Value;
             }
             else
             {
                 LDLAppId = -1;
                 NationalNo = string.Empty;
                 passedTests = 0;
+                applicatioStatus = string.Empty;
             }
 
         }
 
         private int GetSelectedItemPassedTests()
         {
-            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests);
+            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo,
+                out int passedTests, out string applicationStatus);
+
             return passedTests;
         }
 
         private int GetAndSelectCurrentGridRowId()
         {
-            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests);
+            GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo,
+                out int passedTests, out string applicationStatus);
 
             return LDLAppId;
         }
@@ -261,9 +267,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 = clsLocalDrivingLicenseApplication.GetBy(localDLAppID, out string errorMessage);
 
             if (!(localDrivingLicenseApplication is null))
-            {
                 return localDrivingLicenseApplication.ApplicationId;
-            }
             
             HandleErrorMessage(ref errorMessage);
 
@@ -365,6 +369,25 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             ManagingAvailableTests(localDLAppID);
 
             IssueLicenseAvailability(localDLAppID);
+
+            CanShowDriverLicenseInfo();
+        }
+
+        private void GetCurrentDGVStatus(out string status)
+        {
+            GetAndSelectCurrentGridRowId(out int localDLAppID, out string nationalNo,
+                out int passedTests, out status);
+        }
+
+        private void CanShowDriverLicenseInfo()
+        {
+            GetCurrentDGVStatus(out string status);
+
+            if(status == enApplicationStatus.Complete.ToString())
+                showLicenseToolStripMenuItem.Enabled = true;
+            else
+                showLicenseToolStripMenuItem.Enabled = false;
+
         }
 
         private void OpenTestAppointmentsForm(enTestTypes testType, int localDLAppID)
@@ -405,8 +428,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 = new frmIssueLicense(GetAndSelectCurrentGridRowId());
 
             frmIssueLicense.ShowDialog();
+
+            LoadDataInGridDataView();
         }
 
-
+        private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmDriverLicenseInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
+        }
     }
 }

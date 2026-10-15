@@ -68,6 +68,47 @@ namespace DVLD_BusinessLogicLayer
                 (localDrivingLicense, out errorMessage);
         }
 
+        public static bool GetDriverInfoByLDLAppID(int localDLAppID,
+            out int licenseID, out string className, out int driverID,
+            out string fullName, out string nationalNo, out string gender,
+            out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
+            out string notes, out bool isActive, out DateTime dateOfBirth,
+            out string imagePath, out string errorMessage)
+        {
+            licenseID = -1;
+            className = string.Empty;
+            driverID = -1;
+            fullName = string.Empty;
+            nationalNo = string.Empty;
+            gender = string.Empty;
+            issueDate = DateTime.MinValue;
+            expirationDate = DateTime.MinValue;
+            issueReason = 0;
+            notes = string.Empty;
+            isActive = false;
+            dateOfBirth = DateTime.MinValue;
+            imagePath = string.Empty;
+            errorMessage = string.Empty;
+
+            return clsLicenseData.GetLicenseInfoByLDLAppID(
+                localDLAppID,
+                out licenseID,
+                out className,
+                out driverID,
+                out fullName,
+                out nationalNo,
+                out gender,
+                out issueDate,
+                out expirationDate,
+                out issueReason,
+                out notes,
+                out isActive,
+                out dateOfBirth,
+                out imagePath,
+                out errorMessage
+            );
+        }
+
         public bool Save()
         {
             switch (Mode)

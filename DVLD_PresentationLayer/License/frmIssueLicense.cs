@@ -110,8 +110,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License
                     btnIssue.Enabled = false;
 
                     clsApplication.UpdateStatusByLDLAppID
-                        (_localDrivingLicenseApplication.ApplicationId,
-                        enApplicationStatus.Complete, DateTime.Now, out string errorMessage);                  
+                        (_localDrivingLicenseApplication.LocalDrivingLicenseApplicationId,
+                        enApplicationStatus.Complete, DateTime.Now, out string errorMessage);             
                 }
                     
             }

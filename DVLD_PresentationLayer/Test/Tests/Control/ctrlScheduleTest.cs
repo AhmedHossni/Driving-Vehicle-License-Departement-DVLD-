@@ -74,6 +74,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
                     ref fullName,
                     ref trials,
                     out errorMessage);
+
+                if (clsTestAppointment.HaveAnyTestAppointment(LDLAppID, (int)testType, out errorMessage))
+                {
+                    lblRAppFeesValue.Text = 5m.ToString("0.0"); // Retest Fee
+                    rtFees = 5;
+                }
+                else
+                {
+                    lblRAppFeesValue.Text = "0";
+                    rtFees = 0;
+                }
             }
 
             HandleErrorMessage(ref errorMessage);
@@ -94,15 +105,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Test.Tests.Control
             }
 
             lblFeesValue.Text = testTypeFees.ToString("0.0");
-
-            if(clsTestAppointment.HaveAnyTestAppointment(LDLAppID, (int)testType, out errorMessage))
-            {
-                lblRAppFeesValue.Text = 5m.ToString("0.0");
-            }
-            else
-            {
-
-            }
 
             lblTotalFeesValue.Text = (rtFees + testTypeFees).ToString("0.0");
 

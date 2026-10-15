@@ -233,7 +233,7 @@
             this.showLicenseToolStripMenuItem,
             this.showPersonLicenseHistoryToolStripMenuItem});
             this.cmsLDLApplication.Name = "cmsLDLApplication";
-            this.cmsLDLApplication.Size = new System.Drawing.Size(309, 308);
+            this.cmsLDLApplication.Size = new System.Drawing.Size(309, 336);
             this.cmsLDLApplication.Opening += new System.ComponentModel.CancelEventHandler(this.cmsLDLApplication_Opening);
             // 
             // showApplicationDetailsToolStripMenuItem
@@ -321,6 +321,7 @@
             this.showLicenseToolStripMenuItem.Name = "showLicenseToolStripMenuItem";
             this.showLicenseToolStripMenuItem.Size = new System.Drawing.Size(308, 38);
             this.showLicenseToolStripMenuItem.Text = "Show License";
+            this.showLicenseToolStripMenuItem.Click += new System.EventHandler(this.showLicenseToolStripMenuItem_Click);
             // 
             // showPersonLicenseHistoryToolStripMenuItem
             // 

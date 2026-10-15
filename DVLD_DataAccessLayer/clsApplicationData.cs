@@ -216,38 +216,42 @@ namespace DVLD_DataAccessLayer
         }
 
         public static bool UpdateStatusByLDLAppID(int localDLAppId,
-            enApplicationStatus applicationStatus, DateTime lastStatusUpdate
-            , out string errorMessage)
+            enApplicationStatus applicationStatus, DateTime lastStatusUpdate,
+            out string errorMessage)
         {
+            errorMessage = string.Empty;
             int rowsAffected = 0;
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-                string query = @"UPDATE [dbo].[Applications]
-                                SET [ApplicationStatus] = @applicationStatus,
-                                [LastStatusDate] =  @lastStatusUpdate
-                                WHERE ApplicationID = (SELECT LDLApp.ApplicationID FROM LocalDrivingLicenseApplications LDLApp
-                                INNER JOIN Applications App ON App.ApplicationID = LDLApp.ApplicationID
-                                WHERE LDLApp.LocalDrivingLicenseApplicationID = @localDLAppId);";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    command.Parameters.AddWithValue("@localDLAppId", localDLAppId);
-                    command.Parameters.AddWithValue("@applicationStatus", (int)applicationStatus);
-                    command.Parameters.AddWithValue("@lastStatusUpdate", lastStatusUpdate);
-                    try
+                    string query = @"UPDATE [dbo].[Applications] 
+                             SET [ApplicationStatus] = @applicationStatus, 
+                                 [LastStatusDate] = @lastStatusUpdate 
+                             WHERE ApplicationID = (
+                                 SELECT ApplicationID 
+                                 FROM LocalDrivingLicenseApplications 
+                                 WHERE LocalDrivingLicenseApplicationID = @localDLAppId
+                             );";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@localDLAppId", localDLAppId);
+                        command.Parameters.AddWithValue("@applicationStatus", (int)applicationStatus);
+                        command.Parameters.AddWithValue("@lastStatusUpdate", lastStatusUpdate);
+
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
-                    {
-                        errorMessage = ex.Message;
-                        return false;
-                    }
                 }
             }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
 
-            errorMessage = string.Empty;
             return rowsAffected > 0;
         }
 

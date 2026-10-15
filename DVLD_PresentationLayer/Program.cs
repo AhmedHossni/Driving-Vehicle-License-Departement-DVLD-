@@ -18,8 +18,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-            //System.Windows.Forms.Application.Run(new frmIssueLicense(37));
-
             frmLogin frmLogin = new frmLogin();
             frmMain MainScreen;
             do

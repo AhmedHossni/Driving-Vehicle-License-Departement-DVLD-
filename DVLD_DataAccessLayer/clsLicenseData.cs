@@ -110,6 +110,84 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static bool GetLicenseInfoByLDLAppID(int localDLAppID,
+    out int licenseID, out string className, out int driverID,
+    out string fullName, out string nationalNo, out string gender,
+    out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
+    out string notes, out bool isActive, out DateTime dateOfBirth,
+    out string imagePath, out string errorMessage)
+        {
+            licenseID = 0;
+            className = string.Empty;
+            driverID = 0;
+            fullName = string.Empty;
+            nationalNo = string.Empty;
+            gender = string.Empty;
+            issueDate = DateTime.MinValue;
+            expirationDate = DateTime.MinValue;
+            issueReason = 0;
+            notes = string.Empty;
+            isActive = false;
+            dateOfBirth = DateTime.MinValue;
+            imagePath = string.Empty;
+            errorMessage = string.Empty;
+
+            bool isFound = false;
+
+            string query = "SELECT * FROM dbo.GetDriverLicenseInfoByLDLAppID(@LocalDLAppID)";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@LocalDLAppID", localDLAppID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                licenseID = (int)reader["LicenseID"];
+                                className = (string)reader["ClassName"];
+                                driverID = (int)reader["DriverID"];
+                                fullName = (string)reader["Full Name"];
+                                nationalNo = (string)reader["NationalNo"];
+                                gender = (string)reader["Gender"];
+                                issueDate = (DateTime)reader["IssueDate"];
+                                expirationDate = (DateTime)reader["ExpirationDate"];
+                                issueReason = (byte)reader["IssueReason"];
+
+                                notes = reader["Notes"] 
+                                    != DBNull.Value ? (string)reader["Notes"] : string.Empty;
+
+                                isActive = (bool)reader["IsActive"];
+                                dateOfBirth = (DateTime)reader["DateOfBirth"];
+
+                                imagePath = reader["ImagePath"] 
+                                    != DBNull.Value ? (string)reader["ImagePath"] : string.Empty;
+                            }
+                            else
+                            {
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                isFound = false;
+            }
+
+            return isFound;
+        }
+
         public static bool AddNewLDLicense(
             int applicationID, int driverID, int licenseClass,
             DateTime issueDate, string notes,
