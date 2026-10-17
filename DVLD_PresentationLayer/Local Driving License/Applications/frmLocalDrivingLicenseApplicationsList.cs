@@ -1,5 +1,6 @@
 ﻿using CommonUseThings;
 using Driving___Vehicle_License_Departement__DVLD_.Applications;
+using Driving___Vehicle_License_Departement__DVLD_.Driver;
 using Driving___Vehicle_License_Departement__DVLD_.License;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Tests;
 using DVLD_BusinessLogicLayer;
@@ -60,6 +61,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
 
         private void ManagingAvailableTests(int localDLAppId)
         {
+            string localDLAppStatus = GetCurrentDGVStatus();
+            if (localDLAppStatus == enApplicationStatus.Cancel.ToString() ||
+                localDLAppStatus == enApplicationStatus.Complete.ToString())
+            {
+                secduleToolStripMenuItem.Enabled = false;
+                return;
+            }
+            else
+                secduleToolStripMenuItem.Enabled = true;
+
+
             int selectedPassedTest = GetSelectedItemPassedTests();
 
             secduleToolStripMenuItem.Enabled = true;
@@ -97,7 +109,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             if (GetSelectedItemPassedTests() != 3)
                 return;
 
-            if (!clsLicense.IsThisLDLAppHaveLocalDrivingIssue(localDLAppId, out string errorMessage))
+            if (!clsLicense.IsThisLDLAppHaveLocalDrivingLicense(localDLAppId, out string errorMessage))
             {
                 if (string.IsNullOrEmpty(errorMessage))
                     issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
@@ -106,7 +118,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             }
         }
 
-        private void GetAndSelectCurrentGridRowId(out int LDLAppId, out string NationalNo, out int passedTests,
+        private void GetAndSelectCurrentGridRowId(out int LDLAppId, 
+            out string NationalNo, out int passedTests,
             out string applicatioStatus)
         {
             DataGridView.HitTestInfo hitInfo = 
@@ -118,7 +131,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Selected = true;
                 dgvLocalDrivingLicenseApplicationsData.CurrentCell = dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[0];
                 LDLAppId = (int)dgvLocalDrivingLicenseApplicationsData.CurrentCell.Value;
-                NationalNo = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[1].Value;
+                NationalNo = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[2].Value;
                 passedTests = (int)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[5].Value;
                 applicatioStatus = (string)dgvLocalDrivingLicenseApplicationsData.Rows[hitInfo.RowIndex].Cells[6].Value;
             }
@@ -330,7 +343,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         
         private void CMS_Click_ShowLDLApplicationDetails(object sender, EventArgs e)
         {
-
+            new frmShowLDLAppInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
         }
 
         private void MessageBoxOperationDoneSuccessfully(string text)
@@ -366,24 +379,74 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         {
             int localDLAppID = GetAndSelectCurrentGridRowId();
 
+            if(localDLAppID == -1)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             ManagingAvailableTests(localDLAppID);
 
             IssueLicenseAvailability(localDLAppID);
 
             CanShowDriverLicenseInfo();
+
+            UpdateApplicationEditDeleteMenuItemsState(localDLAppID);
+            
+            UpdateCancelApplicationMenuItemState(GetCurrentDGVStatus());
         }
 
-        private void GetCurrentDGVStatus(out string status)
+        private void UpdateApplicationEditDeleteMenuItemsState(int localDLAppID)
+        {
+            if(clsTestAppointment.HaveAnyTestAppointment(localDLAppID, (int)enTestTypes.VisionTest
+                , out string errorMessage))
+            {
+                editApplicationToolStripMenuItem.Enabled = false;
+                deleteApplicationToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    frmMainStyle.HandleErrorMessage(ref errorMessage, "errorMessage");
+                    return;
+                }
+
+                editApplicationToolStripMenuItem.Enabled = true;
+                deleteApplicationToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void UpdateCancelApplicationMenuItemState(string status)
+        {
+            if (status == enApplicationStatus.Complete.ToString())
+                cancelApplicationToolStripMenuItem.Enabled = false;
+            else
+            {
+                cancelApplicationToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private string GetCurrentDGVStatus()
         {
             GetAndSelectCurrentGridRowId(out int localDLAppID, out string nationalNo,
-                out int passedTests, out status);
+                out int passedTests, out string status);
+
+            return status;
+        }
+        private string GetCurrentRowNationalNo()
+        {
+            GetAndSelectCurrentGridRowId(out int localDLAppID, out string nationalNo,
+                out int passedTests, out string status);
+
+            return nationalNo;
         }
 
         private void CanShowDriverLicenseInfo()
         {
-            GetCurrentDGVStatus(out string status);
+            string status = GetCurrentDGVStatus();
 
-            if(status == enApplicationStatus.Complete.ToString())
+            if (status == enApplicationStatus.Complete.ToString())
                 showLicenseToolStripMenuItem.Enabled = true;
             else
                 showLicenseToolStripMenuItem.Enabled = false;
@@ -435,6 +498,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new frmDriverLicenseInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string nationalNo = GetCurrentRowNationalNo();
+
+            frmDriverLicenseHistory frmDriverLicenseHistory
+                = new frmDriverLicenseHistory(nationalNo);
+
+            frmDriverLicenseHistory.ShowDialog();
         }
     }
 }

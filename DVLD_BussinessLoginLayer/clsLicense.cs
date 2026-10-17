@@ -1,5 +1,6 @@
 ﻿using DVLD_DataAccessLayer;
 using System;
+using System.Data;
 
 namespace DVLD_BusinessLogicLayer
 {
@@ -62,9 +63,9 @@ namespace DVLD_BusinessLogicLayer
             return isSuccess;
         }
 
-        public static bool IsThisLDLAppHaveLocalDrivingIssue(int localDrivingLicense, out string errorMessage)
+        public static bool IsThisLDLAppHaveLocalDrivingLicense(int localDrivingLicense, out string errorMessage)
         {
-            return clsLicenseData.IsThisLDLAppHaveLocalDrivingIssue
+            return clsLicenseData.IsThisLDLAppHaveLocalDrivingLicense
                 (localDrivingLicense, out errorMessage);
         }
 
@@ -129,6 +130,16 @@ namespace DVLD_BusinessLogicLayer
             }
 
             return false;
+        }
+
+        public static DataTable GetLicensesByDriverID(int driverID, out string errorMessage)
+        {
+            return clsLicenseData.GetLicensesByDriverID(driverID, out errorMessage);
+        }
+
+        public static DataTable GetLicensesByNationalNo(string nationalNo, out string errorMessage)
+        {
+            return clsLicenseData.GetLicensesByNationalNo(nationalNo, out errorMessage);
         }
     }
 }

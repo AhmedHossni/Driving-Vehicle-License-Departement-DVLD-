@@ -78,7 +78,7 @@ namespace DVLD_DataAccessLayer
         //    }
         //}
 
-        public static bool IsThisLDLAppHaveLocalDrivingIssue(int localDLAppID,
+        public static bool IsThisLDLAppHaveLocalDrivingLicense(int localDLAppID,
             out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -110,12 +110,113 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static DataTable GetLicensesByDriverID(int driverID, out string errorMessage)
+        {
+            DataTable dt = new DataTable();
+            errorMessage = string.Empty;
+
+            string query = @"
+            SELECT 
+                L.LicenseID AS [Lic.ID],
+                L.ApplicationID AS [App.ID],
+                LC.ClassName AS [Class Name],
+                L.IssueDate AS [Issue Date],
+                L.ExpirationDate AS [Expiration Date],
+                L.IsActive AS [Is Active]
+            FROM Licenses L
+            INNER JOIN Applications Apps 
+                ON L.ApplicationID = Apps.ApplicationID
+            INNER JOIN LocalDrivingLicenseApplications LDLApps 
+                ON L.ApplicationID = LDLApps.ApplicationID
+            INNER JOIN LicenseClasses LC 
+                ON LDLApps.LicenseClassID = LC.LicenseClassID
+            WHERE L.DriverID = @DriverID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@DriverID", driverID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetLicensesByNationalNo
+            (string nationalNo, out string errorMessage)
+        {
+            DataTable dt = new DataTable();
+            errorMessage = string.Empty;
+
+            string query = @"
+            SELECT
+	            LicenseID AS [Lic.ID],
+	            L.ApplicationID AS [App.ID],
+	            LC.ClassName AS [Class Name],
+	            L.IssueDate AS [Issue Date],
+	            L.ExpirationDate AS [Expiration Date],
+	            L.IsActive AS [Is Active]
+            FROM Licenses L
+            INNER JOIN Applications Apps 
+                ON  L.ApplicationID = Apps.ApplicationID
+            INNER JOIN LocalDrivingLicenseApplications LDLApps 
+                ON  L.ApplicationID = LDLApps.ApplicationID
+            INNER JOIN LicenseClasses LC 
+                ON  LDLApps.LicenseClassID = LC.LicenseClassID
+            INNER JOIN People P 
+                ON  Apps.ApplicationPersonID = P.PersonID
+            WHERE P.NationalNo LIKE @nationalNo;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nationalNo", nationalNo);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return dt;
+        }
+
         public static bool GetLicenseInfoByLDLAppID(int localDLAppID,
-    out int licenseID, out string className, out int driverID,
-    out string fullName, out string nationalNo, out string gender,
-    out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
-    out string notes, out bool isActive, out DateTime dateOfBirth,
-    out string imagePath, out string errorMessage)
+            out int licenseID, out string className, out int driverID,
+            out string fullName, out string nationalNo, out string gender,
+            out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
+            out string notes, out bool isActive, out DateTime dateOfBirth,
+            out string imagePath, out string errorMessage)
         {
             licenseID = 0;
             className = string.Empty;

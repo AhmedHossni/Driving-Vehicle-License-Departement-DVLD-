@@ -29,6 +29,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Person_Forms
 
         public void LoadPersonDetails(int personId)
         {
+            if (personId != -1)
+            {
+                cboxSearchBy.SelectedIndex = (int)enComboBoxSearchBy.PersonID;
+                tboxSearch.Text = personId.ToString();
+            }
+            else
+                return;
+
             ctrlPersonInfo1.LoadPersonData(personId);
         }
 

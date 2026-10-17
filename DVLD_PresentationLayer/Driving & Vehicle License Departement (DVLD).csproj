@@ -58,11 +58,23 @@
     <Compile Include="Application\Control\ctrlApplicationFullInfo.Designer.cs">
       <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Driver\frmDriverLicenseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\frmDriverLicenseHistory.Designer.cs">
+      <DependentUpon>frmDriverLicenseHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\Control\ctrlDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="License\Control\ctrlDriverLicenseInfo.Designer.cs">
       <DependentUpon>ctrlDriverLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\Control\ctrlDriverLicenses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="License\Control\ctrlDriverLicenses.Designer.cs">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </Compile>
     <Compile Include="License\frmDriverLicenseInfo.cs">
       <SubType>Form</SubType>
@@ -115,6 +127,12 @@
     </Compile>
     <Compile Include="Local Driving License\Applications\frmLocalDrivingLicenseApplicationsList.Designer.cs">
       <DependentUpon>frmLocalDrivingLicenseApplicationsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Local Driving License\Applications\frmShowLDLAppInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Local Driving License\Applications\frmShowLDLAppInfo.Designer.cs">
+      <DependentUpon>frmShowLDLAppInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Person\Controls\ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
@@ -235,8 +253,14 @@
     <EmbeddedResource Include="Application\Control\ctrlApplicationFullInfo.resx">
       <DependentUpon>ctrlApplicationFullInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Driver\frmDriverLicenseHistory.resx">
+      <DependentUpon>frmDriverLicenseHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\Control\ctrlDriverLicenseInfo.resx">
       <DependentUpon>ctrlDriverLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\Control\ctrlDriverLicenses.resx">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="License\frmDriverLicenseInfo.resx">
       <DependentUpon>frmDriverLicenseInfo.cs</DependentUpon>
@@ -261,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Local Driving License\Applications\frmLocalDrivingLicenseApplicationsList.resx">
       <DependentUpon>frmLocalDrivingLicenseApplicationsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Local Driving License\Applications\frmShowLDLAppInfo.resx">
+      <DependentUpon>frmShowLDLAppInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Controls\ctrlAddEditPerson.resx">
       <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
@@ -363,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\PersonLicenseHistory 512.png" />
     <None Include="Resources\IssueDrivingLicense 321.png" />
     <None Include="Resources\Test 32.png" />
     <None Include="Resources\Written Test Big.png" />
