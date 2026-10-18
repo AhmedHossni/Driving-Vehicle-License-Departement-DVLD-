@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.gboxLDLAppBasicInfo = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.llblShowLicenseInfo = new System.Windows.Forms.LinkLabel();
             this.lblPassedTestsValue = new System.Windows.Forms.Label();
             this.lblPassedTests = new System.Windows.Forms.Label();
             this.lblAppliedForLicenseValue = new System.Windows.Forms.Label();
             this.lblAppliedForLicense = new System.Windows.Forms.Label();
             this.lblLDLAppIdValue = new System.Windows.Forms.Label();
             this.lblLDLAppId = new System.Windows.Forms.Label();
-            this.llblShowLicenseInfo = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gboxLDLAppBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,29 @@
             this.gboxLDLAppBasicInfo.TabIndex = 0;
             this.gboxLDLAppBasicInfo.TabStop = false;
             this.gboxLDLAppBasicInfo.Text = "Local Driving License Application Info";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.License_View_321;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 104);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(39, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
+            // llblShowLicenseInfo
+            // 
+            this.llblShowLicenseInfo.AutoSize = true;
+            this.llblShowLicenseInfo.Enabled = false;
+            this.llblShowLicenseInfo.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.llblShowLicenseInfo.Location = new System.Drawing.Point(55, 112);
+            this.llblShowLicenseInfo.Name = "llblShowLicenseInfo";
+            this.llblShowLicenseInfo.Size = new System.Drawing.Size(171, 24);
+            this.llblShowLicenseInfo.TabIndex = 14;
+            this.llblShowLicenseInfo.TabStop = true;
+            this.llblShowLicenseInfo.Text = "Show License Info";
+            this.llblShowLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblShowLicenseInfo_LinkClicked);
             // 
             // lblPassedTestsValue
             // 
@@ -117,28 +140,6 @@
             this.lblLDLAppId.Size = new System.Drawing.Size(133, 24);
             this.lblLDLAppId.TabIndex = 8;
             this.lblLDLAppId.Text = "L.D.L App Id :";
-            // 
-            // llblShowLicenseInfo
-            // 
-            this.llblShowLicenseInfo.AutoSize = true;
-            this.llblShowLicenseInfo.Enabled = false;
-            this.llblShowLicenseInfo.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.llblShowLicenseInfo.Location = new System.Drawing.Point(55, 113);
-            this.llblShowLicenseInfo.Name = "llblShowLicenseInfo";
-            this.llblShowLicenseInfo.Size = new System.Drawing.Size(171, 24);
-            this.llblShowLicenseInfo.TabIndex = 14;
-            this.llblShowLicenseInfo.TabStop = true;
-            this.llblShowLicenseInfo.Text = "Show License Info";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.License_View_321;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 104);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(39, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
             // 
             // ctrlLocalDrivingLicenseApplicationBasicInfo
             // 

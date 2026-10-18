@@ -497,7 +497,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new frmDriverLicenseInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
+            new frmLocalDriverLicenseInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
         }
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)

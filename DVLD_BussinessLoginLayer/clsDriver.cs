@@ -1,5 +1,6 @@
-﻿using System;
-using DVLD_DataAccessLayer;
+﻿using DVLD_DataAccessLayer;
+using System;
+using System.Data;
 
 namespace DVLD_BusinessLogicLayer
 {
@@ -122,6 +123,11 @@ namespace DVLD_BusinessLogicLayer
         public static bool DeleteDriver(int driverID, out string errorMessage)
         {
             return clsDriverData.DeleteDriver(driverID, out errorMessage);
+        }
+
+        public static DataTable GetAllDriversWithImportantInfo(out string errorMessage)
+        {
+            return clsDriverData.GetAllDriversWithImportantInfo(out errorMessage);
         }
     }
 }

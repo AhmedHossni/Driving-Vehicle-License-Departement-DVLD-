@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License
 {
-    public partial class frmDriverLicenseInfo : frmMainStyle
+    public partial class frmLocalDriverLicenseInfo : frmMainStyle
     {
-        public frmDriverLicenseInfo(int localDrivingLicenseAppID)
+        public frmLocalDriverLicenseInfo(int localDrivingLicenseAppID)
         {
             InitializeComponent();
 

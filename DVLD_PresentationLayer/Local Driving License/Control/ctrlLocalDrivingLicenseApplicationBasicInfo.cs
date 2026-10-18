@@ -1,10 +1,13 @@
-﻿using DVLD_BusinessLogicLayer;
+﻿using Driving___Vehicle_License_Departement__DVLD_.License;
+using DVLD_BusinessLogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Control
 {
     public partial class ctrlLocalDrivingLicenseApplicationBasicInfo : UserControl
     {
+        int _localDrivingLicenseAppID = -1;
         public ctrlLocalDrivingLicenseApplicationBasicInfo()
         {
             InitializeComponent();
@@ -22,6 +25,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Con
                 lblAppliedForLicenseValue.Text = appliedForLicense;
                 lblPassedTestsValue.Text = passedTest.ToString() + "/3";
 
+                EnableShowLDLIfThisAppHaveOne(localDLAppId);
             }
             else
             {
@@ -35,6 +39,23 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Con
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+        private void EnableShowLDLIfThisAppHaveOne(int localDLAppId)
+        {
+            if(clsLicense.GetDriverInfoByLDLAppID(localDLAppId, out int licenseID, out string className, out int driverID,
+            out string fullName, out string nationalNo, out string gender,
+            out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
+            out string notes, out bool isActive, out DateTime dateOfBirth,
+            out string imagePath, out string errorMessage) == true)
+            {
+                llblShowLicenseInfo.Enabled = true;
+                _localDrivingLicenseAppID = localDLAppId;
+            }
+        }
+
+        private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new frmLocalDriverLicenseInfo(_localDrivingLicenseAppID).ShowDialog();
+        }
     }
 }

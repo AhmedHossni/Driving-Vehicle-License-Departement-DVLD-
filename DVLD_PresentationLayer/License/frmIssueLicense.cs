@@ -69,33 +69,59 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License
         private bool SaveDriver(out int driverID)
         {
             driverID = -1;
+            string errorMessage = string.Empty;
 
-            clsDriver driver = new clsDriver();
+            clsApplication application 
+                = clsApplication.GetBy(_localDrivingLicenseApplication.ApplicationId, out errorMessage);
 
-            driver.CreatedByUserID = clsUser.SystemUser.Id;
-            
-            if (clsApplication.GetBy(_localDrivingLicenseApplication.ApplicationId,
-                out string errorMessage) is clsApplication application)
-                driver.PersonID = application.PersonId;
-            else
+            if (application == null)
             {
-                frmMainStyle.HandleErrorMessage(ref errorMessage,
-                    "Faild Process :(");      
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    frmMainStyle.HandleErrorMessage(ref errorMessage, "Failed Process :(");
+                }
+                else
+                {
+                    MessageBox.Show("Application not found!", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return false;
             }
 
-            if (driver.Save(out errorMessage))
+            clsDriver searchedDriver = clsDriver.FindByPersonID(application.PersonId, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                driverID = driver.DriverID;
+                frmMainStyle.HandleErrorMessage(ref errorMessage, "Error Message :(");
+                return false;
+            }
+
+            if (searchedDriver != null)
+            {
+                driverID = searchedDriver.DriverID;
+                return true;
+            }
+
+            clsDriver newDriver = new clsDriver();
+            newDriver.PersonID = application.PersonId;
+            newDriver.CreatedByUserID = clsUser.SystemUser.Id;
+
+            if (newDriver.Save(out errorMessage))
+            {
+                driverID = newDriver.DriverID;
                 return true;
             }
             else
             {
                 if (string.IsNullOrEmpty(errorMessage))
-                    MessageBox.Show("The issuance process failed!");
+                {
+                    MessageBox.Show("The driver creation process failed!", 
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 else
-                    frmMainStyle.HandleErrorMessage(ref errorMessage,
-                    "Faild Process :(");
+                {
+                    frmMainStyle.HandleErrorMessage(ref errorMessage, "Failed Process :(");
+                }
 
                 return false;
             }

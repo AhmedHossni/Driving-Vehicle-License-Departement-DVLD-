@@ -263,6 +263,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Driver_Main {
+            get {
+                object obj = ResourceManager.GetObject("Driver Main", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Driving_Test_Big {
             get {
                 object obj = ResourceManager.GetObject("Driving Test Big", resourceCulture);

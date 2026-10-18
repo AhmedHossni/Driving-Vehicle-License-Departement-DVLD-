@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
@@ -184,6 +185,48 @@ namespace DVLD_DataAccessLayer
                 }
             }
             return (rowsAffected > 0);
+        }
+
+        public static DataTable GetAllDriversWithImportantInfo(out string errorMessage)
+        {
+            DataTable dt = new DataTable();
+            errorMessage = string.Empty;
+            string query = @"
+            SELECT 
+                D.DriverID AS [Driver ID],
+                D.PersonID AS [Person ID],
+                P.NationalNo AS [National No],
+                CONCAT(P.FirstName, ' ', P.SecondName, ' ', P.ThirdName, ' ', P.LastName) AS [Full Name],
+                D.CreatedDate AS [Created Date],
+                (SELECT COUNT(*) FROM Licenses L WHERE L.DriverID = D.DriverID AND L.IsActive = 1) +        
+                (SELECT COUNT(*) FROM InternationalLicenses IL WHERE IL.DriverID = D.DriverID AND IL.IsActive = 1) AS [Active Licenses] 
+            FROM Drivers D
+            INNER JOIN People P 
+                ON D.PersonID = P.PersonID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return dt;
         }
     }
 }

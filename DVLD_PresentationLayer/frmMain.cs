@@ -1,4 +1,6 @@
 ﻿using Driving___Vehicle_License_Departement__DVLD_.Applications;
+using Driving___Vehicle_License_Departement__DVLD_.Driver;
+using Driving___Vehicle_License_Departement__DVLD_.License.International;
 using Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Applications;
 using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type;
@@ -162,6 +164,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_
                 = new frmLocalDrivingLicenseApplicationsList();
 
             frm.ShowDialog();
+        }
+
+        private void btnDrivers_Click(object sender, EventArgs e)
+        {
+            new frmDriversList().ShowDialog();
+        }
+
+        private void internationalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmIssueInternationalLicense().ShowDialog();
         }
     }
 }

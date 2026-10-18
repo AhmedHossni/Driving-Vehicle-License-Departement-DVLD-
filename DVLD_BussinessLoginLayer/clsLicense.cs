@@ -69,6 +69,8 @@ namespace DVLD_BusinessLogicLayer
                 (localDrivingLicense, out errorMessage);
         }
 
+
+
         public static bool GetDriverInfoByLDLAppID(int localDLAppID,
             out int licenseID, out string className, out int driverID,
             out string fullName, out string nationalNo, out string gender,
@@ -140,6 +142,24 @@ namespace DVLD_BusinessLogicLayer
         public static DataTable GetLicensesByNationalNo(string nationalNo, out string errorMessage)
         {
             return clsLicenseData.GetLicensesByNationalNo(nationalNo, out errorMessage);
+        }
+
+        public static bool GetLicenseInfoByID(
+            int licenseID,
+            ref int applicationID,
+            ref int localDrivingLicenseApplicationID,
+            ref int licenseClass,
+            ref int driverID,
+            out string errorMessage)
+        {
+            return clsLicenseData.GetLicenseInfoByID(
+                licenseID,
+                ref applicationID,
+                ref localDrivingLicenseApplicationID,
+                ref licenseClass,
+                ref driverID,
+                out errorMessage
+            );
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using CommonUseThings;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccessLayer
 {
@@ -77,6 +71,62 @@ namespace DVLD_DataAccessLayer
         //        }
         //    }
         //}
+
+        public static bool GetLicenseInfoByID(
+        int licenseID,
+        ref int applicationID,
+        ref int localDrivingLicenseApplicationID,
+        ref int licenseClass,
+        ref int driverID,
+        out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            string query = @"
+            SELECT 
+                L.LicenseID,
+                L.ApplicationID,
+                LDLApps.LocalDrivingLicenseApplicationID,
+                L.LicenseClass,
+                L.DriverID
+            FROM Licenses L
+            INNER JOIN LocalDrivingLicenseApplications LDLApps 
+                ON L.ApplicationID = LDLApps.ApplicationID
+            WHERE L.LicenseID = @LicenseID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                applicationID = (int)reader["ApplicationID"];
+                                localDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
+                                licenseClass = (int)reader["LicenseClass"];
+                                driverID = (int)reader["DriverID"];
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
+        }
 
         public static bool IsThisLDLAppHaveLocalDrivingLicense(int localDLAppID,
             out string errorMessage)

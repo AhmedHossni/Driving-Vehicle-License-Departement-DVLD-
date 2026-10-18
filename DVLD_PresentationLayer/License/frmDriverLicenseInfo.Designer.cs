@@ -1,6 +1,6 @@
 ﻿namespace Driving___Vehicle_License_Departement__DVLD_.License
 {
-    partial class frmDriverLicenseInfo
+    partial class frmLocalDriverLicenseInfo
     {
         /// <summary>
         /// Required designer variable.
