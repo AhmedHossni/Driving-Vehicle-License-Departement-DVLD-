@@ -34,6 +34,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.llblShowLicenseHistory = new System.Windows.Forms.LinkLabel();
             this.llblShowLicenseInfo = new System.Windows.Forms.LinkLabel();
+            this.ctrlInternationalDrivingLicenseApplicationInfo1 = new Driving___Vehicle_License_Departement__DVLD_.Application.Control.ctrlInternationalDrivingLicenseApplicationInfo();
             this.SuspendLayout();
             // 
             // ctrlLicenseFilter1
@@ -45,7 +46,7 @@
             // 
             // ctrlDriverLicenseInfo1
             // 
-            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(22, 159);
+            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(22, 166);
             this.ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
             this.ctrlDriverLicenseInfo1.Size = new System.Drawing.Size(866, 344);
             this.ctrlDriverLicenseInfo1.TabIndex = 1;
@@ -61,6 +62,7 @@
             this.btnIssue.TabIndex = 149;
             this.btnIssue.Text = "Issue";
             this.btnIssue.UseVisualStyleBackColor = true;
+            this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
             // btnClose
             // 
@@ -72,6 +74,7 @@
             this.btnClose.TabIndex = 148;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // llblShowLicenseHistory
             // 
@@ -84,6 +87,7 @@
             this.llblShowLicenseHistory.TabIndex = 150;
             this.llblShowLicenseHistory.TabStop = true;
             this.llblShowLicenseHistory.Text = "Show License History";
+            this.llblShowLicenseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblShowLicenseHistory_LinkClicked);
             // 
             // llblShowLicenseInfo
             // 
@@ -96,18 +100,28 @@
             this.llblShowLicenseInfo.TabIndex = 151;
             this.llblShowLicenseInfo.TabStop = true;
             this.llblShowLicenseInfo.Text = "Show License Info";
+            this.llblShowLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblShowLicenseInfo_LinkClicked);
+            // 
+            // ctrlInternationalDrivingLicenseApplicationInfo1
+            // 
+            this.ctrlInternationalDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(2, 523);
+            this.ctrlInternationalDrivingLicenseApplicationInfo1.Name = "ctrlInternationalDrivingLicenseApplicationInfo1";
+            this.ctrlInternationalDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(905, 205);
+            this.ctrlInternationalDrivingLicenseApplicationInfo1.TabIndex = 152;
             // 
             // frmIssueInternationalLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 794);
+            this.Controls.Add(this.ctrlInternationalDrivingLicenseApplicationInfo1);
             this.Controls.Add(this.llblShowLicenseInfo);
             this.Controls.Add(this.llblShowLicenseHistory);
             this.Controls.Add(this.btnIssue);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlDriverLicenseInfo1);
             this.Controls.Add(this.ctrlLicenseFilter1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmIssueInternationalLicense";
             this.Text = "Issue International License";
             this.ResumeLayout(false);
@@ -123,5 +137,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.LinkLabel llblShowLicenseHistory;
         private System.Windows.Forms.LinkLabel llblShowLicenseInfo;
+        private Application.Control.ctrlInternationalDrivingLicenseApplicationInfo ctrlInternationalDrivingLicenseApplicationInfo1;
     }
 }

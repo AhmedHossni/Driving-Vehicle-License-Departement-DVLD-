@@ -31,13 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsersList));
             this.pnlFormUpper = new System.Windows.Forms.Panel();
-            this.cboxIsActiveOptions = new System.Windows.Forms.ComboBox();
-            this.btnAddPerson = new System.Windows.Forms.Button();
-            this.tboxSearch = new System.Windows.Forms.TextBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
             this.cboxSearchBy = new System.Windows.Forms.ComboBox();
-            this.lblFormTitle = new System.Windows.Forms.Label();
-            this.pbFormMainImage = new System.Windows.Forms.PictureBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.cmsOperationsOnUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,10 +43,15 @@
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblRecods = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lblFormTitle = new System.Windows.Forms.Label();
+            this.pbFormMainImage = new System.Windows.Forms.PictureBox();
+            this.btnAddPerson = new System.Windows.Forms.Button();
+            this.cboxIsActiveOptions = new System.Windows.Forms.ComboBox();
+            this.tboxSearch = new System.Windows.Forms.TextBox();
             this.pnlFormUpper.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmsOperationsOnUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFormUpper
@@ -68,41 +68,6 @@
             this.pnlFormUpper.Name = "pnlFormUpper";
             this.pnlFormUpper.Size = new System.Drawing.Size(1175, 176);
             this.pnlFormUpper.TabIndex = 3;
-            // 
-            // cboxIsActiveOptions
-            // 
-            this.cboxIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxIsActiveOptions.FormattingEnabled = true;
-            this.cboxIsActiveOptions.Items.AddRange(new object[] {
-            "All",
-            "Yes",
-            "No"});
-            this.cboxIsActiveOptions.Location = new System.Drawing.Point(331, 142);
-            this.cboxIsActiveOptions.Name = "cboxIsActiveOptions";
-            this.cboxIsActiveOptions.Size = new System.Drawing.Size(95, 24);
-            this.cboxIsActiveOptions.TabIndex = 8;
-            this.cboxIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cboxIsActiveOptions_SelectedIndexChanged);
-            // 
-            // btnAddPerson
-            // 
-            this.btnAddPerson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.btnAddPerson.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddPerson.BackgroundImage")));
-            this.btnAddPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddPerson.Location = new System.Drawing.Point(1066, 103);
-            this.btnAddPerson.Name = "btnAddPerson";
-            this.btnAddPerson.Size = new System.Drawing.Size(75, 63);
-            this.btnAddPerson.TabIndex = 7;
-            this.btnAddPerson.UseVisualStyleBackColor = false;
-            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
-            // 
-            // tboxSearch
-            // 
-            this.tboxSearch.Location = new System.Drawing.Point(331, 142);
-            this.tboxSearch.Name = "tboxSearch";
-            this.tboxSearch.Size = new System.Drawing.Size(181, 24);
-            this.tboxSearch.TabIndex = 4;
-            this.tboxSearch.TextChanged += new System.EventHandler(this.tboxSearch_TextChanged);
-            this.tboxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchBy_KeyPress);
             // 
             // lblFilterBy
             // 
@@ -131,27 +96,6 @@
             this.cboxSearchBy.Size = new System.Drawing.Size(181, 24);
             this.cboxSearchBy.TabIndex = 2;
             this.cboxSearchBy.SelectedIndexChanged += new System.EventHandler(this.cboxSearchBy_SelectedIndexChanged);
-            // 
-            // lblFormTitle
-            // 
-            this.lblFormTitle.AutoSize = true;
-            this.lblFormTitle.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold);
-            this.lblFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
-            this.lblFormTitle.Location = new System.Drawing.Point(503, 103);
-            this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(154, 24);
-            this.lblFormTitle.TabIndex = 1;
-            this.lblFormTitle.Text = "Manage Users";
-            // 
-            // pbFormMainImage
-            // 
-            this.pbFormMainImage.Image = ((System.Drawing.Image)(resources.GetObject("pbFormMainImage.Image")));
-            this.pbFormMainImage.Location = new System.Drawing.Point(499, 12);
-            this.pbFormMainImage.Name = "pbFormMainImage";
-            this.pbFormMainImage.Size = new System.Drawing.Size(162, 88);
-            this.pbFormMainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbFormMainImage.TabIndex = 0;
-            this.pbFormMainImage.TabStop = false;
             // 
             // dgvUsers
             // 
@@ -255,6 +199,62 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnFormClose_Click);
             // 
+            // lblFormTitle
+            // 
+            this.lblFormTitle.AutoSize = true;
+            this.lblFormTitle.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold);
+            this.lblFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.lblFormTitle.Location = new System.Drawing.Point(503, 103);
+            this.lblFormTitle.Name = "lblFormTitle";
+            this.lblFormTitle.Size = new System.Drawing.Size(154, 24);
+            this.lblFormTitle.TabIndex = 1;
+            this.lblFormTitle.Text = "Manage Users";
+            // 
+            // pbFormMainImage
+            // 
+            this.pbFormMainImage.Image = ((System.Drawing.Image)(resources.GetObject("pbFormMainImage.Image")));
+            this.pbFormMainImage.Location = new System.Drawing.Point(499, 12);
+            this.pbFormMainImage.Name = "pbFormMainImage";
+            this.pbFormMainImage.Size = new System.Drawing.Size(162, 88);
+            this.pbFormMainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFormMainImage.TabIndex = 0;
+            this.pbFormMainImage.TabStop = false;
+            // 
+            // btnAddPerson
+            // 
+            this.btnAddPerson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(202)))), ((int)(((byte)(155)))));
+            this.btnAddPerson.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddPerson.BackgroundImage")));
+            this.btnAddPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddPerson.Location = new System.Drawing.Point(1066, 103);
+            this.btnAddPerson.Name = "btnAddPerson";
+            this.btnAddPerson.Size = new System.Drawing.Size(75, 63);
+            this.btnAddPerson.TabIndex = 7;
+            this.btnAddPerson.UseVisualStyleBackColor = false;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
+            // 
+            // cboxIsActiveOptions
+            // 
+            this.cboxIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxIsActiveOptions.FormattingEnabled = true;
+            this.cboxIsActiveOptions.Items.AddRange(new object[] {
+            "All",
+            "Yes",
+            "No"});
+            this.cboxIsActiveOptions.Location = new System.Drawing.Point(331, 142);
+            this.cboxIsActiveOptions.Name = "cboxIsActiveOptions";
+            this.cboxIsActiveOptions.Size = new System.Drawing.Size(95, 24);
+            this.cboxIsActiveOptions.TabIndex = 8;
+            this.cboxIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cboxIsActiveOptions_SelectedIndexChanged);
+            // 
+            // tboxSearch
+            // 
+            this.tboxSearch.Location = new System.Drawing.Point(331, 142);
+            this.tboxSearch.Name = "tboxSearch";
+            this.tboxSearch.Size = new System.Drawing.Size(181, 24);
+            this.tboxSearch.TabIndex = 4;
+            this.tboxSearch.TextChanged += new System.EventHandler(this.tboxSearch_TextChanged);
+            this.tboxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchBy_KeyPress);
+            // 
             // frmUsersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -271,9 +271,9 @@
             this.Text = "Users List";
             this.pnlFormUpper.ResumeLayout(false);
             this.pnlFormUpper.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.cmsOperationsOnUser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbFormMainImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,12 +281,8 @@
 
         #endregion
         private System.Windows.Forms.Panel pnlFormUpper;
-        private System.Windows.Forms.Button btnAddPerson;
-        private System.Windows.Forms.TextBox tboxSearch;
         private System.Windows.Forms.Label lblFilterBy;
         private System.Windows.Forms.ComboBox cboxSearchBy;
-        private System.Windows.Forms.Label lblFormTitle;
-        private System.Windows.Forms.PictureBox pbFormMainImage;
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label lblRecods;
@@ -296,7 +292,11 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
-        private System.Windows.Forms.ComboBox cboxIsActiveOptions;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnAddPerson;
+        private System.Windows.Forms.Label lblFormTitle;
+        private System.Windows.Forms.PictureBox pbFormMainImage;
+        private System.Windows.Forms.ComboBox cboxIsActiveOptions;
+        private System.Windows.Forms.TextBox tboxSearch;
     }
 }

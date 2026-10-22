@@ -8,17 +8,24 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
     {
         public class SearchEventArgs : EventArgs
         {
-            public readonly int applicationID;
-            public readonly int localDLAppID;
-            public readonly int licenseClassID;
-            public readonly int driverID;
+            public readonly int LocalLicenseID;
+            public readonly int ApplicationID;
+            public readonly int LocalDLAppID;
+            public readonly int LicenseClassID;
+            public readonly int DriverID;
+            public readonly bool IsActive;
+            public readonly int PersonID;
 
-            public SearchEventArgs(int applicationID, int localDLAppID, int licenseClassID, int driverID)
+            public SearchEventArgs(int localLicenseID, int applicationID, int localDLAppID, 
+                int licenseClassID, int driverID, bool isActive, int personID)
             {
-                this.applicationID = applicationID;
-                this.localDLAppID = localDLAppID;
-                this.licenseClassID = licenseClassID;
-                this.driverID = driverID;
+                LocalLicenseID = localLicenseID;
+                ApplicationID = applicationID;
+                LocalDLAppID = localDLAppID;
+                LicenseClassID = licenseClassID;
+                DriverID = driverID;
+                IsActive = isActive;
+                PersonID = personID;
             }
         }
 
@@ -31,7 +38,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SearchForLicense(Convert.ToInt32(textBox1.Text));
+            if(textBox1.Text != string.Empty)
+                SearchForLicense(Convert.ToInt32(textBox1.Text));
         }
 
         private bool SearchForLicense(int localLicenseID)
@@ -40,19 +48,22 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
             int localDLAppID = -1;
             int licenseClassID = -1;
             int driverID = -1;
+            bool isActive = false;
+            int personID = -1;
 
             string err = string.Empty;
 
             if (clsLicense.GetLicenseInfoByID(localLicenseID,
-                ref applicationID, ref localDLAppID, ref licenseClassID, ref driverID,
+                ref applicationID, ref localDLAppID,
+                ref licenseClassID, ref driverID, ref isActive, ref personID,
                 out err))
             {
-                MessageBox.Show($"License found!\n" +
-                    $"Application ID: {applicationID}\nLocal DL App ID: {localDLAppID}");
-
                 OnSearchDone?.Invoke
                     (this, 
-                    new SearchEventArgs(applicationID, localDLAppID, licenseClassID, driverID));
+                    new SearchEventArgs
+                    (localLicenseID, applicationID, localDLAppID,
+                    licenseClassID, driverID,
+                    isActive, personID));
 
                 return true;
             }
@@ -74,6 +85,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
+
+           if (textBox1.Text.Length >= int.MaxValue.ToString().Length -1
+                && e.KeyChar != (char)Keys.Back
+                && e.KeyChar != (char)Keys.Enter)
+                e.Handled = true;
+
+            if (e.KeyChar == ((char)Keys.Enter))
+            btnSearch_Click(btnSearch, e);
         }
     }
 }

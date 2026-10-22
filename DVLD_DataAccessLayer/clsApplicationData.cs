@@ -16,10 +16,13 @@ namespace DVLD_DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    string query = "INSERT INTO [Applications] VALUES " +
+                    string query = "" +
+                        "DECLARE @applicationPaidFees INT;" +
+                        "SET @applicationPaidFees = (SELECT ApplicationFees FROM ApplicationTypes WHERE ApplicationTypeID = 5);" +
+                        "INSERT INTO [Applications] VALUES " +
                         "(@personId, @applicationDate, " +
                         "@applicationTypeId, @applicationStatus, " +
-                        "@lastStatusUpdateDate, @paidFees, @createdByUserId) " +
+                        "@lastStatusUpdateDate, @applicationPaidFees, @createdByUserId);" +
                         "SELECT SCOPE_IDENTITY();";
 
                     using (SqlCommand command = new SqlCommand(query, connection))

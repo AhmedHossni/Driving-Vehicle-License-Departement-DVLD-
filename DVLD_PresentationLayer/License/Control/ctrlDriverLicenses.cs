@@ -35,7 +35,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
                 clsLicense.GetLicensesByDriverID(driverID, out string errorMessage).DefaultView,
                 ref lblLocalLicensesRecords);
 
-
             LoadDGVAndSaveData(ref dgvInternationalLicensesHistory, ref _dgvDriverInternationalLicenses,
                 clsInternationalLicense.
                 GetInternationalLicensesByDriverID(driverID, out errorMessage).DefaultView,

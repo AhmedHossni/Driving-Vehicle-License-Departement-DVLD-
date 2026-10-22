@@ -78,6 +78,8 @@ namespace DVLD_DataAccessLayer
         ref int localDrivingLicenseApplicationID,
         ref int licenseClass,
         ref int driverID,
+        ref bool isActive,
+        ref int personID,
         out string errorMessage)
         {
             bool isFound = false;
@@ -89,10 +91,16 @@ namespace DVLD_DataAccessLayer
                 L.ApplicationID,
                 LDLApps.LocalDrivingLicenseApplicationID,
                 L.LicenseClass,
-                L.DriverID
+                L.DriverID,
+                L.IsActive,
+                P.PersonID
             FROM Licenses L
             INNER JOIN LocalDrivingLicenseApplications LDLApps 
                 ON L.ApplicationID = LDLApps.ApplicationID
+            INNER JOIN Applications Apps 
+                ON LDLApps.ApplicationID = Apps.ApplicationID
+            INNER JOIN People P 
+                ON Apps.ApplicationPersonID = P.PersonID
             WHERE L.LicenseID = @LicenseID;";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -114,6 +122,8 @@ namespace DVLD_DataAccessLayer
                                 localDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
                                 licenseClass = (int)reader["LicenseClass"];
                                 driverID = (int)reader["DriverID"];
+                                isActive = (bool)reader["IsActive"];
+                                personID = (int)reader["PersonID"];
                             }
                         }
                     }

@@ -150,6 +150,8 @@ namespace DVLD_BusinessLogicLayer
             ref int localDrivingLicenseApplicationID,
             ref int licenseClass,
             ref int driverID,
+            ref bool isActive,
+            ref int personID,
             out string errorMessage)
         {
             return clsLicenseData.GetLicenseInfoByID(
@@ -158,6 +160,8 @@ namespace DVLD_BusinessLogicLayer
                 ref localDrivingLicenseApplicationID,
                 ref licenseClass,
                 ref driverID,
+                ref isActive,
+                ref personID,
                 out errorMessage
             );
         }

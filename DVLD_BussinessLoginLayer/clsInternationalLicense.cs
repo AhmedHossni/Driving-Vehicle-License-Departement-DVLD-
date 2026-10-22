@@ -9,7 +9,7 @@ namespace DVLD_BusinessLogicLayer
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int InternationalLicenseID { get; set; }
+        public int InternationalLicenseID { get; private set; }
         public int ApplicationID { get; set; }
         public int DriverID { get; set; }
         public int IssuedUsingLocalLicenseID { get; set; }
@@ -32,16 +32,107 @@ namespace DVLD_BusinessLogicLayer
             Mode = enMode.AddNew;
         }
 
-        public static DataTable GetInternationalLicensesByDriverID(int driverID, out string errorMessage)
+        public static bool Find(
+        int internationalLicenseID,
+        ref int applicationID,
+        ref int driverID,
+        ref int issuedUsingLocalLicenseID,
+        ref DateTime issueDate,
+        ref DateTime expirationDate,
+        ref bool isActive,
+        ref string fullName,
+        ref string nationalNo,
+        ref string gender,
+        ref DateTime dateOfBirth,
+        ref string imageName,
+        out string errorMessage)
         {
-            return clsInternationalLicenseData.
-                GetInternationalLicensesByDriverID(driverID, out errorMessage);
+            return clsInternationalLicenseData.GetInternationalLicenseInfoByID(
+                internationalLicenseID,
+                ref applicationID,
+                ref driverID,
+                ref issuedUsingLocalLicenseID,
+                ref issueDate,
+                ref expirationDate,
+                ref isActive,
+                ref fullName,
+                ref nationalNo,
+                ref gender,
+                ref dateOfBirth,
+                ref imageName,
+                out errorMessage
+            );
         }
 
-        public static DataTable GetInternationalLicensesByNationalNo(string nationalNo, out string errorMessage)
+        public static bool IsExistByDriverID(int driverID, out string errorMessage)
         {
-            return clsInternationalLicenseData.
-                GetInternationalLicensesByNationalNo(nationalNo, out errorMessage);
+            return clsInternationalLicenseData.IsInternationalLicenseExistByDriverID(driverID, out errorMessage);
+        }
+
+        public static bool IsExistByNationalNo(string nationalNo, out string errorMessage)
+        {
+            return clsInternationalLicenseData.IsInternationalLicenseExistByNationalNo(nationalNo, out errorMessage);
+        }
+
+        public static bool GetInternationalLicenseInfoByDriverID(
+            int driverID,
+            out int internationalLicenseID,
+            out int applicationID,
+            out int issuedUsingLocalLicenseID,
+            out DateTime issueDate,
+            out DateTime expirationDate,
+            out bool isActive,
+            out int createdByUserID,
+            out string errorMessage)
+        {
+            return clsInternationalLicenseData.GetInternationalLicenseInfoByDriverID(
+                driverID,
+                out internationalLicenseID,
+                out applicationID,
+                out issuedUsingLocalLicenseID,
+                out issueDate,
+                out expirationDate,
+                out isActive,
+                out createdByUserID,
+                out errorMessage
+            );
+        }
+        public static bool GetInternationalLicenseIDByDriverID(
+            int driverID,
+            out int internationalLicenseID,
+            out string errorMessage)
+        {
+            return clsInternationalLicenseData.GetInternationalLicenseIDInfoByDriverID(
+                driverID,
+                out internationalLicenseID,
+                out errorMessage
+            );
+        }
+
+        public static bool GetInternationalLicenseInfoByNationalNo(
+            string nationalNo,
+            out int internationalLicenseID,
+            out int applicationID,
+            out int driverID,
+            out int issuedUsingLocalLicenseID,
+            out DateTime issueDate,
+            out DateTime expirationDate,
+            out bool isActive,
+            out int createdByUserID,
+            out string errorMessage)
+        {
+            return clsInternationalLicenseData.GetInternationalLicenseInfoByNationalNo(
+                nationalNo,
+                out internationalLicenseID,
+                out applicationID,
+                out driverID,
+                out issuedUsingLocalLicenseID,
+                out issueDate,
+                out expirationDate,
+                out isActive,
+                out createdByUserID,
+                out errorMessage
+            );
         }
 
         private bool _AddNewInternationalLicense()
@@ -88,6 +179,23 @@ namespace DVLD_BusinessLogicLayer
             }
 
             return false;
+        }
+
+        public static DataTable GetInternationalLicensesByDriverID(int driverID, out string errorMessage)
+        {
+            return clsInternationalLicenseData
+                .GetInternationalLicensesByDriverID(driverID, out errorMessage);
+        }
+
+        public static DataTable GetInternationalLicensesByNationalNo(string nationalNo, out string errorMessage)
+        {
+            return clsInternationalLicenseData
+                .GetInternationalLicensesByNationalNo(nationalNo, out errorMessage);
+        }
+
+        public static DataTable GetAllInternationalLicenses(out string errorMessage)
+        {
+            return clsInternationalLicenseData.GetAllInternationalLicenses(out errorMessage);
         }
     }
 }

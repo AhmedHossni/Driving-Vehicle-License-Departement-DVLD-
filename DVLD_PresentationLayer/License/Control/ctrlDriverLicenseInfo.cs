@@ -83,7 +83,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
 
         private void LoadDriverImage(string imageName, string gender)
         {
-            string fullImagePath = clsProjectSetting.ImageDefaultPath + imageName;
+            string fullImagePath = clsProjectSetting.ImageDefaultPath + "\\" + imageName;
 
             if (!string.IsNullOrEmpty(imageName) && System.IO.File.Exists(fullImagePath))
             {

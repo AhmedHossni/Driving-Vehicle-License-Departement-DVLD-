@@ -100,11 +100,29 @@
     <Compile Include="License\frmIssueLicense.Designer.cs">
       <DependentUpon>frmIssueLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\International\Control\ctrlDriverInternationalLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="License\International\Control\ctrlDriverInternationalLicenseInfo.Designer.cs">
+      <DependentUpon>ctrlDriverInternationalLicenseInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\International\Control\ctrlLicenseFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="License\International\Control\ctrlLicenseFilter.Designer.cs">
       <DependentUpon>ctrlLicenseFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\International\frmDriverInternationalLicenseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\International\frmDriverInternationalLicenseInfo.Designer.cs">
+      <DependentUpon>frmDriverInternationalLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\International\frmInternationalLicensesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\International\frmInternationalLicensesList.Designer.cs">
+      <DependentUpon>frmInternationalLicensesList.cs</DependentUpon>
     </Compile>
     <Compile Include="License\International\frmIssueInternationalLicense.cs">
       <SubType>Form</SubType>
@@ -298,8 +316,17 @@
     <EmbeddedResource Include="License\frmIssueLicense.resx">
       <DependentUpon>frmIssueLicense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\International\Control\ctrlDriverInternationalLicenseInfo.resx">
+      <DependentUpon>ctrlDriverInternationalLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\International\Control\ctrlLicenseFilter.resx">
       <DependentUpon>ctrlLicenseFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\International\frmDriverInternationalLicenseInfo.resx">
+      <DependentUpon>frmDriverInternationalLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\International\frmInternationalLicensesList.resx">
+      <DependentUpon>frmInternationalLicensesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="License\International\frmIssueInternationalLicense.resx">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>
@@ -426,6 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\PersonDetails 32.png" />
     <None Include="Resources\Driver Main.png" />
     <None Include="Resources\PersonLicenseHistory 512.png" />
     <None Include="Resources\IssueDrivingLicense 321.png" />

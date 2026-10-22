@@ -30,9 +30,9 @@
         {
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblLicenseID = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.License_View_32;
+            this.btnSearch.Location = new System.Drawing.Point(554, 50);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 50);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // textBox1
             // 
@@ -66,16 +76,6 @@
             this.lblLicenseID.Size = new System.Drawing.Size(129, 24);
             this.lblLicenseID.TabIndex = 0;
             this.lblLicenseID.Text = "License ID :";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.License_View_32;
-            this.btnSearch.Location = new System.Drawing.Point(554, 50);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 50);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // ctrlLicenseFilter
             // 

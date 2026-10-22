@@ -173,6 +173,11 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
         private void internationalToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            new frmInternationalLicensesList().ShowDialog();
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             new frmIssueInternationalLicense().ShowDialog();
         }
     }
