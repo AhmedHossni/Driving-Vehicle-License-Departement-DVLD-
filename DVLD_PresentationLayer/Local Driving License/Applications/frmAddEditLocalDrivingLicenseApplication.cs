@@ -2,6 +2,7 @@
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Applications
@@ -164,7 +165,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Applications
         }
 
         private void CtrlSearchForPerson1_SearchResultHandler(int personId)
-            => _formApplication.PersonId = personId;
+        {
+            _formApplication.PersonId = personId;   
+        }
 
         private bool IsPersonHaveSameLicenseClassApplication()
         {
@@ -203,6 +206,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Applications
                 return;
             }
 
+            int licenseClassID = cbLicenseClass.SelectedIndex + 1;
+            if (!clsPerson.IsAgeAllowedForLicense(_formApplication.PersonId, licenseClassID, out errorMessage))
+            {
+                MessageBox.Show("This person is not allowed to issue this driving license class " +
+                                "because their age is less than the minimum allowed age for this class.",
+                                "Not Allowed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             if (_formApplication.Save(out errorMessage))
             {
                 _formLDLApplication.ApplicationId = _formApplication.Id;
@@ -230,7 +244,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Applications
         }
 
         private void btnNextTab_Click(object sender, EventArgs e)
-            => tctrlLicenseApplicationInfo.SelectedTab = tctrlLicenseApplicationInfo.TabPages[1];
+        {
+            tctrlLicenseApplicationInfo.SelectedTab = tctrlLicenseApplicationInfo.TabPages[1];
+
+            if(_formApplication.PersonId != -1)
+                btnSave.Enabled = true;
+        }
 
         private void btnPreviousTab_Click(object sender, EventArgs e)
             => tctrlLicenseApplicationInfo.SelectedTab = tctrlLicenseApplicationInfo.TabPages[0];

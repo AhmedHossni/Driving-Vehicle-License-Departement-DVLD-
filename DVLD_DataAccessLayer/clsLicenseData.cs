@@ -72,6 +72,170 @@ namespace DVLD_DataAccessLayer
         //    }
         //}
 
+        public static bool DeactivateLicense(int licenseID, out string errorMessage)
+        {
+            bool isSuccess = false;
+            errorMessage = string.Empty;
+
+            string query = @"UPDATE Licenses
+                         SET IsActive = 0
+                         WHERE LicenseID = @LicenseID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        isSuccess = (rowsAffected > 0);
+
+                        if (!isSuccess)
+                        {
+                            errorMessage = "No record was updated. License ID might not exist.";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isSuccess = false;
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return isSuccess;
+        }
+
+        public static bool GetLicenseDetailsByID(
+        int licenseID,
+        ref decimal lPaidFees,
+        ref decimal appPaidFees,
+        ref DateTime applicationDate,
+        ref DateTime issueDate,
+        ref DateTime expirationDate,
+        ref string createBy,
+        out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            string query = @"SELECT
+                            L.LicenseID, 
+                            L.PaidFees AS LPaidFees,
+                            Apps.PaidFees AS AppPaidFees,
+                            Apps.ApplicationDate, 
+                            L.IssueDate, 
+                            L.ExpirationDate, 
+                            U.UserName AS [CreateBy]
+                        FROM Licenses L
+                        INNER JOIN Applications Apps
+                            ON L.ApplicationID = Apps.ApplicationID
+                        INNER JOIN Users U
+                            ON L.CreatedByUserID = U.UserID
+                        WHERE L.LicenseID = @LicenseID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                lPaidFees = reader["LPaidFees"] != DBNull.Value ? Convert.ToDecimal(reader["LPaidFees"]) : 0;
+                                
+                                appPaidFees = reader["AppPaidFees"] != DBNull.Value ? Convert.ToDecimal(reader["AppPaidFees"]) : 0;
+                                
+                                applicationDate = reader["ApplicationDate"] != DBNull.Value ? (DateTime)reader["ApplicationDate"] : DateTime.MinValue;
+                                
+                                issueDate = reader["IssueDate"] != DBNull.Value ? (DateTime)reader["IssueDate"] : DateTime.MinValue;
+                                
+                                expirationDate = reader["ExpirationDate"] != DBNull.Value ? (DateTime)reader["ExpirationDate"] : DateTime.MinValue;
+                                
+                                createBy = reader["CreateBy"] != DBNull.Value ? (string)reader["CreateBy"] : string.Empty;
+                            }
+                            else
+                            {
+                                errorMessage = "License not found.";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return isFound;
+        }
+
+        public static bool GetLicenseExpirationStatus(
+        int licenseID,
+        ref DateTime expirationDate,
+        ref bool isExpired,
+        out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            string query = @"SELECT
+                            L.ExpirationDate,
+                            IsExpired = CASE
+                                WHEN L.ExpirationDate < GETDATE() THEN 1
+                                ELSE 0
+                            END
+                        FROM Licenses L
+                        WHERE LicenseID = @LicenseID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                expirationDate = reader["ExpirationDate"] != DBNull.Value ? (DateTime)reader["ExpirationDate"] : DateTime.MinValue;
+                                isExpired = Convert.ToBoolean(reader["IsExpired"]);
+                            }
+                            else
+                            {
+                                errorMessage = "License not found.";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return isFound;
+        }
+
         public static bool GetLicenseInfoByID(
         int licenseID,
         ref int applicationID,

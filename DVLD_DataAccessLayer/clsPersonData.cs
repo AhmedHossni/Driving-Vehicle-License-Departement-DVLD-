@@ -60,6 +60,60 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static bool IsPersonAllowedForLicenseClass(int personID, int licenseClassID, out string errorMessage)
+        {
+            bool isAllowed = false;
+            errorMessage = string.Empty;
+
+            string query = @"
+        SELECT 
+            IsEligible = CASE WHEN 
+                (DATEDIFF(YEAR, P.DateOfBirth, GETDATE()) - 
+                  CASE 
+                      WHEN (MONTH(P.DateOfBirth) > MONTH(GETDATE())) OR 
+                           (MONTH(P.DateOfBirth) = MONTH(GETDATE()) AND DAY(P.DateOfBirth) > DAY(GETDATE())) 
+                      THEN 1 
+                      ELSE 0
+                  END) >= L.MinimumAllowedAge 
+                THEN 1 
+                ELSE 0
+            END
+        FROM People P
+        CROSS JOIN LicenseClasses L
+        WHERE P.PersonID = @PersonID AND L.LicenseClassID = @LicenseClassID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PersonID", personID);
+                    command.Parameters.AddWithValue("@LicenseClassID", licenseClassID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            isAllowed = Convert.ToBoolean(result);
+                        }
+                        else
+                        {
+                            errorMessage = "Person or License Class not found.";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isAllowed = false;
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return isAllowed;
+        }
+
         public static bool GetInfoBy(int id, ref string firstName, ref string secondName,
             ref string thirdName, ref string lastName,
             ref string nationalNo, ref DateTime dateOfBirth, ref enPersonGender gender,

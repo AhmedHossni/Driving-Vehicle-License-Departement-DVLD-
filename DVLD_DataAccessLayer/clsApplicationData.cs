@@ -7,48 +7,69 @@ namespace DVLD_DataAccessLayer
 {
     public static class clsApplicationData
     {
-        public static bool Add(int personId, DateTime applicationDate, 
-            int applicationTypeId, DateTime lastStatusUpdate,
-            decimal paidFees, int createdByUserId, 
+        public static bool Add(int personId, DateTime applicationDate,
+            int applicationTypeId, int applicationStatus, DateTime lastStatusUpdate,
+            decimal paidFees, int createdByUserId,
             out string errorMessage, out int applicationId)
         {
+            errorMessage = string.Empty;
+            applicationId = -1;
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    string query = "" +
-                        "DECLARE @applicationPaidFees INT;" +
-                        "SET @applicationPaidFees = (SELECT ApplicationFees FROM ApplicationTypes WHERE ApplicationTypeID = 5);" +
-                        "INSERT INTO [Applications] VALUES " +
-                        "(@personId, @applicationDate, " +
-                        "@applicationTypeId, @applicationStatus, " +
-                        "@lastStatusUpdateDate, @applicationPaidFees, @createdByUserId);" +
-                        "SELECT SCOPE_IDENTITY();";
+                    string query = @"
+                DECLARE @applicationPaidFees DECIMAL(18,2);
+                
+                SELECT @applicationPaidFees = ApplicationFees 
+                FROM ApplicationTypes 
+                WHERE ApplicationTypeID = @applicationTypeId;
+
+                INSERT INTO [Applications] 
+                (
+                    ApplicationPersonID, 
+                    ApplicationDate, 
+                    ApplicationTypeID, 
+                    ApplicationStatus, 
+                    LastStatusDate, 
+                    PaidFees, 
+                    CreatedByUserID
+                )
+                VALUES 
+                (
+                    @personId, 
+                    @applicationDate, 
+                    @applicationTypeId, 
+                    @applicationStatus, 
+                    @lastStatusUpdateDate, 
+                    @applicationPaidFees, 
+                    @createdByUserId
+                );
+
+                SELECT SCOPE_IDENTITY();";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@personId", personId);
                         command.Parameters.AddWithValue("@applicationDate", applicationDate);
                         command.Parameters.AddWithValue("@applicationTypeId", applicationTypeId);
-                        command.Parameters.AddWithValue("@applicationStatus", (int)enApplicationStatus.New);
-
+                        command.Parameters.AddWithValue("@applicationStatus", applicationStatus);
                         command.Parameters.AddWithValue("@lastStatusUpdateDate", lastStatusUpdate);
-                        command.Parameters.AddWithValue("@paidFees", paidFees);
                         command.Parameters.AddWithValue("@createdByUserId", createdByUserId);
 
                         connection.Open();
 
-                        if (command.ExecuteScalar() is object obj &&
-                            obj != null &&
-                            obj != DBNull.Value)
-                            applicationId = Convert.ToInt32(obj);
-                        else
-                            applicationId = -1;
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                        {
+                            applicationId = insertedID;
+                        }
                     }
                 }
-                errorMessage = string.Empty;
 
-                return true;
+                return applicationId != -1;
             }
             catch (Exception e)
             {

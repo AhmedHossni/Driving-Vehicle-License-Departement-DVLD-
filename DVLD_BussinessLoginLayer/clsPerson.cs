@@ -79,6 +79,11 @@ namespace DVLD_BusinessLogicLayer
             return string.IsNullOrEmpty(errorMessage);
         }
 
+        public static bool IsAgeAllowedForLicense(int personID, int licenseClassID, out string errorMessage)
+        {
+            return clsPersonData.IsPersonAllowedForLicenseClass(personID, licenseClassID, out errorMessage);
+        }
+
         public static bool IsExistBy(int id, out string errorMessage)
         {
             clsUserData.IsExistByUserId(id, out errorMessage);

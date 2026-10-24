@@ -180,5 +180,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             new frmIssueInternationalLicense().ShowDialog();
         }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmRenewLicenseApplication().ShowDialog();
+        }
     }
 }

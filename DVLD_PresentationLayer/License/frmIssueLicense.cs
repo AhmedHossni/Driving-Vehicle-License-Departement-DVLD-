@@ -142,5 +142,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License
                     
             }
         }
+
+        private void frmIssueLicense_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

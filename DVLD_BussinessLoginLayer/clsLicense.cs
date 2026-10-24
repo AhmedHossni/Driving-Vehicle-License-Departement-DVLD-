@@ -63,13 +63,52 @@ namespace DVLD_BusinessLogicLayer
             return isSuccess;
         }
 
+        public static bool DeactivateLicense(int licenseID, out string errorMessage)
+        {
+            return clsLicenseData.DeactivateLicense(licenseID, out errorMessage);
+        }
+
+        public static bool CheckLicenseExpiration(
+        int licenseID,
+        ref DateTime expirationDate,
+        ref bool isExpired,
+        out string errorMessage)
+        {
+            return clsLicenseData.GetLicenseExpirationStatus(
+                licenseID,
+                ref expirationDate,
+                ref isExpired,
+                out errorMessage
+            );
+        }
+
+        public static bool GetLicenseInfoByID(
+        int licenseID,
+        ref decimal lPaidFees,
+        ref decimal appPaidFees,
+        ref DateTime applicationDate,
+        ref DateTime issueDate,
+        ref DateTime expirationDate,
+        ref string createBy,
+        out string errorMessage)
+        {
+            return clsLicenseData.GetLicenseDetailsByID(
+                licenseID,
+                ref lPaidFees,
+                ref appPaidFees,
+                ref applicationDate,
+                ref issueDate,
+                ref expirationDate,
+                ref createBy,
+                out errorMessage
+            );
+        }
+
         public static bool IsThisLDLAppHaveLocalDrivingLicense(int localDrivingLicense, out string errorMessage)
         {
             return clsLicenseData.IsThisLDLAppHaveLocalDrivingLicense
                 (localDrivingLicense, out errorMessage);
         }
-
-
 
         public static bool GetDriverInfoByLDLAppID(int localDLAppID,
             out int licenseID, out string className, out int driverID,

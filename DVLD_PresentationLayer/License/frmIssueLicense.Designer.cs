@@ -108,6 +108,7 @@
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationBasicInfo1);
             this.Name = "frmIssueLicense";
             this.Text = "Issue Driving License For First Time";
+            this.Load += new System.EventHandler(this.frmIssueLicense_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
