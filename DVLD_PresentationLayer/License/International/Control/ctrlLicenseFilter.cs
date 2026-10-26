@@ -69,6 +69,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
             }
             else
             {
+                OnSearchDone?.Invoke(this, null);
+
                 if (!string.IsNullOrEmpty(err))
                 {
                     MessageBox.Show("Error : " + err);
@@ -92,7 +94,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
                 e.Handled = true;
 
             if (e.KeyChar == ((char)Keys.Enter))
-            btnSearch_Click(btnSearch, e);
+                btnSearch_Click(btnSearch, e);
         }
     }
 }

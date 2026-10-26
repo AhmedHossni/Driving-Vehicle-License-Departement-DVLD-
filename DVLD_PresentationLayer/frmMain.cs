@@ -1,6 +1,7 @@
 ﻿using Driving___Vehicle_License_Departement__DVLD_.Applications;
 using Driving___Vehicle_License_Departement__DVLD_.Driver;
 using Driving___Vehicle_License_Departement__DVLD_.License.International;
+using Driving___Vehicle_License_Departement__DVLD_.License.Local;
 using Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Applications;
 using Driving___Vehicle_License_Departement__DVLD_.People_Forms;
 using Driving___Vehicle_License_Departement__DVLD_.Test.Test_Type;
@@ -184,6 +185,16 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new frmRenewLicenseApplication().ShowDialog();
+        }
+
+        private void replacementForLostOrDamagedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmReplacementForDamagedOrLostLicense().ShowDialog();
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmDetainLicense().ShowDialog();
         }
     }
 }

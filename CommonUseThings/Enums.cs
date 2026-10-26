@@ -28,4 +28,30 @@
         PracticalTest
     }
 
+    public enum enIssueReasons
+    {
+        FirstTime = 1,
+        RenewLicense,
+        LostLicense,
+        DamagedLicense
+    }
+
+    public class EnumToString
+    {
+        public static string enIssueReasonsToString(enIssueReasons issueReason)
+        {
+            switch (issueReason)
+            {
+                case enIssueReasons.FirstTime:
+                    return "First Time";
+                case enIssueReasons.RenewLicense:
+                    return "Renew License";
+                case enIssueReasons.LostLicense:
+                    return "Lost License";
+                case enIssueReasons.DamagedLicense:
+                    return "Damaged License";
+            }
+            return "Unknown cause";
+        }
+    }
 }

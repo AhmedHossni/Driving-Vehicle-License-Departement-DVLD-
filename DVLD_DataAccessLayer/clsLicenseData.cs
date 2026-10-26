@@ -440,7 +440,7 @@ namespace DVLD_DataAccessLayer
             out string fullName, out string nationalNo, out string gender,
             out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
             out string notes, out bool isActive, out DateTime dateOfBirth,
-            out string imagePath, out string errorMessage)
+            out string imagePath, out bool isDetained, out string errorMessage)
         {
             licenseID = 0;
             className = string.Empty;
@@ -455,6 +455,7 @@ namespace DVLD_DataAccessLayer
             isActive = false;
             dateOfBirth = DateTime.MinValue;
             imagePath = string.Empty;
+            isDetained = false;
             errorMessage = string.Empty;
 
             bool isFound = false;
@@ -495,6 +496,8 @@ namespace DVLD_DataAccessLayer
 
                                 imagePath = reader["ImagePath"] 
                                     != DBNull.Value ? (string)reader["ImagePath"] : string.Empty;
+
+                                isDetained = (int)reader["IsDetained"] == 1;
                             }
                             else
                             {

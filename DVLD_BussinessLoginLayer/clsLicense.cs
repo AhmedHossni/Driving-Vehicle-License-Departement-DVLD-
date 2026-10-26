@@ -115,7 +115,7 @@ namespace DVLD_BusinessLogicLayer
             out string fullName, out string nationalNo, out string gender,
             out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
             out string notes, out bool isActive, out DateTime dateOfBirth,
-            out string imagePath, out string errorMessage)
+            out string imagePath, out bool isDetained,  out string errorMessage)
         {
             licenseID = -1;
             className = string.Empty;
@@ -130,6 +130,7 @@ namespace DVLD_BusinessLogicLayer
             isActive = false;
             dateOfBirth = DateTime.MinValue;
             imagePath = string.Empty;
+            isDetained = false;
             errorMessage = string.Empty;
 
             return clsLicenseData.GetLicenseInfoByLDLAppID(
@@ -147,6 +148,7 @@ namespace DVLD_BusinessLogicLayer
                 out isActive,
                 out dateOfBirth,
                 out imagePath,
+                out isDetained,
                 out errorMessage
             );
         }

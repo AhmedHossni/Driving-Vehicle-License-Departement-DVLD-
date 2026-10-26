@@ -46,7 +46,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Con
             out string fullName, out string nationalNo, out string gender,
             out DateTime issueDate, out DateTime expirationDate, out byte issueReason,
             out string notes, out bool isActive, out DateTime dateOfBirth,
-            out string imagePath, out string errorMessage) == true)
+            out string imagePath, out bool isDetained, out string errorMessage) == true)
             {
                 llblShowLicenseInfo.Enabled = true;
                 _localDrivingLicenseAppID = localDLAppId;

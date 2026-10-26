@@ -2,6 +2,7 @@
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.International.Control.ctrlLicenseFilter;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
 {
@@ -27,6 +28,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
             bool isActive = false;
             DateTime dateOfBirth = DateTime.MinValue;
             string imagePath = "";
+            bool isDetained = false;
             string errorMessage = "";
 
             bool isFound = clsLicense.GetDriverInfoByLDLAppID(
@@ -44,6 +46,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
                 out isActive,
                 out dateOfBirth,
                 out imagePath,
+                out isDetained,
                 out errorMessage
             );
 
@@ -60,11 +63,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
                 lblIsActive.Text = isActive ? "Yes" : "No";
                 lblDateOfBirth.Text = dateOfBirth.ToShortDateString();
                 lblDriverID.Text = driverID.ToString();
-                lblIssueReason.Text = issueReason.ToString();
+                lblIssueReason.Text = EnumToString.enIssueReasonsToString((enIssueReasons)issueReason);
 
                 lblNotes.Text 
                     = string.IsNullOrEmpty(notes) ? "No Notes" : notes;
-                lblIsDetained.Text = "No";
+
+                lblIsDetained.Text = isDetained ? "Yes" : "No";
 
                 LoadDriverImage(imagePath, gender);
             }

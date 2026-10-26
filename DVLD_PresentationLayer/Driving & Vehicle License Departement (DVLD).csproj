@@ -82,6 +82,12 @@
     <Compile Include="Driver\frmDriversList.Designer.cs">
       <DependentUpon>frmDriversList.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\Control\ctrlDetainInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="License\Control\ctrlDetainInfo.Designer.cs">
+      <DependentUpon>ctrlDetainInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\Control\ctrlDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +142,18 @@
     <Compile Include="License\International\frmIssueInternationalLicense.Designer.cs">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\Local\frmDetainLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\Local\frmDetainLicense.Designer.cs">
+      <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\Local\frmReplacementForDamagedOrLostLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\Local\frmReplacementForDamagedOrLostLicense.Designer.cs">
+      <DependentUpon>frmReplacementForDamagedOrLostLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +205,12 @@
     </Compile>
     <Compile Include="Local Driving License\Applications\frmShowLDLAppInfo.Designer.cs">
       <DependentUpon>frmShowLDLAppInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Local Driving License\Control\ctrlApplicationInfoForLicenseReplacement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Local Driving License\Control\ctrlApplicationInfoForLicenseReplacement.Designer.cs">
+      <DependentUpon>ctrlApplicationInfoForLicenseReplacement.cs</DependentUpon>
     </Compile>
     <Compile Include="Person\Controls\ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
@@ -319,6 +343,9 @@
     <EmbeddedResource Include="Driver\frmDriversList.resx">
       <DependentUpon>frmDriversList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\Control\ctrlDetainInfo.resx">
+      <DependentUpon>ctrlDetainInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\Control\ctrlDriverLicenseInfo.resx">
       <DependentUpon>ctrlDriverLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +373,12 @@
     <EmbeddedResource Include="License\International\frmIssueInternationalLicense.resx">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\Local\frmDetainLicense.resx">
+      <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\Local\frmReplacementForDamagedOrLostLicense.resx">
+      <DependentUpon>frmReplacementForDamagedOrLostLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Local Driving License\Applications\frmAddEditLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddEditLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Local Driving License\Applications\frmShowLDLAppInfo.resx">
       <DependentUpon>frmShowLDLAppInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Local Driving License\Control\ctrlApplicationInfoForLicenseReplacement.resx">
+      <DependentUpon>ctrlApplicationInfoForLicenseReplacement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Controls\ctrlAddEditPerson.resx">
       <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
@@ -471,6 +507,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\Release Detained License 32.png" />
     <None Include="Resources\PersonDetails 32.png" />
     <None Include="Resources\Driver Main.png" />
     <None Include="Resources\PersonLicenseHistory 512.png" />
