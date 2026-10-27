@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblPersonIdValue = new System.Windows.Forms.Label();
             this.lblPersonId = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.llblRemovePersonImage = new System.Windows.Forms.LinkLabel();
             this.llblSetPersonImage = new System.Windows.Forms.LinkLabel();
             this.rtboxAddress = new System.Windows.Forms.RichTextBox();
@@ -58,10 +61,10 @@
             this.tboxThirdName = new System.Windows.Forms.TextBox();
             this.tboxSecondName = new System.Windows.Forms.TextBox();
             this.tboxFirstName = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPersonImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPersonIdValue
@@ -170,6 +173,30 @@
             this.groupBox1.Size = new System.Drawing.Size(1072, 531);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(396, 482);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(132, 43);
+            this.btnClose.TabIndex = 154;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Save_32;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(544, 482);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(132, 43);
+            this.btnSave.TabIndex = 153;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // llblRemovePersonImage
             // 
@@ -372,29 +399,9 @@
             this.tboxFirstName.Size = new System.Drawing.Size(202, 24);
             this.tboxFirstName.TabIndex = 9;
             // 
-            // btnClose
+            // errorProvider1
             // 
-            this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(396, 482);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(132, 43);
-            this.btnClose.TabIndex = 154;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Save_32;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(544, 482);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(132, 43);
-            this.btnSave.TabIndex = 153;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.errorProvider1.ContainerControl = this;
             // 
             // ctrlAddEdit_person
             // 
@@ -408,6 +415,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPersonImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,5 +455,6 @@
         private System.Windows.Forms.LinkLabel llblSetPersonImage;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

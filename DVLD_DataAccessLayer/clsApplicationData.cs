@@ -8,8 +8,8 @@ namespace DVLD_DataAccessLayer
     public static class clsApplicationData
     {
         public static bool Add(int personId, DateTime applicationDate,
-            int applicationTypeId, int applicationStatus, DateTime lastStatusUpdate,
-            decimal paidFees, int createdByUserId,
+            int applicationTypeId, int applicationStatus,
+            DateTime lastStatusUpdate, int createdByUserId,
             out string errorMessage, out int applicationId)
         {
             errorMessage = string.Empty;

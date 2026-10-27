@@ -86,7 +86,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
             {
                 MessageBox.Show($"License Detained Successfully with ID = {detainedLicense.DetainID}",
                     "License Detained",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 btnDetainLicense.Enabled = false;
 

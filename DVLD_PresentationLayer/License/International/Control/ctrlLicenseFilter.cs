@@ -96,5 +96,14 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.International.Con
             if (e.KeyChar == ((char)Keys.Enter))
                 btnSearch_Click(btnSearch, e);
         }
+
+        public void ReturnDataAndDisableSearchFilter(int localLicenseID)
+        {
+            SearchForLicense(localLicenseID);
+
+            textBox1.Text = localLicenseID.ToString();
+
+            groupBox1.Enabled = false;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DVLD_DataAccessLayer;
 using System;
+using System.Data;
 
 namespace DVLD_BusinessLogicLayer
 {
@@ -72,6 +73,7 @@ namespace DVLD_BusinessLogicLayer
                 detainedLicense.ReleaseDate = releaseDate;
                 detainedLicense.ReleasedByUserID = releasedByUserID;
                 detainedLicense.ReleaseApplicationID = releaseApplicationID;
+                detainedLicense.Mode = enMode.Update;
 
                 return detainedLicense;
             }
@@ -85,6 +87,21 @@ namespace DVLD_BusinessLogicLayer
         {
             errorMessage = string.Empty;
             return clsDetainedLicenseData.IsLicenseDetained(licenseID, out errorMessage);
+        }
+
+        public static bool IsLicenseDetained(int detainID, out bool isReleased, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            bool isFound = clsDetainedLicenseData
+                .IsLicenseDetained(detainID, out isReleased, out errorMessage);
+
+            if (isFound && !isReleased)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool _AddNewDetainedLicense(out string errorMessage)
@@ -134,6 +151,11 @@ namespace DVLD_BusinessLogicLayer
             }
 
             return false;
+        }
+
+        public static DataTable GetAllDetainedLicenses(out string errorMessage)
+        {
+            return clsDetainedLicenseData.GetAllDetainedLicenses(out errorMessage);
         }
     }
 }

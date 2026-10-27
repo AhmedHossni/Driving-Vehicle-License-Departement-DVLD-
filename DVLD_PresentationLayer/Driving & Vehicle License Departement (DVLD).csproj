@@ -100,6 +100,12 @@
     <Compile Include="License\Control\ctrlDriverLicenses.Designer.cs">
       <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\Control\ctrlReleaseDetainedLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="License\Control\ctrlReleaseDetainedLicenseInfo.Designer.cs">
+      <DependentUpon>ctrlReleaseDetainedLicenseInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\frmDriverLicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,11 +148,23 @@
     <Compile Include="License\International\frmIssueInternationalLicense.Designer.cs">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="License\Local\frmManageDetainedLicensesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\Local\frmManageDetainedLicensesList.Designer.cs">
+      <DependentUpon>frmManageDetainedLicensesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\Local\frmDetainLicense.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="License\Local\frmDetainLicense.Designer.cs">
       <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\Local\frmReleaseDetainedLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\Local\frmReleaseDetainedLicense.Designer.cs">
+      <DependentUpon>frmReleaseDetainedLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="License\Local\frmReplacementForDamagedOrLostLicense.cs">
       <SubType>Form</SubType>
@@ -352,6 +370,9 @@
     <EmbeddedResource Include="License\Control\ctrlDriverLicenses.resx">
       <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\Control\ctrlReleaseDetainedLicenseInfo.resx">
+      <DependentUpon>ctrlReleaseDetainedLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\frmDriverLicenseInfo.resx">
       <DependentUpon>frmDriverLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -373,8 +394,14 @@
     <EmbeddedResource Include="License\International\frmIssueInternationalLicense.resx">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="License\Local\frmManageDetainedLicensesList.resx">
+      <DependentUpon>frmManageDetainedLicensesList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\Local\frmDetainLicense.resx">
       <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\Local\frmReleaseDetainedLicense.resx">
+      <DependentUpon>frmReleaseDetainedLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="License\Local\frmReplacementForDamagedOrLostLicense.resx">
       <DependentUpon>frmReplacementForDamagedOrLostLicense.cs</DependentUpon>
@@ -507,6 +534,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gemini_Generated_Image_inwmqcinwmqcinwm.ico" />
+    <None Include="Resources\Release Detained License 512.png" />
     <None Include="Resources\Release Detained License 32.png" />
     <None Include="Resources\PersonDetails 32.png" />
     <None Include="Resources\Driver Main.png" />

@@ -196,5 +196,15 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             new frmDetainLicense().ShowDialog();
         }
+
+        private void releaseDetainedLiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmReleaseDetainedLicense().ShowDialog();
+        }
+
+        private void manageDetainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmManageDetainedLicensesList().ShowDialog();
+        }
     }
 }

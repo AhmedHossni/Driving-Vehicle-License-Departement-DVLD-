@@ -63,7 +63,7 @@
             this.btnRenewLicense.Enabled = false;
             this.btnRenewLicense.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Renew_Driving_License_32;
             this.btnRenewLicense.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRenewLicense.Location = new System.Drawing.Point(779, 797);
+            this.btnRenewLicense.Location = new System.Drawing.Point(769, 806);
             this.btnRenewLicense.Name = "btnRenewLicense";
             this.btnRenewLicense.Size = new System.Drawing.Size(132, 42);
             this.btnRenewLicense.TabIndex = 151;
@@ -75,7 +75,7 @@
             // 
             this.btnClose.Image = global::Driving___Vehicle_License_Departement__DVLD_.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(641, 797);
+            this.btnClose.Location = new System.Drawing.Point(631, 806);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(132, 42);
             this.btnClose.TabIndex = 150;
@@ -88,7 +88,7 @@
             this.llblShowNewLicenseInfo.AutoSize = true;
             this.llblShowNewLicenseInfo.Enabled = false;
             this.llblShowNewLicenseInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblShowNewLicenseInfo.Location = new System.Drawing.Point(245, 800);
+            this.llblShowNewLicenseInfo.Location = new System.Drawing.Point(245, 812);
             this.llblShowNewLicenseInfo.Name = "llblShowNewLicenseInfo";
             this.llblShowNewLicenseInfo.Size = new System.Drawing.Size(247, 24);
             this.llblShowNewLicenseInfo.TabIndex = 153;
@@ -101,7 +101,7 @@
             this.llblShowLicenseHistory.AutoSize = true;
             this.llblShowLicenseHistory.Enabled = false;
             this.llblShowLicenseHistory.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblShowLicenseHistory.Location = new System.Drawing.Point(14, 800);
+            this.llblShowLicenseHistory.Location = new System.Drawing.Point(14, 812);
             this.llblShowLicenseHistory.Name = "llblShowLicenseHistory";
             this.llblShowLicenseHistory.Size = new System.Drawing.Size(225, 24);
             this.llblShowLicenseHistory.TabIndex = 152;

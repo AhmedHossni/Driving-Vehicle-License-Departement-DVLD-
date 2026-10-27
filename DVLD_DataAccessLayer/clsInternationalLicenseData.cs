@@ -468,8 +468,6 @@ namespace DVLD_DataAccessLayer
         FROM InternationalLicenses IL
         INNER JOIN Applications Apps
             ON IL.ApplicationID = Apps.ApplicationID
-        INNER JOIN LocalDrivingLicenseApplications LDLApps 
-            ON IL.IssuedUsingLocalLicenseID = LDLApps.LocalDrivingLicenseApplicationID
         INNER JOIN People P 
             ON Apps.ApplicationPersonID = P.PersonID
         WHERE P.NationalNo = @nationalNo;";

@@ -1,10 +1,61 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
     public class clsDetainedLicenseData
     {
+
+        public static DataTable GetAllDetainedLicenses(out string errorMessage)
+        {
+            DataTable dt = new DataTable();
+            errorMessage = string.Empty;
+
+            string query = @"
+        SELECT 
+            DL.DetainID AS [D.ID],
+            DL.LicenseID AS [L.ID],
+            DL.DetainDate AS [D.Date],
+            DL.IsReleased AS [Is Released],
+            DL.FineFees AS [Fine Fees],
+            DL.ReleaseDate AS [Release Date],
+            P.NationalNo AS [N.NO.],
+            CONCAT(P.FirstName, ' ', P.SecondName, ' ', P.ThirdName, ' ', P.LastName) AS [Full Name],
+            DL.ReleaseApplicationID AS [Releas App.ID]
+        FROM DetainedLicenses DL
+        INNER JOIN Licenses L 
+            ON L.LicenseID = DL.LicenseID
+        INNER JOIN Drivers D
+            ON D.DriverID = L.DriverID
+        INNER JOIN People P
+            ON D.PersonID = P.PersonID;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return dt;
+        }
+
         public static bool GetDetainedLicenseInfoByLicenseID(
         int licenseID,
         ref int detainID,
@@ -109,6 +160,47 @@ namespace DVLD_DataAccessLayer
             }
 
             return isDetained;
+        }
+
+        public static bool IsLicenseDetained(int detainID, out bool isReleased, out string errorMessage)
+        {
+            bool isFound = false;
+            isReleased = false;
+            errorMessage = string.Empty;
+
+            string query = @"
+                SELECT IsReleased 
+                FROM DetainedLicenses 
+                WHERE DetainID = @detainID 
+                ORDER BY DetainID DESC;";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@detainID", detainID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                isReleased = (bool)reader["IsReleased"];
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
         }
 
         public static int AddNewDetainedLicense(

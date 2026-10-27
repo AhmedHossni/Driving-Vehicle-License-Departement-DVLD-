@@ -2,6 +2,7 @@
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -122,7 +123,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
             if(id == -1)
             {
                 Load_personImage("", enPersonGender.Male);
-                FillRandomPersonData();
+                //FillRandomPersonData();
                 return;
             }
 
@@ -237,9 +238,111 @@ namespace Driving___Vehicle_License_Departement__DVLD_._person_Forms
                     Convert.ToInt32(cboxCountryName.SelectedValue);
         }
 
+        private bool ValidateForm()
+        {
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(tboxFirstName.Text))
+            {
+                errorProvider1.SetError(tboxFirstName, "First Name cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(tboxFirstName, string.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(tboxSecondName.Text))
+            {
+                errorProvider1.SetError(tboxSecondName, "Second Name cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(tboxSecondName, string.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(tboxLastName.Text))
+            {
+                errorProvider1.SetError(tboxLastName, "Last Name cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(tboxLastName, string.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(tboxNationalNo.Text))
+            {
+                errorProvider1.SetError(tboxNationalNo, "National No. cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(tboxNationalNo, string.Empty);
+            }
+
+            if (!string.IsNullOrWhiteSpace(tboxEmail.Text))
+            {
+                if (!tboxEmail.Text.Contains("@") || !tboxEmail.Text.Contains("."))
+                {
+                    errorProvider1.SetError(tboxEmail, "Invalid Email Address format.");
+                    isValid = false;
+                }
+                else
+                {
+                    errorProvider1.SetError(tboxEmail, string.Empty);
+                }
+            }
+            else
+            {
+                errorProvider1.SetError(tboxEmail, string.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(tboxPhone.Text))
+            {
+                errorProvider1.SetError(tboxPhone, "Phone cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(tboxPhone, string.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(rtboxAddress.Text))
+            {
+                errorProvider1.SetError(rtboxAddress, "Address cannot be blank.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(rtboxAddress, string.Empty);
+            }
+
+            if (cboxCountryName.SelectedIndex == -1 || cboxCountryName.SelectedValue == null)
+            {
+                errorProvider1.SetError(cboxCountryName, "Please select a country.");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(cboxCountryName, string.Empty);
+            }
+
+            return isValid;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             string errorMessage = string.Empty;
+
+            if (!ValidateForm())
+            {
+                MessageBox.Show("Some fields are not valid! " +
+                    "Please put the mouse over the red icons to see the error.",
+                    ("Validation Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             LoadPersonDataFromForm();
 

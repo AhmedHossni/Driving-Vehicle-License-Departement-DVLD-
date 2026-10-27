@@ -96,7 +96,7 @@ namespace DVLD_BusinessLogicLayer
             if (_id == -1)
             {
                 result = clsApplication.Add(PersonId, ApplicationDate, ApplicaionTypeID,
-                    ApplicaionStatus, LastStatusDate, PaidFees, CreatedByUserID, out errorMessage, out _id);
+                    ApplicaionStatus, LastStatusDate, CreatedByUserID, out errorMessage, out _id);
             }
             else
             {
@@ -115,13 +115,13 @@ namespace DVLD_BusinessLogicLayer
         }
 
         public static bool Add(int personId, DateTime applicationDate,
-            int applicationTypeId, enApplicationStatus applicationStatus, DateTime lastStatusUpdate,
-            decimal paidFees, int createdByUserId,
+            int applicationTypeId, enApplicationStatus applicationStatus,
+            DateTime lastStatusUpdate,int createdByUserId,
             out string errorMessage, out int applicationId)
         {
             return clsApplicationData.Add(personId, applicationDate,
-                applicationTypeId, (int)applicationStatus, lastStatusUpdate,
-                paidFees, createdByUserId,
+                applicationTypeId, (int)applicationStatus, 
+                lastStatusUpdate, createdByUserId,
                 out errorMessage, out applicationId);
         }
 

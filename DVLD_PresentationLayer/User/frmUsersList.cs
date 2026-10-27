@@ -44,11 +44,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
 
         private void btnFormClose_Click(object sender, EventArgs e)
             => this.Close();
-        private void btnBigCloseForm_Click(object sender, EventArgs e)
-            => this.Close();
-
-        private void buttonMinimize_Click(object sender, EventArgs e)
-            => this.WindowState = FormWindowState.Minimized;
 
         private void GetAndSelectCurrentGridRowId(out int userId, out int PersonId)
         {
@@ -76,7 +71,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.User_Forms
             return userId;
         }
 
-        private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             _point = dgvUsers.PointToClient(Cursor.Position);
         }
