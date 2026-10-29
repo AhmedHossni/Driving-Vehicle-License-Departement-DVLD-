@@ -136,23 +136,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 return;
             }
 
-            clsLocalDrivingLicenseApplication localDrivingLicenseApplication
-                = new clsLocalDrivingLicenseApplication();
-
-            localDrivingLicenseApplication.ApplicationId = application.Id;
-            localDrivingLicenseApplication.LicenseClassId = searchEventArgs.LicenseClassID;
-
-            if(!localDrivingLicenseApplication.Save(out errorMessage))
-            {
-                if(string.IsNullOrEmpty(errorMessage))
-                    MessageBox.Show($"Failed to save local license application: {errorMessage}",
-                        "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             clsLicense renewedLicense = new clsLicense();
 
-            renewedLicense.ApplicationID = localDrivingLicenseApplication.ApplicationId;
+            renewedLicense.ApplicationID = application.Id;
             renewedLicense.DriverID = searchEventArgs.DriverID;
             renewedLicense.LicenseClassID = searchEventArgs.LicenseClassID;
             renewedLicense.IssueDate = DateTime.Now;
