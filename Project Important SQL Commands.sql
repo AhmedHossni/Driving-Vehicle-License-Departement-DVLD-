@@ -515,6 +515,53 @@ GO
 
 SELECT * FROM dbo.GetDriverLicenseInfoByLDLAppID(43)
 
+GO 
+
+CREATE OR ALTER FUNCTION dbo.GetDriverLicenseInfoByApplicationID (
+    @ApplicationID INT
+)
+RETURNS TABLE 
+AS 
+RETURN 
+(
+    SELECT TOP 1
+        L.LicenseID, 
+        L.ApplicationID,
+        LC.ClassName, 
+        D.DriverID,
+        CONCAT(P.FirstName, ' ', P.SecondName, ' ', P.ThirdName, ' ', P.LastName) AS [Full Name],
+        P.NationalNo,
+        CASE P.Gender
+            WHEN 0 THEN 'Male'
+            ELSE 'Female'
+        END AS Gender,
+        L.IssueDate,
+        L.ExpirationDate,
+        L.IssueReason,
+        L.Notes,
+        L.IsActive,
+        P.DateOfBirth,
+        P.ImagePath,
+        CASE 
+            WHEN EXISTS (
+                    SELECT TOP 1 1
+                    FROM DetainedLicenses DL
+                    WHERE DL.LicenseID = L.LicenseID AND DL.IsReleased = 0
+                    ) THEN 1
+                ELSE 0
+            END [IsDetained]
+    FROM Licenses L
+    INNER JOIN LicenseClasses LC 
+        ON L.LicenseClass = LC.LicenseClassID
+    INNER JOIN Drivers D 
+        ON L.DriverID = D.DriverID
+    INNER JOIN People P 
+        ON D.PersonID = P.PersonID
+    WHERE L.ApplicationID = @ApplicationID
+);
+
+GO;
+
 -- Data for driver local licenses
 SELECT
 	LicenseID AS [Lic.ID],
@@ -728,3 +775,21 @@ INNER JOIN Drivers D
     ON D.DriverID = L.DriverID
 INNER JOIN People P
     ON D.PersonID = P.PersonID;
+
+select * from Licenses
+
+select * from LocalDrivingLicenseApplications
+
+update Licenses
+set IsActive = 1
+where LicenseID = 35;
+
+delete Licenses
+where LicenseID = 37;
+
+delete Applications
+where ApplicationID = 108;
+
+select * from Licenses
+
+select * from Applications

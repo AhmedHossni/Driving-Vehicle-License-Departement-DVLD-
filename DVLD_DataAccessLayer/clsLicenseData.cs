@@ -259,10 +259,10 @@ namespace DVLD_DataAccessLayer
                 L.IsActive,
                 P.PersonID
             FROM Licenses L
-            INNER JOIN LocalDrivingLicenseApplications LDLApps 
+            LEFT JOIN LocalDrivingLicenseApplications LDLApps 
                 ON L.ApplicationID = LDLApps.ApplicationID
             INNER JOIN Applications Apps 
-                ON LDLApps.ApplicationID = Apps.ApplicationID
+                ON L.ApplicationID = Apps.ApplicationID
             INNER JOIN People P 
                 ON Apps.ApplicationPersonID = P.PersonID
             WHERE L.LicenseID = @LicenseID;";
@@ -283,7 +283,8 @@ namespace DVLD_DataAccessLayer
                                 isFound = true;
 
                                 applicationID = (int)reader["ApplicationID"];
-                                localDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
+                                localDrivingLicenseApplicationID 
+                                    = reader["LocalDrivingLicenseApplicationID"] == DBNull.Value ? -1 : (int)reader["LocalDrivingLicenseApplicationID"];
                                 licenseClass = (int)reader["LicenseClass"];
                                 driverID = (int)reader["DriverID"];
                                 isActive = (bool)reader["IsActive"];
@@ -433,6 +434,77 @@ namespace DVLD_DataAccessLayer
             }
 
             return dt;
+        }
+
+        public static bool GetDriverLicenseInfoByApplicationID(
+            int ApplicationID,
+            ref int LicenseID,
+            ref string ClassName,
+            ref int DriverID,
+            ref string FullName,
+            ref string NationalNo,
+            ref string Gender,
+            ref DateTime IssueDate,
+            ref DateTime ExpirationDate,
+            ref byte IssueReason,
+            ref string Notes,
+            ref bool IsActive,
+            ref DateTime DateOfBirth,
+            ref string ImagePath,
+            ref bool IsDetained,
+            out string errorMessage)
+        {
+            bool isFound = false;
+            errorMessage = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT * FROM dbo.GetDriverLicenseInfoByApplicationID(@ApplicationID)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                LicenseID = (int)reader["LicenseID"];
+                                ClassName = (string)reader["ClassName"];
+                                DriverID = (int)reader["DriverID"];
+                                FullName = (string)reader["Full Name"];
+                                NationalNo = (string)reader["NationalNo"];
+                                Gender = (string)reader["Gender"];
+                                IssueDate = (DateTime)reader["IssueDate"];
+                                ExpirationDate = (DateTime)reader["ExpirationDate"];
+                                IssueReason = Convert.ToByte(reader["IssueReason"]);
+                                Notes = reader["Notes"] != DBNull.Value ? (string)reader["Notes"] : string.Empty;
+                                IsActive = (bool)reader["IsActive"];
+                                DateOfBirth = (DateTime)reader["DateOfBirth"];
+                                ImagePath = reader["ImagePath"] != DBNull.Value ? (string)reader["ImagePath"] : string.Empty;
+                                IsDetained = Convert.ToInt32(reader["IsDetained"]) == 1;
+                            }
+                            else
+                            {
+                                errorMessage 
+                                    = $"License and driver info not found for this application id ({ApplicationID}).";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                        errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return isFound;
         }
 
         public static bool GetLicenseInfoByLDLAppID(int localDLAppID,

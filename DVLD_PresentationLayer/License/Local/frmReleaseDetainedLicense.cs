@@ -4,6 +4,7 @@ using Driving___Vehicle_License_Departement__DVLD_.License.International.Control
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 {
@@ -31,7 +32,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
             {
                 searchEventArgs = localLicenseInfo;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(localLicenseInfo.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(localLicenseInfo.ApplicationID);
 
                 if (!IsLicenseDetained(localLicenseInfo.LocalLicenseID))           
                     return;
@@ -49,7 +50,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
                 llblShowLicenseHistory.Enabled = false;
                 btnReleaseLicense.Enabled = false;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(-1);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(-1);
             }
         }
 
@@ -86,7 +87,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 
         private void llblShowNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new frmLocalDriverLicenseInfo(searchEventArgs.LocalDLAppID).ShowDialog();
+            new frmLocalDriverLicenseInfo(searchEventArgs.LocalDLAppID,
+                IDType.LocalDrivingLicenseApplicationID).ShowDialog();
         }
 
         private void llblShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -143,7 +145,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 
                 ctrlReleaseDetainedLicenseInfo1.SetApplicationID(application.Id);
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(searchEventArgs.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(searchEventArgs.LocalDLAppID);
             }
             else
             {

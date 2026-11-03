@@ -3,6 +3,7 @@ using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
 using static Driving___Vehicle_License_Departement__DVLD_.License.International.Control.ctrlLicenseFilter;
+using static DVLD_BusinessLogicLayer.clsLicense;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
 {
@@ -82,6 +83,36 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Control
                 {
                     MessageBox.Show($"No license found with Local Driving License Application ID = {localDLAppID}", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        public void LoadDriverLicenseInfoByApplicationID(int applicationID)
+        {
+            clsDriverLicenseInfoDTO licenseInfo = 
+                clsLicense.GetDriverLicenseInfoByApplicationID(applicationID, out string errorMessage);
+
+            if (licenseInfo != null)
+            {
+                lblLicenseID.Text = licenseInfo.LicenseID.ToString();
+                lblClass.Text = licenseInfo.ClassName;
+                lblFullName.Text = licenseInfo.FullName;
+                lblNationalNo.Text = licenseInfo.NationalNo;
+                lblGendor.Text = licenseInfo.Gender;
+                lblIssueDate.Text = licenseInfo.IssueDate.ToShortDateString();
+                lblExpirationDate.Text = licenseInfo.ExpirationDate.ToShortDateString();
+                lblIsActive.Text = licenseInfo.IsActive ? "Yes" : "No";
+                lblDateOfBirth.Text = licenseInfo.DateOfBirth.ToShortDateString();
+                lblDriverID.Text = licenseInfo.DriverID.ToString();
+                lblIssueReason.Text = EnumToString.enIssueReasonsToString((enIssueReasons)licenseInfo.IssueReason);
+                lblNotes.Text = string.IsNullOrEmpty(licenseInfo.Notes) ? "No Notes" : licenseInfo.Notes;
+                lblIsDetained.Text = licenseInfo.IsDetained ? "Yes" : "No";
+
+                LoadDriverImage(licenseInfo.ImagePath, licenseInfo.Gender);
+            }
+            else
+            {
+                MessageBox.Show(errorMessage, "There is a problem",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

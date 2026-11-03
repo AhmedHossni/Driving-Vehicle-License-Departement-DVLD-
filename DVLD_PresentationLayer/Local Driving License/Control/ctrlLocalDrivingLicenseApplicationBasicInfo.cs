@@ -2,6 +2,7 @@
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Control
 {
@@ -55,7 +56,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Con
 
         private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new frmLocalDriverLicenseInfo(_localDrivingLicenseAppID).ShowDialog();
+            new frmLocalDriverLicenseInfo(_localDrivingLicenseAppID,
+                IDType.LocalDrivingLicenseApplicationID).ShowDialog();
         }
     }
 }

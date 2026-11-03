@@ -7,6 +7,7 @@ using System.Data.Odbc;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 {
@@ -274,7 +275,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
             if (clsLicense.GetLicenseInfoByID(licenseID, ref applicationID, ref lDLAppID, ref licenseClassID,
                 ref driverID, ref IsActive, ref personID, out string errorMessage))
             {
-                new frmLocalDriverLicenseInfo(lDLAppID).ShowDialog();
+                new frmLocalDriverLicenseInfo(lDLAppID, 
+                    IDType.LocalDrivingLicenseApplicationID).ShowDialog();
             }
             else
             {

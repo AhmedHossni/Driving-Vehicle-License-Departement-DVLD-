@@ -12,11 +12,21 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License
 {
     public partial class frmLocalDriverLicenseInfo : frmMainStyle
     {
-        public frmLocalDriverLicenseInfo(int localDrivingLicenseAppID)
+        public enum IDType { LocalDrivingLicenseApplicationID, ApplicationID}
+        public frmLocalDriverLicenseInfo(int id, IDType idType)
         {
             InitializeComponent();
 
-            ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(localDrivingLicenseAppID);
+            switch (idType)
+            {
+                case IDType.LocalDrivingLicenseApplicationID:
+                    ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(id);
+                    break;
+                case IDType.ApplicationID:
+                    ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(id);
+                    break;
+            }
+            
         }
     }
 }

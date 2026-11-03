@@ -2,6 +2,7 @@
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 using static Driving___Vehicle_License_Departement__DVLD_.License.International.Control.ctrlLicenseFilter;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
@@ -30,7 +31,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
                     return;
 
                 _searchResult = searchResult;
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(searchResult.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(searchResult.ApplicationID);
                 ctrlDetainInfo1.SetLicenseID(searchResult.LocalLicenseID);
                 ctrlDetainInfo1.EnabledAddFees(true);
 
@@ -90,7 +91,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 
                 btnDetainLicense.Enabled = false;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(_searchResult.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(_searchResult.ApplicationID);
             }
             else
             {
@@ -105,7 +106,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 
         private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new frmLocalDriverLicenseInfo(_searchResult.LocalDLAppID).ShowDialog();
+            new frmLocalDriverLicenseInfo(_searchResult.LocalDLAppID, 
+                IDType.LocalDrivingLicenseApplicationID).ShowDialog();
         }
 
         private void llblShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

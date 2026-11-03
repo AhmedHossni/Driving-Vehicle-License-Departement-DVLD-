@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Applications
 {
@@ -497,7 +498,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new frmLocalDriverLicenseInfo(GetAndSelectCurrentGridRowId()).ShowDialog();
+            new frmLocalDriverLicenseInfo(GetAndSelectCurrentGridRowId(),
+                IDType.LocalDrivingLicenseApplicationID).ShowDialog();
         }
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)

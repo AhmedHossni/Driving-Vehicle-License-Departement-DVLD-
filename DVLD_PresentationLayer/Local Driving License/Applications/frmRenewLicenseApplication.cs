@@ -6,6 +6,7 @@ using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
 using Driving___Vehicle_License_Departement__DVLD_.License;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.Applications
 {
@@ -13,7 +14,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
     {
        ctrlLicenseFilter.SearchEventArgs searchEventArgs;
         int _renewedLicenseID = -1;
-        int _renewedLocalApplicationID = -1;
+        int _renewApplicationID = -1;
 
         public frmRenewLicenseApplication()
         {
@@ -32,7 +33,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             {
                 searchEventArgs = localLicenseInfo;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(localLicenseInfo.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(localLicenseInfo.ApplicationID);
 
                 ctrlApplicationNewLicenseInfo1
                         .LoadRenewLocalLicenseData(localLicenseInfo.LocalLicenseID, 
@@ -69,7 +70,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
                 llblShowNewLicenseInfo.Enabled = false;
                 llblShowLicenseHistory.Enabled = false;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(-1);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(-1);
             }
         }
 
@@ -142,8 +143,6 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             renewedLicense.DriverID = searchEventArgs.DriverID;
             renewedLicense.LicenseClassID = searchEventArgs.LicenseClassID;
             renewedLicense.IssueDate = DateTime.Now;
-
-
             renewedLicense.Notes = string.IsNullOrEmpty(ctrlApplicationNewLicenseInfo1.Notes)
                 ? null : ctrlApplicationNewLicenseInfo1.Notes;
             renewedLicense.IsActive = true;
@@ -169,8 +168,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
             btnRenewLicense.Enabled = false;
             llblShowNewLicenseInfo.Enabled = true;
             _renewedLicenseID = renewedLicense.LicenseID;
-            _renewedLocalApplicationID 
-                = localDrivingLicenseApplication.LocalDrivingLicenseApplicationId;
+            _renewApplicationID = renewedLicense.ApplicationID;
 
             ctrlApplicationNewLicenseInfo1.SetSavedData(renewedLicense.ApplicationID, renewedLicense.LicenseID);
         }
@@ -205,7 +203,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.Local_Driving_License.App
 
         private void llblShowNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new frmLocalDriverLicenseInfo(_renewedLocalApplicationID).ShowDialog();
+            new frmLocalDriverLicenseInfo(_renewApplicationID, 
+                IDType.ApplicationID).ShowDialog();
         }
     }
 }

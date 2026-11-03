@@ -82,6 +82,89 @@ namespace DVLD_BusinessLogicLayer
             );
         }
 
+        public class clsDriverLicenseInfoDTO
+        {
+            public int LicenseID { get; set; }
+            public int ApplicationID { get; set; }
+            public string ClassName { get; set; }
+            public int DriverID { get; set; }
+            public string FullName { get; set; }
+            public string NationalNo { get; set; }
+            public string Gender { get; set; }
+            public DateTime IssueDate { get; set; }
+            public DateTime ExpirationDate { get; set; }
+            public byte IssueReason { get; set; }
+            public string Notes { get; set; }
+            public bool IsActive { get; set; }
+            public DateTime DateOfBirth { get; set; }
+            public string ImagePath { get; set; }
+            public bool IsDetained { get; set; }
+        }
+
+        public static clsDriverLicenseInfoDTO GetDriverLicenseInfoByApplicationID(int applicationID,
+            out string errorMessage)
+        {
+            int licenseID = -1;
+            string className = "";
+            int driverID = -1;
+            string fullName = "";
+            string nationalNo = "";
+            string gender = "";
+            DateTime issueDate = DateTime.MinValue;
+            DateTime expirationDate = DateTime.MinValue;
+            byte issueReason = 0;
+            string notes = "";
+            bool isActive = false;
+            DateTime dateOfBirth = DateTime.MinValue;
+            string imagePath = "";
+            bool isDetained = false;
+
+            bool isFound = clsLicenseData.GetDriverLicenseInfoByApplicationID(
+                applicationID,
+                ref licenseID,
+                ref className,
+                ref driverID,
+                ref fullName,
+                ref nationalNo,
+                ref gender,
+                ref issueDate,
+                ref expirationDate,
+                ref issueReason,
+                ref notes,
+                ref isActive,
+                ref dateOfBirth,
+                ref imagePath,
+                ref isDetained,
+                out errorMessage
+            );
+
+            if (isFound)
+            {
+                return new clsDriverLicenseInfoDTO
+                {
+                    LicenseID = licenseID,
+                    ApplicationID = applicationID,
+                    ClassName = className,
+                    DriverID = driverID,
+                    FullName = fullName,
+                    NationalNo = nationalNo,
+                    Gender = gender,
+                    IssueDate = issueDate,
+                    ExpirationDate = expirationDate,
+                    IssueReason = issueReason,
+                    Notes = notes,
+                    IsActive = isActive,
+                    DateOfBirth = dateOfBirth,
+                    ImagePath = imagePath,
+                    IsDetained = isDetained
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool GetLicenseInfoByID(
         int licenseID,
         ref decimal lPaidFees,

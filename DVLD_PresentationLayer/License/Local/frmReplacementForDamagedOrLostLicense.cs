@@ -4,6 +4,7 @@ using Driving___Vehicle_License_Departement__DVLD_.License.International.Control
 using DVLD_BusinessLogicLayer;
 using System;
 using System.Windows.Forms;
+using static Driving___Vehicle_License_Departement__DVLD_.License.frmLocalDriverLicenseInfo;
 
 namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 {
@@ -11,7 +12,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
     {
         ctrlLicenseFilter.SearchEventArgs searchEventArgs;
         int _renewedLicenseID = -1;
-        int _renewedLocalApplicationID = -1;
+        int _renewedApplicationID = -1;
 
         public frmReplacementForDamagedOrLostLicense()
         {
@@ -31,7 +32,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
             {
                 searchEventArgs = localLicenseInfo;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(localLicenseInfo.LocalDLAppID);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(localLicenseInfo.ApplicationID);
 
                 ctrlApplicationInfoForLicenseReplacement1
                         .SetOldLicenseID(localLicenseInfo.LocalLicenseID);
@@ -59,7 +60,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
                 llblShowNewLicenseInfo.Enabled = false;
                 llblShowLicenseHistory.Enabled = false;
 
-                ctrlDriverLicenseInfo1.LoadDriverLicenseInfo(-1);
+                ctrlDriverLicenseInfo1.LoadDriverLicenseInfoByApplicationID(-1);
             }
         }
 
@@ -83,23 +84,9 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
                 return;
             }
 
-            clsLocalDrivingLicenseApplication localDrivingLicenseApplication
-                = new clsLocalDrivingLicenseApplication();
-
-            localDrivingLicenseApplication.ApplicationId = application.Id;
-            localDrivingLicenseApplication.LicenseClassId = searchEventArgs.LicenseClassID;
-
-            if (!localDrivingLicenseApplication.Save(out errorMessage))
-            {
-                if (string.IsNullOrEmpty(errorMessage))
-                    MessageBox.Show($"Failed to save local license application: {errorMessage}",
-                        "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             clsLicense renewedLicense = new clsLicense();
 
-            renewedLicense.ApplicationID = localDrivingLicenseApplication.ApplicationId;
+            renewedLicense.ApplicationID = application.Id;
             renewedLicense.LicenseClassID = searchEventArgs.LicenseClassID;
             renewedLicense.DriverID = searchEventArgs.DriverID;
             renewedLicense.IssueDate = DateTime.Now;
@@ -130,8 +117,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
             llblShowNewLicenseInfo.Enabled = true;
             btnIssueReplacement.Enabled = false;
 
-            _renewedLocalApplicationID
-                = localDrivingLicenseApplication.LocalDrivingLicenseApplicationId;
+            _renewedApplicationID = application.Id;
 
             ctrlApplicationInfoForLicenseReplacement1.SetNewLicenseInfo
                 (renewedLicense.ApplicationID, renewedLicense.LicenseID);
@@ -167,7 +153,8 @@ namespace Driving___Vehicle_License_Departement__DVLD_.License.Local
 
         private void llblShowNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new frmLocalDriverLicenseInfo(_renewedLocalApplicationID).ShowDialog();
+            new frmLocalDriverLicenseInfo(_renewedApplicationID,
+                IDType.ApplicationID).ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
