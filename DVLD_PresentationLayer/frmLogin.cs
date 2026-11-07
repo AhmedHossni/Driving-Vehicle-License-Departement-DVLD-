@@ -1,7 +1,9 @@
 ﻿using CommonUseThings;
 using DVLD_BusinessLogicLayer;
+using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
@@ -38,10 +40,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_
 
                 this.DialogResult = DialogResult.OK;
 
-                if (chboxRememberMe.Checked)
-                    RememberUserLoginInfo();
-                else
-                    ClearUserLoginInfo();
+                // Save login info in text file
+                //if (chboxRememberMe.Checked)
+                //    SaveUserLoginInfoInTextFile();
+                //else
+                //    ClearUserLoginInfoFromTextFile();
+
+                SaveUserLoginInfoInWinRegistry(!chboxRememberMe.Checked);
 
                 this.Close();
             }
@@ -56,7 +61,7 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             }
         }
 
-        private void RememberUserLoginInfo()
+        private void SaveUserLoginInfoInTextFile()
         {
             Directory.CreateDirectory(clsProjectSetting.FilesPath);
 
@@ -65,19 +70,55 @@ namespace Driving___Vehicle_License_Departement__DVLD_
                 streamWriter.WriteLine($"{tboxUsername.Text}\n{tboxPassword.Text}");
             }
         }
-        private void ClearUserLoginInfo()
+
+        private void ClearUserLoginInfoFromTextFile()
         {
             var streamWriter = File.CreateText(LoginFileFullName);
             streamWriter?.Dispose();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
+        private void SaveUserLoginInfoInWinRegistry(bool wantToClearLoginInfo)
+        {
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\DVLD_App";
+
+            try
+            {
+                Registry.SetValue(keyPath, "Username",
+                    wantToClearLoginInfo ? string.Empty : tboxUsername.Text, RegistryValueKind.String);
+
+                Registry.SetValue(keyPath, "Password",
+                    wantToClearLoginInfo ? string.Empty : tboxPassword.Text, RegistryValueKind.String);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error message",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReadUserLoginInfoFromWinRegistry()
+        {
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\DVLD_App";
+
+            try
+            {
+                tboxUsername.Text = (string)Registry.GetValue(keyPath, "Username", string.Empty);
+                tboxPassword.Text = (string)Registry.GetValue(keyPath, "Password", string.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error message",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReadUserLoginDataFromTextFile()
         {
             if (File.Exists(LoginFileFullName))
             {
                 var txtFileLines = File.ReadAllLines(LoginFileFullName);
 
-                if(txtFileLines.Length == 2)
+                if (txtFileLines.Length == 2)
                 {
                     tboxUsername.Text = txtFileLines[0];
                     tboxPassword.Text = txtFileLines[1];
@@ -88,6 +129,13 @@ namespace Driving___Vehicle_License_Departement__DVLD_
                 var streamWriter = File.CreateText(LoginFileFullName);
                 streamWriter?.Dispose();
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            // ReadUserLoginDataFromTextFile();
+
+            ReadUserLoginInfoFromWinRegistry();
         }
     }
 }
