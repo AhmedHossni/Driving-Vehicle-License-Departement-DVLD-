@@ -3,15 +3,18 @@ using DVLD_BusinessLogicLayer;
 using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Driving___Vehicle_License_Departement__DVLD_
 {
     public partial class frmLogin : frmMainStyle
     {
+        private enum PasswordSource { User, SavedData}
+        private PasswordSource _passwordSource = PasswordSource.User;
+        private bool _isLoading = false;
 
         private readonly string LoginFileFullName = $"{clsProjectSetting.FilesPath}\\LoginInfo.txt";
+
         public frmLogin()
         {
             InitializeComponent();
@@ -35,7 +38,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             string errorMessage = string.Empty;
 
-            if (clsUser.CheckUsernameAndPassword(tboxUsername.Text, tboxPassword.Text, out errorMessage))
+            string password = _passwordSource == PasswordSource.SavedData 
+                ? tboxPassword.Text : Utility.ComputeHash(tboxPassword.Text);
+
+            if (clsUser.CheckUsernameAndPassword(tboxUsername.Text, password, out errorMessage))
             {
 
                 this.DialogResult = DialogResult.OK;
@@ -87,7 +93,10 @@ namespace Driving___Vehicle_License_Departement__DVLD_
                     wantToClearLoginInfo ? string.Empty : tboxUsername.Text, RegistryValueKind.String);
 
                 Registry.SetValue(keyPath, "Password",
-                    wantToClearLoginInfo ? string.Empty : tboxPassword.Text, RegistryValueKind.String);
+                    wantToClearLoginInfo ? string.Empty : 
+                    _passwordSource == PasswordSource.User ?
+                    Utility.ComputeHash(tboxPassword.Text) : tboxPassword.Text,
+                    RegistryValueKind.String);
             }
             catch (Exception ex)
             {
@@ -103,7 +112,12 @@ namespace Driving___Vehicle_License_Departement__DVLD_
             try
             {
                 tboxUsername.Text = (string)Registry.GetValue(keyPath, "Username", string.Empty);
-                tboxPassword.Text = (string)Registry.GetValue(keyPath, "Password", string.Empty);
+                string password = (string)Registry.GetValue(keyPath, "Password", string.Empty);
+
+                tboxPassword.Text = password;
+
+                if (password != string.Empty)
+                    _passwordSource = PasswordSource.SavedData;
             }
             catch (Exception ex)
             {
@@ -135,7 +149,17 @@ namespace Driving___Vehicle_License_Departement__DVLD_
         {
             // ReadUserLoginDataFromTextFile();
 
+            _isLoading = true;
             ReadUserLoginInfoFromWinRegistry();
+            _isLoading = false;
+        }
+
+        private void tboxPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (_isLoading)
+                return;
+
+            _passwordSource = PasswordSource.User;
         }
     }
 }

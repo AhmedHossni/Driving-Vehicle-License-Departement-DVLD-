@@ -48,7 +48,7 @@ namespace DVLD_BusinessLogicLayer
 
             if (searchResult == enGettingRecordResult.eUserFounded)
             {
-                if (password == databasePassword) 
+                if (password == databasePassword)
                 {
                     if (isActive)
                     {

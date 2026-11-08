@@ -120,6 +120,7 @@
             this.tboxPassword.PasswordChar = '*';
             this.tboxPassword.Size = new System.Drawing.Size(247, 27);
             this.tboxPassword.TabIndex = 1;
+            this.tboxPassword.TextChanged += new System.EventHandler(this.tboxPassword_TextChanged);
             // 
             // tboxUsername
             // 
